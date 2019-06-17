@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "name": "Tender-App",
+    "alias": "stevenwagner-tender-app",
+    "routes": [
+        {
+          "src": "^/static/(.*)",
+          "dest": "/static/$1"
+        },
+        {
+          "src": ".*",
+          "dest": "/index.html"
+        }
+    ]
+  }
