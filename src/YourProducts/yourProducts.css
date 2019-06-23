@@ -1,0 +1,41 @@
+.change-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.change-items p, .price-chooser {
+    margin: 5px;
+    text-align: left;
+}
+
+.change-items input {
+    font-size: 1.25em;
+    padding: 5px;
+    margin-left: 10px;
+    max-width: 100px;
+}
+
+.change-items img {
+    align-self: center;
+}
+
+#submit-changes {
+    width: 90%;
+    max-width: 650px;
+    align-self: center;
+}
+
+#currentAdvertising {
+    margin: 10px;
+    padding: 5px;
+    width: 90%;
+    max-width: 650px;
+    align-self: center;
+    font-size: 1.25em;
+    white-space: initial;
+}
+
+.current-advertising-label {
+    margin-top: 20px;
+    font-weight: bold;
+}

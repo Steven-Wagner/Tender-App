@@ -1,0 +1,20 @@
+section {
+    min-height: 200px;
+    padding: 30px 15px;
+}
+
+.top-selling-item {
+    margin: 15px 0;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.profit {
+    color: green;
+}
+
+.product-img {
+    min-height: 200px;
+    max-height: 400px;
+    max-width: 75%;
+}

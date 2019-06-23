@@ -1,0 +1,12 @@
+nav,
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+  background-color: #aaa;
+  flex-wrap: wrap;
+}
+
+a {
+    margin: 5px;
+}

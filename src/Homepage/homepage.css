@@ -1,0 +1,11 @@
+.top-row {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0 0 0;
+
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
