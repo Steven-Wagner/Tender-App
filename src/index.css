@@ -13,6 +13,7 @@ body {
   text-align: center;
   line-height: 1.5;
   font-size: 1.25em;
+  background-color: aliceblue;
 }
 
 header {
@@ -57,4 +58,18 @@ textarea {
 
 .choose-buttons button {
   font-size: 1.2em;
+}
+
+button {
+  border-radius: 10px;
+  background-color: rgb(126, 209, 248); 
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: rgb(171, 171, 250);
+}
+
+button:active {
+  background-color: rgb(209, 209, 250)
 }

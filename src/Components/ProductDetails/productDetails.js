@@ -3,7 +3,7 @@ import React from 'react';
 function ProductDetails(props) {
     return(
         <div className="top-selling-item">
-            <h3>
+            <h3 className="product-title">
                 {props.item.title}
             </h3>
             <img className="product-img" src={props.item.img} alt={props.item.title}/>

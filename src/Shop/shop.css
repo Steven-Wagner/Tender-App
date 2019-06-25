@@ -30,6 +30,7 @@
     max-width: 75%;
     border: 1px solid black;
     border-radius: 5px;
+    box-shadow: 3px 3px 5px;
 }
 
 .current-product button {

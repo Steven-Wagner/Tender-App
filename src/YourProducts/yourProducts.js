@@ -9,14 +9,6 @@ class YourProducts extends Component {
 
     static contextType = TenderContext;
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            errorPopUp: {status: false, messages: []}
-        }
-        //finish makeing popup for error messages
-    }
-
     render() {
 
         const items = this.context.yourItems.map((item, index) => {

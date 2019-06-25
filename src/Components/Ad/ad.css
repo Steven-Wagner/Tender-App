@@ -17,4 +17,6 @@
 
 .ad-img {
     height: 50%;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px;
 }
