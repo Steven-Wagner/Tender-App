@@ -35,11 +35,11 @@
     margin-left: 20px;
 }
 
-#product-img, #product-description, #product-price {
+#img, #description, #price {
     font-size: 1em;
 }
 
-#product-price {
+#price {
     margin: 0 0 0 10px;
 }
 
@@ -50,7 +50,7 @@
     align-self: center;
 }
 
-#advertise-product {
+#advertise {
     margin: 10px;
     padding: 5px;
     width: 90%;

@@ -16,7 +16,8 @@
 }
 
 .ad-img {
-    height: 50%;
+    width: 50%;
+    max-height: 500px;
     border-radius: 5px;
     box-shadow: 3px 3px 5px;
 }

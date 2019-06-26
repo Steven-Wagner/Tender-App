@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Route} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import {ProductsProvider} from './context';
 import mockData from './mockData';
 import LandingPage from './landingPage/landingPage';
@@ -22,19 +22,113 @@ class App extends Component {
     this.removePopup = this.removePopup.bind(this);
     this.validateUpdate = this.validateUpdate.bind(this);
     this.setErrorMessages = this.setErrorMessages.bind(this);
+    this.updateCurrentShoppingItem = this.updateCurrentShoppingItem.bind(this);
+    this.getNewProductToSell = this.getNewProductToSell.bind(this);
+    this.canAfford = this.canAfford.bind(this);
+    this.removeItemFromState = this.removeItemFromState.bind(this);
+    this.subtractTotalByPrice = this.subtractTotalByPrice.bind(this);
+    this.setCurrentProductToLiked = this.setCurrentProductToLiked.bind(this);
+    this.goBack = this.goBack.bind(this);
     
     this.state = {
       yourItems: mockData.yourTopItems,
+      shoppingItems: mockData.shoppingItems,
+      userInfo: mockData.user[0],
       currentlyEditing: '',
       errorPopup: false,
       errorMessages: '',
+      totalMoney: mockData.user[0].money,
+      currentShoppingItem: {
+        index: -1
+      },
       
       handleChangeInput: this.handleChangeInput,
       updateProductState: this.updateProductState,
-      handleDelete: this.handleDelete
+      handleDelete: this.handleDelete,
+      updateCurrentShoppingItem: this.updateCurrentShoppingItem,
+      getNewProductToSell: this.getNewProductToSell,
+
+      canAfford: this.canAfford.bind(this),
+      removeItemFromState: this.removeItemFromState.bind(this),
+      subtractTotalByPrice: this.subtractTotalByPrice.bind(this),
+      setCurrentProductToLiked: this.setCurrentProductToLiked.bind(this),
+      goBack: this.goBack.bind(this),
+
+      setErrorMessages: this.setErrorMessages
     }
   }
 
+  componentDidMount() {
+    this.getNewProductToSell();
+  }
+
+  //Shop
+
+  canAfford(price) {
+    if (this.state.totalMoney < price) {
+        return false;
+    }
+    else {
+        return true;
+    }
+  }
+
+  removeItemFromState(index) {
+    const newShoppingItems = this.state.shoppingItems.slice();
+    newShoppingItems.splice(index, 1)
+
+    this.setState({
+        shoppingItems: newShoppingItems
+    })
+    return;
+  }
+
+  subtractTotalByPrice(price) {
+    const newTotal = this.state.totalMoney - price;
+
+    this.setState({
+        totalMoney: newTotal
+    })
+  }
+
+  setCurrentProductToLiked() {
+    this.setState({
+        currentShoppingItem:{
+            liked: true
+        }
+    })
+  }
+
+  goBack() {
+    this.props.history.goBack();
+  }
+
+  getNewProductToSell() {
+    let newIndex = this.state.currentShoppingItem.index + 1;
+    if(newIndex >= this.state.shoppingItems.length) {
+        newIndex = 0;
+    }
+    this.setState({
+        currentShoppingItem: {
+            index: newIndex,
+            title: this.state.shoppingItems[newIndex].title,
+            description: this.state.shoppingItems[newIndex].description,
+            price: this.state.shoppingItems[newIndex].price,
+            img: this.state.shoppingItems[newIndex].img
+        }
+    })
+  } 
+
+  updateCurrentShoppingItem(item) {
+    item.index = this.state.currentShoppingItem.index-1;
+    item.add = true;
+    this.setState({
+      currentShoppingItem: item
+    })
+  }
+
+
+  //Your Products
   handleChangeInput(e, index) {
     let newInput = Object.assign({}, this.state.currentlyEditing);
 
@@ -124,6 +218,8 @@ class App extends Component {
 
   render() {
 
+    console.log('render state', this.state.currentShoppingItem);
+
     const displayErrorPopup = this.state.errorPopup
       ? <ErrorPopup 
         removePopup={this.removePopup} 
@@ -172,4 +268,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

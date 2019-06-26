@@ -7,13 +7,13 @@ footer {
   flex-wrap: wrap;
 }
 
-a {
+nav a {
     margin: 5px;
     text-decoration: none;
     font-weight: bold;
     color: rgb(88, 108, 223);
 }
 
-a:hover {
+nav a:hover {
     color: rgb(28, 133, 238);
 }

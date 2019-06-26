@@ -1,8 +1,9 @@
 import React from 'react';
 
-function ProductDetails(props) {
-    return(
-        <div className="top-selling-item">
+function ProductDetails (props) {
+
+    return( 
+        <div className="top-selling-item" onClick={() => props.handleClick(props.item)}>
             <h3 className="product-title">
                 {props.item.title}
             </h3>
@@ -13,5 +14,6 @@ function ProductDetails(props) {
         </div>
     )
 }
+
 
 export default ProductDetails;

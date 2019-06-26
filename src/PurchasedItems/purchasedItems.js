@@ -39,7 +39,7 @@ class PurchasedItems extends Component {
             <div>
                 <Nav currentComponent='PurchasedItems'/>
                 <header>
-                    <h2 class="page-header">Purchased Products</h2>
+                    <h2 className="page-header">Purchased Products</h2>
                 </header>
                 <div className="list-of-items">
                     {items}

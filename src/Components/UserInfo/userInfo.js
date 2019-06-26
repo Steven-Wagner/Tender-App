@@ -1,28 +1,21 @@
 import React, {Component} from 'react';
 import mockData from '../../mockData';
 import './userInfo.css';
+import TenderContext from '../../context';
 
 class UserInfo extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            userInfo: {
-                username: mockData.user[0].username,
-                money: mockData.user[0].money,
-                description: mockData.user[0].description
-            }
-        }
-    }
+
+    static contextType = TenderContext;
 
     render() {
         return(
             <div className="info">
                 <div className="name-money">
-                    <p className="name">{this.state.userInfo.username}</p>
-                    <p className="play-money-total">{this.state.userInfo.money}</p>
+                    <p className="name">{this.context.userInfo.username}</p>
+                    <p className="play-money-total">{this.context.totalMoney}</p>
                 </div>
                 <div className="description">
-                    <p>{this.state.userInfo.description}</p>
+                    <p>{this.context.userInfo.description}</p>
                 </div>
             </div>
         )

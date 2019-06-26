@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import mockData from '../../mockData';
 import ProductDetails from '../ProductDetails/productDetails';
 import './topSellingItems.css';
+import TenderContext from '../../context';
 
 class TopSellingItems extends Component {
+
+    static contextType = TenderContext;
+
     constructor(props) {
         super(props);
         if (this.props.status === 'overall' || this.props.status === undefined) {
@@ -17,12 +22,28 @@ class TopSellingItems extends Component {
                 includeProfit: true
             }
         }
+
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(item) {
+        if (this.props.status === 'overall') {
+            this.context.updateCurrentShoppingItem(item);
+            this.props.history.push('/shop/');
+        }
+        else {
+            this.props.history.push('/yourproducts/');
+        }
     }
 
     render() {
 
         const topItems = this.state.topItems.map(item => {
-            return <ProductDetails item={item} key={item.title} includeProfit={this.state.includeProfit}/>
+            return <ProductDetails 
+                item={item} 
+                key={item.title} 
+                includeProfit={this.state.includeProfit}
+                handleClick={this.handleClick}/>
         });
 
         const headerTitle = this.props.status === 'overall'
@@ -42,4 +63,4 @@ class TopSellingItems extends Component {
     }
 }
 
-export default TopSellingItems;
+export default withRouter(TopSellingItems);
