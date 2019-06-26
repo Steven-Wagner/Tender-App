@@ -1,0 +1,17 @@
+.signup-form {
+    margin: 20px;
+}
+
+.signup-form label, 
+.signup-form input, 
+.signup-form textarea, 
+.signup-form button {
+    padding: 5px;
+    margin: 20px 0;
+}
+
+.signup-form input, 
+.signup-form textarea {
+    font-size: 1em;
+    width: 100%;
+}

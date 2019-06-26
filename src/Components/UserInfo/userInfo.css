@@ -1,0 +1,36 @@
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-money {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-and-money {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name, .play-money-total {
+    margin: 0 20px 0 20px;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.name {
+    text-shadow: 3px 3px 8px rgb(100, 100, 211);
+}
+
+.play-money-total {
+    font-weight: bold;
+    margin: 0 20px 0 0;
+    padding: 0 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.description {
+    margin: 20px;
+}

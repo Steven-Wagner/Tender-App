@@ -1,0 +1,19 @@
+nav,
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+  background-color: rgb(219, 248, 255);
+  flex-wrap: wrap;
+}
+
+nav a {
+    margin: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(88, 108, 223);
+}
+
+nav a:hover {
+    color: rgb(28, 133, 238);
+}

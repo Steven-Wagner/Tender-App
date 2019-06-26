@@ -1,0 +1,66 @@
+.new-product-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-ad-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.price-wrapper input {
+    max-width: 100px;
+    border-radius: 5px;
+}
+
+.new-product label, 
+.new-product-form input, 
+.new-product-form textarea, 
+.new-product-form select {
+    margin: 20px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#title {
+    font-size: 1.5em;
+}
+
+.price {
+    margin-left: 20px;
+}
+
+#img, #description, #price {
+    font-size: 1em;
+}
+
+#price {
+    margin: 0 0 0 10px;
+}
+
+.submit-new-product-btn {
+    margin: 20px;
+    width: 50%;
+    font-size: 1.5em;
+    align-self: center;
+}
+
+#advertise {
+    margin: 10px;
+    padding: 5px;
+    width: 90%;
+    max-width: 650px;
+    align-self: center;
+    font-size: 1.25em;
+    white-space: initial;
+}
+
+.current-advertising-label {
+    margin-top: 20px;
+    font-weight: bold;
+}

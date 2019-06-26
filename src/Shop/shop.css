@@ -1,0 +1,41 @@
+.shopping-page-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.done-button {
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.2em;
+}
+
+.shopping-page-info div {
+    margin: 5px 5px;
+}
+
+.current-product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.current-product h2 {
+    margin: 0;
+}
+
+.product-pic {
+    height: 25vh;
+    max-width: 75%;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px;
+}
+
+.current-product button {
+    padding: 10px;
+    margin: 10px;
+    width: 40%;
+    font-size: 1.2em;
+}
