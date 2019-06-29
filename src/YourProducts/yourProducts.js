@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Nav from '../Components/Nav/nav';
-import mockData from '../mockData';
 import YourProduct from './YourProduct/yourProduct';
 import './yourProducts.css';
 import TenderContext from '../context';
