@@ -18,18 +18,18 @@ class Shop extends Component {
         this.handleDone = this.handleDone.bind(this);
     }
 
-    handleBuy() {
+    async handleBuy() {
         const canAfford = this.context.canAfford(this.context.currentShoppingItem.price)
 
         if (canAfford) {
-            if (this.context.currentShoppingItem.ad) {
-                this.context.removeItemFromState(this.context.currentShoppingItem.index);
+            if (!this.context.currentShoppingItem.ad) {
+                await this.context.removeItemFromState(this.context.currentShoppingItem.index);
             }
-            this.context.subtractTotalByPrice(this.context.currentShoppingItem.price);
-            this.context.getNewProductToSell();
+            await this.context.subtractTotalByPrice(this.context.currentShoppingItem.price);
+            await this.context.getNewProductToSell(0);
         }
         else {
-            this.context.setErrorMessages(['You can\'t afford that item'])
+            this.context.setPopupMessages('errorPopup', ['You can\'t afford that item'])
         }
     }
 

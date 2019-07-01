@@ -5,13 +5,18 @@ class YourProduct extends Component {
     constructor(props) {
         super(props);
         this.handleDelete = this.handleDelete.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(e) {
         e.preventDefault();
 
-        this.props.updateProductState(this.props.index)
+        const validate = this.props.validateUpdate(this.props.index);
+
+        if (validate) {
+            this.props.updateProductState(this.props.index);
+            this.props.setPopupMessages('popup', 'Item Updated!');
+        }
     }
 
     handleDelete() {

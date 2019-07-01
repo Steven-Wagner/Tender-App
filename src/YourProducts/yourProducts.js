@@ -24,7 +24,9 @@ class YourProducts extends Component {
                 index={index}
                 handleChangeInput={this.context.handleChangeInput}
                 updateProductState={this.context.updateProductState}
-                handleDelete={this.context.handleDelete}/>)
+                handleDelete={this.context.handleDelete}
+                setPopupMessages={this.context.setPopupMessages}
+                validateUpdate={this.context.validateUpdate}/>)
         })
 
         return(

@@ -12,21 +12,20 @@ import PurchasedItems from './PurchasedItems/purchasedItems';
 import SignUp from './Signup/signUp';
 import YourProducts from './YourProducts/yourProducts';
 import ErrorPopup from './Components/ErrorPopup/errorPopup';
+import Popup from './Components/Popup/popup';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-
-    delegate.register(this, this.updateProductsState)
     
     this.state = {
       yourItems: mockData.yourTopItems,
       shoppingItems: mockData.shoppingItems,
       userInfo: mockData.user[0],
       currentlyEditing: '',
-      errorPopup: false,
-      errorMessages: '',
+      errorPopup: {status: false, messages: ''},
+      popup: {status: false, messages: ''},
       totalMoney: mockData.user[0].money,
       currentShoppingItem: {
         index: -1
@@ -35,16 +34,39 @@ class App extends Component {
       canAfford: this.canAfford.bind(this),
       goBack: this.goBack.bind(this),
 
-      // setErrorMessages: this.setErrorMessages
+      setPopupMessages: this.setPopupMessages.bind(this),
+      removePopup: this.removePopup.bind(this)
     }
+
+    this.updateProductsState = this.updateProductsState.bind(this);
+
+    delegate.register(this, this.updateProductsState)
   }
 
   componentDidMount() {
-    this.state.getNewProductToSell();
+    delegate.getNewProductToSell();
+  }
+
+  setPopupMessages(popupToPop, messages) {
+    return this.setState({
+        [popupToPop]: {
+          messages: messages,
+          status: true
+        }
+    })
+  }
+
+  removePopup(popupToRemove) {
+    return this.setState({
+        [popupToRemove]: {
+          status: false,
+          messages: ''
+        }
+    })
   }
 
   updateProductsState(newProductsState) {
-    this.setState({
+    return this.setState({
       ...this.state,
       ...newProductsState
     })
@@ -65,15 +87,22 @@ class App extends Component {
 
   render() {
 
-    const displayErrorPopup = this.state.errorPopup
+    const displayErrorPopup = this.state.errorPopup.status
       ? <ErrorPopup 
-        removePopup={this.removePopup} 
-        errorMessages={this.state.errorMessages}/>
-      : ''
+        removePopup={this.removePopup.bind(this)} 
+        errorMessages={this.state.errorPopup.messages}/>
+      : '';
+    
+    const displayPopup = this.state.popup.status
+      ? <Popup 
+        removePopup={this.removePopup.bind(this)} 
+        messages={this.state.popup.messages}/>
+      : '';
 
     return (
       <main className='App'>
         {displayErrorPopup}
+        {displayPopup}
         <ProductsProvider value={this.state}>
           <Route
             exact path="/"

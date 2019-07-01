@@ -6,7 +6,7 @@ function ErrorPopup(props) {
     return(
         <div className="error-popup">
             <ErrorMessages errorMessages={props.errorMessages}/>
-            <button onClick={() => props.removePopup()}>OK</button>
+            <button onClick={() => props.removePopup('errorPopup')}>OK</button>
         </div>
     )
 }

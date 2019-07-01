@@ -3,7 +3,7 @@ import Stars from '../../Components/Stars/stars';
 
 function PurchasedItem(props) {
     return(
-        <section class="current-product">
+        <section className="current-product">
             <h2>{props.item.title}</h2>
             <img className="product-pic" src={props.item.img} alt={props.item.title}/>
             <Stars rating={props.item.rating}/>

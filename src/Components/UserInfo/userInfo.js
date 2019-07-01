@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import mockData from '../../mockData';
 import './userInfo.css';
 import TenderContext from '../../context';
 

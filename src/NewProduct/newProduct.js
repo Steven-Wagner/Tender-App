@@ -37,8 +37,22 @@ class NewProduct extends Component {
         const validate = this.validateNewProduct(this.state.item);
 
         if (validate) {
-            document.getElementById('productForm').reset();
+            this.context.setPopupMessages('popup', 'New Product Created!')
+            this.resetValues();
+            // document.getElementById('productForm').reset();
         }
+    }
+
+    resetValues() {
+        this.setState({
+            item: {
+                title: '',
+                img: '',
+                description: '',
+                price: '',
+                advertise: 'None'
+            }
+        })
     }
 
     validateNewProduct(item) {
@@ -48,13 +62,12 @@ class NewProduct extends Component {
             errorMessages.push('Item must have a title');
         }
 
-        console.log(item)
         if (isNaN(parseFloat(item.price)) || parseFloat(item.price) < 1) {
             errorMessages.push('Item price must be at least 1 Play Money')
         }
 
         if (errorMessages.length > 0) {
-            this.context.setErrorMessages(errorMessages)
+            this.context.setPopupMessages('errorPopup', errorMessages)
             return false;
         }
         else {return true}
@@ -70,18 +83,21 @@ class NewProduct extends Component {
                 <form id='productForm' className="new-product-form" onSubmit={(e) => this.handleSubmit(e)}>
                     <label htmlFor="title">Title</label>
                     <input 
+                        value={this.state.item.title}
                         type="text" 
                         id="title"
                         onChange={(e) => this.handleChangeInput(e)}/>
                     
                     <label htmlFor="img">Image URL (optinal)</label>
                     <input 
+                        value={this.state.item.img}
                         type="text" 
                         id="img"
                         onChange={(e) => this.handleChangeInput(e)}/>
 
                     <label htmlFor="description">Product Description</label>
                     <textarea 
+                        value={this.state.item.description}
                         id="description" 
                         placeholder='Machine washable with like colors'
                         onChange={(e) => this.handleChangeInput(e)}>
@@ -91,6 +107,7 @@ class NewProduct extends Component {
                         <div className="price-wrapper">
                             <label className="price" htmlFor="price">Price:</label>
                             <input 
+                                value={this.state.item.price}
                                 id="price" 
                                 type="number" 
                                 step="1"
@@ -101,7 +118,7 @@ class NewProduct extends Component {
                         <select 
                             id="advertise" 
                             onChange={(e) => this.handleChangeInput(e)}
-                            defaultValue='None'>
+                            value={this.state.item.advertise}>
                             <option value='None'>None</option>
                             <option value='Homepage ads'>Homepage ads - 50 Play Money per day</option>
                             <option value='Popup ads'>Popup ads - 100 Play Money per day</option>
