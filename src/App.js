@@ -22,6 +22,7 @@ class App extends Component {
     this.state = {
       yourItems: mockData.yourTopItems,
       shoppingItems: mockData.shoppingItems,
+      purchasedItems: mockData.purchasedItems,
       userInfo: mockData.user[0],
       currentlyEditing: '',
       errorPopup: {status: false, messages: ''},

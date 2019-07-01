@@ -1,38 +1,20 @@
 import React, {Component} from 'react';
 import Nav from '../Components/Nav/nav';
-import mockData from '../mockData';
 import PurchasedItem from './PurchasedItem/purchasedItem';
+import TenderContext from '../context';
 
 class PurchasedItems extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            purchasedItems: mockData.purchasedItems
-        }
 
-        this.handleDelete = this.handleDelete.bind(this);
-    }
-
-    handleDelete(index) {
-        const updatedItemsArray = this.state.purchasedItems.filter((item, i) => {
-            return i !== index;
-        })
-
-        this.setState({
-            purchasedItems: updatedItemsArray
-        })
-
-        return updatedItemsArray;
-    }
+    static contextType = TenderContext;
 
     render() {
 
-        const items = this.state.purchasedItems.map((item, i) => {
+        const items = this.context.purchasedItems.map((item, i) => {
             return(<PurchasedItem 
                 item={item} 
                 key={item.title}
                 index={i}
-                handleDelete={this.handleDelete}/>)
+                handleDelete={this.context.handlePurchasedItemDelete}/>)
         })
 
         return(

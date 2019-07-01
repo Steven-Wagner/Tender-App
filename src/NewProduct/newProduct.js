@@ -15,7 +15,7 @@ class NewProduct extends Component {
                 img: '',
                 description: '',
                 price: '',
-                advertise: 'None'
+                advertising: 'None'
             }
         }
         this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -31,15 +31,15 @@ class NewProduct extends Component {
         });
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
         
         const validate = this.validateNewProduct(this.state.item);
 
         if (validate) {
-            this.context.setPopupMessages('popup', 'New Product Created!')
-            this.resetValues();
-            // document.getElementById('productForm').reset();
+            await this.context.addNewProduct(this.state.item)
+            await this.context.setPopupMessages('popup', 'New Product Created!')
+            await this.resetValues();
         }
     }
 
@@ -50,7 +50,7 @@ class NewProduct extends Component {
                 img: '',
                 description: '',
                 price: '',
-                advertise: 'None'
+                advertising: 'None'
             }
         })
     }
@@ -116,7 +116,7 @@ class NewProduct extends Component {
                         
                         <label className="current-advertising-label" htmlFor="advertise">Ad Spending</label>
                         <select 
-                            id="advertise" 
+                            id="advertising" 
                             onChange={(e) => this.handleChangeInput(e)}
                             value={this.state.item.advertise}>
                             <option value='None'>None</option>

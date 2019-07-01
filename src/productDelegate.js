@@ -29,7 +29,6 @@ const ProductDelegate = function() {
     }
     
     this.getNewProductToSell = function(indexToIncrease = 1) {
-        console.log(indexToIncrease)
         let newIndex = this.app.state.currentShoppingItem.index + indexToIncrease;
         if(newIndex >= this.app.state.shoppingItems.length) {
             newIndex = 0;
@@ -109,6 +108,36 @@ const ProductDelegate = function() {
             currentShoppingItem: item
         })
     }
+
+    this.addNewProduct = function(newItem) {
+        const newYourItems = JSON.parse(JSON.stringify(this.app.state.yourItems));
+
+        newYourItems.push(newItem);
+
+        return this.setState({
+            yourItems: newYourItems
+        })
+    }
+
+    this.newPurchasedItem = function(newItem) {
+        const newPurchasedItems = JSON.parse(JSON.stringify(this.app.state.purchasedItems));
+
+        newPurchasedItems.push(newItem);
+
+        return this.setState({
+            purchasedItems: newPurchasedItems
+        })
+    }
+
+    this.handlePurchasedItemDelete = function(index) {
+        const updatedItemsArray = this.app.state.purchasedItems.filter((item, i) => {
+            return i !== index;
+        })
+
+        return this.setState({
+            purchasedItems: updatedItemsArray
+        })
+    }
    
     this.handleChangeInput = function(e, index) {
         let newInput = Object.assign({}, this.app.state.currentlyEditing);
@@ -161,8 +190,7 @@ const ProductDelegate = function() {
             let argument = newState;
 
             // this.app[this.function](newState);
-            receiver.updateProductsState(argument);
-
+            return receiver.updateProductsState(argument);
         }
     }
    
@@ -176,7 +204,10 @@ const ProductDelegate = function() {
            removeItemFromState: this.removeItemFromState.bind(this),
            subtractTotalByPrice: this.subtractTotalByPrice.bind(this),
            setCurrentProductToLiked: this.setCurrentProductToLiked.bind(this),
-           validateUpdate: this.validateUpdate.bind(this)
+           validateUpdate: this.validateUpdate.bind(this),
+           addNewProduct: this.addNewProduct.bind(this),
+           handlePurchasedItemDelete: this.handlePurchasedItemDelete.bind(this),
+           newPurchasedItem: this.newPurchasedItem.bind(this)
      
     }
 }

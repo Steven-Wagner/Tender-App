@@ -26,6 +26,7 @@ class Shop extends Component {
                 await this.context.removeItemFromState(this.context.currentShoppingItem.index);
             }
             await this.context.subtractTotalByPrice(this.context.currentShoppingItem.price);
+            await this.context.newPurchasedItem(this.context.currentShoppingItem);
             await this.context.getNewProductToSell(0);
         }
         else {
