@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 function LandingPageContent(props) {
     return (
@@ -28,7 +29,7 @@ function LandingPageContent(props) {
                 <header>
                     <h3>Start Making Play Money Now!</h3>
                 </header>
-            <button>Sign-up</button>
+            <button><Link to="/signup/">Sign-up</Link></button>
         </section>
     </div>
     );
