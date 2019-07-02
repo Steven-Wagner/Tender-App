@@ -91,7 +91,7 @@ class NewProduct extends Component {
                     <label htmlFor="img">Image URL (optinal)</label>
                     <input 
                         value={this.state.item.img}
-                        type="text" 
+                        type="url" 
                         id="img"
                         onChange={(e) => this.handleChangeInput(e)}/>
 

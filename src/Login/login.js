@@ -88,7 +88,7 @@ class Login extends Component {
                         onChange={(e) => this.handleChangeInput(e)}/>
 
                     <label htmlFor="password">Password</label>
-                    <input id="password" type="text" 
+                    <input id="password" type="password" 
                         onChange={(e) => this.handleChangeInput(e)}/>
 
                     <div className="choose-buttons">
