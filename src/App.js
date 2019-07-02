@@ -34,6 +34,7 @@ class App extends Component {
       ...delegate.functions,
       canAfford: this.canAfford.bind(this),
       goBack: this.goBack.bind(this),
+      changeUser: this.changeUser.bind(this),
 
       setPopupMessages: this.setPopupMessages.bind(this),
       removePopup: this.removePopup.bind(this)
@@ -46,6 +47,12 @@ class App extends Component {
 
   componentDidMount() {
     delegate.getNewProductToSell();
+  }
+
+  changeUser(user) {
+    this.setState({
+      userInfo: user
+    })
   }
 
   setPopupMessages(popupToPop, messages) {

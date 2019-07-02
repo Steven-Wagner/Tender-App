@@ -48,7 +48,7 @@ class Shop extends Component {
 
     render() {
         return(
-            <div>
+            <div className="page-wrapper">
                 <ShopInfoBar 
                     totalMoney={this.context.totalMoney}
                     handleDone={this.handleDone}/>

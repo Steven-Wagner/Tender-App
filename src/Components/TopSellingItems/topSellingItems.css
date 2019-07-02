@@ -16,6 +16,11 @@ section {
     background-color: rgb(108, 174, 212);
 }
 
+.top-selling-item:hover {
+    cursor: pointer;
+    background-color: rgb(178, 216, 238)
+}
+
 .product-title {
     margin: 30px;
 }

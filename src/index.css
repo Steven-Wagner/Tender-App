@@ -78,3 +78,21 @@ a {
   text-decoration: none;
   color: black;
 }
+
+@media only screen and (min-width: 650px) {
+  .page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page-wrapper > div,
+  .page-wrapper > section,
+  .page-wrapper > form {
+    width: 650px;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+  }
+}

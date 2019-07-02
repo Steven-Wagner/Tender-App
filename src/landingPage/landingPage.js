@@ -6,7 +6,7 @@ import Footer from '../Components/Footer/footer';
 
 function LandingPage() {
     return(
-        <div>
+        <div className="page-wrapper">
             <Nav currentComponent='LandingPage'/>
             <MainTitle/>
             <LandingPageContent/>

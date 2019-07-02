@@ -30,7 +30,7 @@ class YourProducts extends Component {
         })
 
         return(
-            <div>
+            <div className="page-wrapper">
                 <Nav currentComponent='YourProducts'/>
                 <header>
                     <h2 className="page-header">Your Products</h2>

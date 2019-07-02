@@ -3,17 +3,22 @@ import Nav from '../Components/Nav/nav';
 import {withRouter} from 'react-router-dom';
 import ErrorMessages from '../Components/Error/errorMessages';
 import './signup.css';
+import TenderContext from '../context';
 
 class SignUp extends Component {
+
+    static contextType = TenderContext;
 
     constructor(props) {
         super(props);
 
         this.state = {
             errorMessages: [],
-            username: '',
-            password: '',
-            description: ''
+            user: {
+                username: '',
+                password: '',
+                description: ''
+            }
         }
 
         this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -26,8 +31,11 @@ class SignUp extends Component {
     }
 
     handleChangeInput(e) {
+        const newUserInfo = Object.assign({}, this.state.user)
+        newUserInfo[e.target.id] = e.target.value;
+
         this.setState({
-            [e.target.id]: e.target.value
+            user: newUserInfo
         });
     }
 
@@ -36,6 +44,8 @@ class SignUp extends Component {
         const errorMessages = this.valdiateSubmit();
 
         if (errorMessages.length === 0) {
+            this.context.changeUser(this.state.user)
+
             this.props.history.push('/homepage/');
         }
         else {
@@ -58,23 +68,23 @@ class SignUp extends Component {
     }
 
     validateUsername(errorMessages) {
-        if (!this.state.username) {
+        if (!this.state.user.username) {
             errorMessages.push('Username is required')
         }
-        if (this.state.username.length < 6) {
+        if (this.state.user.username.length < 6) {
             errorMessages.push('Usernames must be longer than 5 characters')
         }
         return errorMessages;
     }
     
     validatePassword(errorMessages) {
-        if (!this.state.password) {
+        if (!this.state.user.password) {
             errorMessages.push('Password is required')
         }
-        if (this.state.password.length < 6) {
+        if (this.state.user.password.length < 6) {
             errorMessages.push('Passwords must be longer than 5 characters')
         }
-        if (this.state.password.length > 72) {
+        if (this.state.user.password.length > 72) {
             errorMessages.push('Passwords can not be longer than 72 characters')
         }
         return errorMessages;
@@ -88,7 +98,7 @@ class SignUp extends Component {
 
     render() {
         return(
-            <div>
+            <div className="page-wrapper">
                 <Nav currentComponent='SignUp'/>
                 <header>
                     <h2 className="page-header">Sign Up</h2>
@@ -98,16 +108,19 @@ class SignUp extends Component {
 
                 <form className="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
                     <label htmlFor="username">Username/Company Name</label>
-                    <input id="username" type="text"
+                    <input id="username" type="text" 
+                        value={this.state.user.username}
                         onChange={(e) => this.handleChangeInput(e)}/>
 
                     <label htmlFor="password">Password</label>
                     <input id="password" type="text" 
+                        value={this.state.user.password}
                         onChange={(e) => this.handleChangeInput(e)}/>
 
                     <label htmlFor="description">Description</label>
                     <textarea id="description"
-                        onChange={(e) => this.handleChangeInput(e)}>
+                        onChange={(e) => this.handleChangeInput(e)}
+                        value={this.state.user.description}>
                     </textarea>
 
                     <div className="choose-buttons">

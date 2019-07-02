@@ -74,7 +74,7 @@ class Login extends Component {
 
     render() {
         return(
-            <div>
+            <div className="page-wrapper">
                 <Nav currentComponent='Login'/>
                 <header>
                     <h2 className="page-header">Login</h2>

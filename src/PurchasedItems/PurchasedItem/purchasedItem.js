@@ -15,7 +15,7 @@ function PurchasedItem(props) {
                     onClick={() => props.handleDelete(props.index)}>
                     Delete
                 </button>
-                <button>Reviews</button>
+                {/* <button>Reviews</button> */}
             </div>
         </section>
     )

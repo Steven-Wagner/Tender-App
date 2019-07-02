@@ -75,7 +75,7 @@ class NewProduct extends Component {
 
     render() {
         return(
-            <div>
+            <div className="page-wrapper">
                 <Nav currentComponent={'NewProduct'}/>
                 <header>
                     <h2 className="page-header">New Product</h2>

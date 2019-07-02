@@ -18,7 +18,7 @@ class PurchasedItems extends Component {
         })
 
         return(
-            <div>
+            <div className="page-wrapper">
                 <Nav currentComponent='PurchasedItems'/>
                 <header>
                     <h2 className="page-header">Purchased Products</h2>
