@@ -3,6 +3,8 @@ import Nav from '../Components/Nav/nav';
 import {withRouter} from 'react-router-dom';
 import ErrorMessages from '../Components/Error/errorMessages';
 import './signup.css';
+import {API_BASE_URL} from '../config';
+import TokenService from '../services/Token-services';
 import TenderContext from '../context';
 
 class SignUp extends Component {
@@ -28,6 +30,7 @@ class SignUp extends Component {
         this.validatePassword = this.validatePassword.bind(this);
         this.validateUsername = this.validateUsername.bind(this);
         this.setErrorMessages = this.setErrorMessages.bind(this);
+        this.fetchPostNewUser = this.fetchPostNewUser.bind(this);
     }
 
     handleChangeInput(e) {
@@ -44,13 +47,51 @@ class SignUp extends Component {
         const errorMessages = this.valdiateSubmit();
 
         if (errorMessages.length === 0) {
-            this.context.changeUser(this.state.user)
 
-            this.props.history.push('/homepage/');
+            this.fetchPostNewUser(this.state.user)
+            .then(res => {
+                TokenService.saveAuthToken(res.authToken)
+                this.context.changeUser({id: res.user_id})
+                .then(res => {
+                    if(res) {
+                        this.setErrorMessages([res.message])
+                    }
+                    else {
+                        this.props.history.push('/homepage/');
+                    }
+                })
+            })
+            .catch(error => {
+                this.setErrorMessages([error.message])
+            })
         }
         else {
             this.setErrorMessages(errorMessages);
         }
+    }
+
+    fetchPostNewUser = newUser => {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/signup/`, {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(newUser)
+                }).then(res => {
+                    return (!res.ok)
+                    ? res.json().then(e => {reject(e)})
+                    : resolve(res.json())
+                })
+                .catch(error => {
+                    reject(error)
+                })
+            }
+            catch(error) {
+                reject(error)
+            }
+        })
     }
 
     setErrorMessages(errorMessages) {

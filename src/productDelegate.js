@@ -1,4 +1,72 @@
+import {API_BASE_URL} from '../src/config';
+import TokenService from '../src/services/Token-services';
+
 const ProductDelegate = function() {
+
+    this.fetchGetShopProducts = user_id => {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/shopProducts/${user_id.id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    }
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => {reject (e)})
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error);
+            }
+        })
+    }
+    this.fetchGetUserInfo = user_id => {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/userInfo/${user_id.id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    }
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => {reject (e)})
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error);
+            }
+        })
+    }
+
+    this.fetchYourProducts = user_id => {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/yourProducts/${user_id.id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    }
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => {reject (e)})
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error);
+            }
+        })
+    }
 
     this.updateProductState = function (index) {
     
@@ -33,16 +101,18 @@ const ProductDelegate = function() {
         if(newIndex >= this.app.state.shoppingItems.length) {
             newIndex = 0;
         }
-
-        return this.setState({
-            currentShoppingItem: {
-                index: newIndex,
-                title: this.app.state.shoppingItems[newIndex].title,
-                description: this.app.state.shoppingItems[newIndex].description,
-                price: this.app.state.shoppingItems[newIndex].price,
-                img: this.app.state.shoppingItems[newIndex].img
-            }
-        })
+        if (this.app.state.shoppingItems.length !== 0) {
+            return this.setState({
+                currentShoppingItem: {
+                    index: newIndex,
+                    title: this.app.state.shoppingItems[newIndex].title,
+                    description: this.app.state.shoppingItems[newIndex].description,
+                    price: this.app.state.shoppingItems[newIndex].price,
+                    img: this.app.state.shoppingItems[newIndex].img,
+                    id: this.app.state.shoppingItems[newIndex].id
+                }
+            })
+        }
     } 
      
     this.subtractTotalByPrice = function(price) {
@@ -207,7 +277,10 @@ const ProductDelegate = function() {
            validateUpdate: this.validateUpdate.bind(this),
            addNewProduct: this.addNewProduct.bind(this),
            handlePurchasedItemDelete: this.handlePurchasedItemDelete.bind(this),
-           newPurchasedItem: this.newPurchasedItem.bind(this)
+           newPurchasedItem: this.newPurchasedItem.bind(this),
+           fetchGetUserInfo: this.fetchGetUserInfo.bind(this),
+           fetchYourProducts: this.fetchYourProducts.bind(this),
+           fetchGetShopProducts: this.fetchGetShopProducts.bind(this)
      
     }
 }

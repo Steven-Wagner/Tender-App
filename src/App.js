@@ -21,7 +21,7 @@ class App extends Component {
     
     this.state = {
       yourItems: mockData.yourTopItems,
-      shoppingItems: mockData.shoppingItems,
+      shoppingItems: [],
       purchasedItems: mockData.purchasedItems,
       userInfo: mockData.user[0],
       currentlyEditing: '',
@@ -49,9 +49,27 @@ class App extends Component {
     delegate.getNewProductToSell();
   }
 
-  changeUser(user) {
-    this.setState({
-      userInfo: user
+  async changeUser(user_id) {
+    return await delegate.fetchGetUserInfo(user_id)
+    .then(userInfo => {
+      this.setState({
+        userInfo: userInfo.userInfo
+      })
+      delegate.fetchYourProducts(user_id)
+      .then(yourProducts => {
+        this.setState({
+          yourItems: yourProducts
+        })
+      })
+      delegate.fetchGetShopProducts(user_id)
+      .then(shopProducts => {
+        this.setState({
+          shoppingItems: shopProducts
+        })
+      })
+    })
+    .catch(error => {
+      return error
     })
   }
 

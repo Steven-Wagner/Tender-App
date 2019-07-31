@@ -3,8 +3,13 @@ import Nav from '../Components/Nav/nav';
 import {withRouter} from 'react-router-dom';
 import ErrorMessages from '../Components/Error/errorMessages';
 import './login.css';
+import {API_BASE_URL} from '../config';
+import TokenService from '../services/Token-services';
+import TenderContext from '../context';
 
 class Login extends Component {
+
+    static contextType = TenderContext;
 
     constructor(props) {
         super(props);
@@ -18,6 +23,7 @@ class Login extends Component {
         this.handleChangeInput = this.handleChangeInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
+        this.submitLoginInfo = this.submitLoginInfo.bind(this);
     }
 
     handleChangeInput(e) {
@@ -32,7 +38,7 @@ class Login extends Component {
         const errorMessages = this.valdiateSubmit();
 
         if (errorMessages.length === 0) {
-            this.props.history.push('/homepage/');
+            this.submitLoginInfo()
         }
         else {this.setErrorMessages(errorMessages)}
     }
@@ -65,6 +71,56 @@ class Login extends Component {
         }
 
         return errorMessages;
+    }
+
+    submitLoginInfo() {
+        const loginBody = {
+            username: this.state.username.trim(),
+            password: this.state.password.trim()
+        }
+
+            this.fetchPostLoginInfo(loginBody)
+            .then(authInfo => {
+                const user_id = authInfo.user_id;
+
+                TokenService.saveAuthToken(authInfo.authToken);
+
+                this.context.changeUser({id: user_id})
+                .then(res => {
+                    if (res) {
+                        this.setErrorMessages([res.message])
+                    }
+                    else {
+                        //Move browser view to homepage
+                        this.props.history.push('/homepage/');
+                    }
+                })
+            })
+            .catch(error => {
+                this.setErrorMessages([error.message])
+            })
+    }
+
+    fetchPostLoginInfo = loginBody => {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/auth/login`, {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(loginBody)
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => reject(e))
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error)
+            }
+        })
     }
 
     handleCancel(e) {

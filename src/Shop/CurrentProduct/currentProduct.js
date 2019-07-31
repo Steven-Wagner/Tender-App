@@ -2,6 +2,16 @@ import React from 'react';
 import Stars from '../../Components/Stars/stars';
 
 function CurrentProduct(props) {
+    console.log('props.item', props.item)
+    if (props.item.index === -1) {
+        return(
+            <section className='current-product'>
+                <p>
+                    There are no more products to view
+                </p>
+            </section>
+        )
+    }
     return(
         <section className='current-product'>
             <div className='choose-buttons'>

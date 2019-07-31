@@ -2,10 +2,12 @@ import React from 'react';
 import './error.css'
 
 function ErrorMesseges(props) {
-    let errorMessages = null;;
+    let errorMessages = null;
+    console.log(props)
 
     if (props.errorMessages.length > 0) {
         errorMessages = props.errorMessages.map((message, index) => {
+            console.log('message', message)
             return <Error message={message} key={index}/>
         })
     }
@@ -16,6 +18,7 @@ function ErrorMesseges(props) {
 }
 
 function Error(props) {
+    console.log('props in error', props.message)
     return(
         <p className="error">{props.message}</p>
     )

@@ -50,7 +50,7 @@ class YourProduct extends Component {
                         <option value='None'>None</option>
                         <option value='Homepage ads'>Homepage ads - 50 Play Money per day</option>
                         <option value='Popup ads'>Popup ads - 100 Play Money per day</option>
-                        <option value='Annoying Ads'>Annoying Ads - 150 Play Money per day</option>
+                        <option value='Annoying ads'>Annoying Ads - 150 Play Money per day</option>
                     </select>
                     <button id="submit-changes" type="submit">Submit Changes</button>           
                 </form>
