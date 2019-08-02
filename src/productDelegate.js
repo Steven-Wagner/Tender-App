@@ -3,6 +3,72 @@ import TokenService from '../src/services/Token-services';
 
 const ProductDelegate = function() {
 
+    this.fetchGetUsersPopularProducts = user_id => {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/yourProducts/popular/${user_id.id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    }
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => {reject (e)})
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error);
+            }
+        })
+    }
+
+    this.fetchGetPopularProducts = user_id => {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/shopProducts/popular/${user_id.id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    }
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => {reject (e)})
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error);
+            }
+        })
+    }
+
+    this.fetchPurchasedProducts = user_id => {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/yourProducts/purchased/${user_id.id}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    }
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => {reject (e)})
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error);
+            }
+        })
+    }
+
     this.fetchGetShopProducts = user_id => {
         return new Promise((resolve, reject) => {
             try {
@@ -98,10 +164,8 @@ const ProductDelegate = function() {
     
     this.getNewProductToSell = function(indexToIncrease = 1) {
         let newIndex = this.app.state.currentShoppingItem.index + indexToIncrease;
-        if(newIndex >= this.app.state.shoppingItems.length) {
-            newIndex = 0;
-        }
-        if (this.app.state.shoppingItems.length !== 0) {
+
+        if (this.app.state.shoppingItems.length !== 0 && newIndex < this.app.state.shoppingItems.length) {
             return this.setState({
                 currentShoppingItem: {
                     index: newIndex,
@@ -113,13 +177,24 @@ const ProductDelegate = function() {
                 }
             })
         }
+        else {
+            return this.setState({
+                currentShoppingItem: {
+                    index: -1,
+                }
+            })
+        }
     } 
      
     this.subtractTotalByPrice = function(price) {
-        const newTotal = this.app.state.totalMoney - price;
+        const newTotal = this.app.state.userInfo.money - price;
+
+        const newUserInfo = Object.assign({}, this.app.state.userInfo)
+
+        newUserInfo.money = newTotal;
 
         return this.setState({
-            totalMoney: newTotal
+            userInfo: newUserInfo
         })
     }
    
@@ -180,6 +255,7 @@ const ProductDelegate = function() {
     }
 
     this.addNewProduct = function(newItem) {
+        console.log('newitem', newItem)
         const newYourItems = JSON.parse(JSON.stringify(this.app.state.yourItems));
 
         newYourItems.push(newItem);
@@ -189,10 +265,14 @@ const ProductDelegate = function() {
         })
     }
 
-    this.newPurchasedItem = function(newItem) {
+    this.newPurchasedItem = function(newItem, id) {
+        const newPurchasedItem = Object.assign({}, newItem);
         const newPurchasedItems = JSON.parse(JSON.stringify(this.app.state.purchasedItems));
 
-        newPurchasedItems.push(newItem);
+        newPurchasedItem.id = id;
+        newPurchasedItem.bonus = 0.00;
+
+        newPurchasedItems.push(newPurchasedItem);
 
         return this.setState({
             purchasedItems: newPurchasedItems
@@ -280,7 +360,10 @@ const ProductDelegate = function() {
            newPurchasedItem: this.newPurchasedItem.bind(this),
            fetchGetUserInfo: this.fetchGetUserInfo.bind(this),
            fetchYourProducts: this.fetchYourProducts.bind(this),
-           fetchGetShopProducts: this.fetchGetShopProducts.bind(this)
+           fetchGetShopProducts: this.fetchGetShopProducts.bind(this),
+           fetchPurchasedProducts: this.fetchPurchasedProducts.bind(this),
+           fetchGetUsersPopularProducts: this.fetchGetUsersPopularProducts.bind(this),
+           fetchGetPopularProducts: this.fetchGetPopularProducts.bind(this)
      
     }
 }

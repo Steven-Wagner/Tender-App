@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
 import Stars from '../../Components/Stars/stars';
+import TokenService from '../../services/Token-services';
+import {API_BASE_URL} from '../../config';
 
 class YourProduct extends Component {
+
+
+
     constructor(props) {
         super(props);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.fetchPatchProduct = this.fetchPatchProduct.bind(this);
     }
 
     handleSubmit(e) {
@@ -14,9 +20,38 @@ class YourProduct extends Component {
         const validate = this.props.validateUpdate(this.props.index);
 
         if (validate) {
-            this.props.updateProductState(this.props.index);
-            this.props.setPopupMessages('popup', 'Item Updated!');
+            this.fetchPatchProduct(this.props.item)
+            .then(updatedProduct => {
+                this.props.updateProductState(this.props.index);
+                this.props.setPopupMessages('popup', `${this.props.item.title} Updated!`);
+            })
+            .catch(error => {
+                this.props.setPopupMessages('errorPopup', [error.message])
+            })
         }
+    }
+
+    fetchPatchProduct(updatedProduct) {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/yourProducts/${updatedProduct.creator_id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    },
+                    body: JSON.stringify(updatedProduct)
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => {reject (e)})
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error);
+            }
+        })
     }
 
     handleDelete() {
@@ -44,9 +79,9 @@ class YourProduct extends Component {
                     </div>
                     <label className="current-advertising-label" htmlFor="currentAdvertising">Current Advertising:</label>
                     <select 
-                        id="advertising" 
+                        id="ad" 
                         onChange={(e) => this.props.handleChangeInput(e, this.props.index)}
-                        value={this.props.item.advertising}>
+                        value={this.props.item.ad}>
                         <option value='None'>None</option>
                         <option value='Homepage ads'>Homepage ads - 50 Play Money per day</option>
                         <option value='Popup ads'>Popup ads - 100 Play Money per day</option>

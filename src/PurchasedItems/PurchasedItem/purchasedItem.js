@@ -9,7 +9,7 @@ function PurchasedItem(props) {
             <Stars rating={props.item.rating}/>
             <p>{props.item.description}</p>
             <p>Price: {props.item.price}</p>
-            <p>Bonuses: {props.item.bonuses}</p>
+            <p>Bonuses: {props.item.bonus}</p>
             <div className="choose-buttons">
                 <button
                     onClick={() => props.handleDelete(props.index)}>

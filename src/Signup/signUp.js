@@ -50,7 +50,7 @@ class SignUp extends Component {
 
             this.fetchPostNewUser(this.state.user)
             .then(res => {
-                TokenService.saveAuthToken(res.authToken)
+                TokenService.saveAuthToken(res.authToken, res.user_id)
                 this.context.changeUser({id: res.user_id})
                 .then(res => {
                     if(res) {

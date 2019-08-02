@@ -3,11 +3,9 @@ import './error.css'
 
 function ErrorMesseges(props) {
     let errorMessages = null;
-    console.log(props)
 
     if (props.errorMessages.length > 0) {
         errorMessages = props.errorMessages.map((message, index) => {
-            console.log('message', message)
             return <Error message={message} key={index}/>
         })
     }

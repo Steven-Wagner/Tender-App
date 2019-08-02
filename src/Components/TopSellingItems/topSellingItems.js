@@ -11,20 +11,20 @@ class TopSellingItems extends Component {
 
     constructor(props) {
         super(props);
-        if (this.props.status === 'overall' || this.props.status === undefined) {
+        if (this.props.status === 'user') {
             this.state = {
-                topItems: mockData.topItems
+                includeProfit: true
             }
         }
         else {
             this.state = {
-                topItems: mockData.yourTopItems,
-                includeProfit: true
+                includeProfit: false
             }
         }
 
         this.handleClick = this.handleClick.bind(this);
     }
+
 
     handleClick(item) {
         if (this.props.status === 'overall') {
@@ -38,7 +38,7 @@ class TopSellingItems extends Component {
 
     render() {
 
-        const topItems = this.state.topItems.map(item => {
+        const topItems = this.props.popularProducts.map(item => {
             return <ProductDetails 
                 item={item} 
                 key={item.title} 

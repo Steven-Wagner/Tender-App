@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import TenderContext from '../context';
 import CurrentProduct from './CurrentProduct/currentProduct';
 import ShopInfoBar from './ShopInfoBar/shopInfoBar';
+import TokenService from '../services/Token-services';
+import {API_BASE_URL} from '../config';
 
 import './shop.css';
 
@@ -16,22 +18,66 @@ class Shop extends Component {
         this.handleSkip = this.handleSkip.bind(this);
         this.handleLike = this.handleLike.bind(this);
         this.handleDone = this.handleDone.bind(this);
+        this.fetchPostPurchase = this.fetchPostPurchase.bind(this);
     }
 
     async handleBuy() {
         const canAfford = this.context.canAfford(this.context.currentShoppingItem.price)
 
         if (canAfford) {
-            if (!this.context.currentShoppingItem.ad) {
-                await this.context.removeItemFromState(this.context.currentShoppingItem.index);
-            }
-            await this.context.subtractTotalByPrice(this.context.currentShoppingItem.price);
-            await this.context.newPurchasedItem(this.context.currentShoppingItem);
-            await this.context.getNewProductToSell(0);
+            this.fetchPostPurchase(this.context.currentShoppingItem)
+            .then(purchaseId => {
+                let productIndex;
+                
+                if (this.context.currentShoppingItem.ad) {
+                    productIndex = this.getProductIndexById(this.context.currentShoppingItem.id)
+                }
+                else {
+                    productIndex = this.context.currentShoppingItem.index
+                }
+                this.context.removeItemFromState(productIndex);
+                this.context.subtractTotalByPrice(this.context.currentShoppingItem.price);
+                this.context.newPurchasedItem(this.context.currentShoppingItem, purchaseId.id);
+                this.context.getNewProductToSell(0);
+            })
+            .catch(error => {
+                this.context.setPopupMessages('errorPopup', error.message)
+            })
         }
         else {
             this.context.setPopupMessages('errorPopup', ['You can\'t afford that item'])
         }
+    }
+
+    fetchPostPurchase(currentShoppingItem) {
+        return new Promise((resolve, reject) => {
+            const user_id = TokenService.getUserId();
+
+            try {
+                fetch(`${API_BASE_URL}/shopProducts/purchase/${user_id}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    },
+                    body: JSON.stringify({product_id: currentShoppingItem.id})
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => {reject (e)})
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error);
+            }
+        })
+    }
+
+    getProductIndexById(id) {
+        return this.context.shoppingItems.findIndex(product => {
+            return product.id === id;
+        })
     }
 
     handleSkip() {
@@ -50,7 +96,7 @@ class Shop extends Component {
         return(
             <div className="page-wrapper">
                 <ShopInfoBar 
-                    totalMoney={this.context.totalMoney}
+                    totalMoney={this.context.userInfo.money}
                     handleDone={this.handleDone}/>
                 
                 <CurrentProduct 

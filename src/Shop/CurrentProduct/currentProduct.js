@@ -2,8 +2,7 @@ import React from 'react';
 import Stars from '../../Components/Stars/stars';
 
 function CurrentProduct(props) {
-    console.log('props.item', props.item)
-    if (props.item.index === -1) {
+    if (props.item.index === -1 && !props.item.ad) {
         return(
             <section className='current-product'>
                 <p>

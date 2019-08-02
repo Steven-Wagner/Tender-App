@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Nav from '../Components/Nav/nav';
 import './newProduct.css';
 import TenderContext from '../context';
+import TokenService from '../services/Token-services';
+import {API_BASE_URL} from '../config';
 
 class NewProduct extends Component {
 
@@ -15,7 +17,10 @@ class NewProduct extends Component {
                 img: '',
                 description: '',
                 price: '',
-                advertising: 'None'
+                ad: 'None',
+                creator_id: TokenService.getUserId(),
+                sold: 0,
+                profit: '0.00'
             }
         }
         this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -33,14 +38,46 @@ class NewProduct extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
+
+        const newProduct = this.state.item;
         
-        const validate = this.validateNewProduct(this.state.item);
+        const validate = this.validateNewProduct(newProduct);
 
         if (validate) {
-            await this.context.addNewProduct(this.state.item)
-            await this.context.setPopupMessages('popup', 'New Product Created!')
-            await this.resetValues();
+            this.fetchPostNewProduct(newProduct, {id: TokenService.getUserId()})
+            .then(newProductId => {
+                newProduct.id = newProductId.id;
+                this.context.addNewProduct(newProduct)
+                this.context.setPopupMessages('popup', 'New Product Created!')
+                this.resetValues();
+            })
+            .catch(error => {
+                this.context.setPopupMessages('errorPopup', [error.message])
+            })
         }
+    }
+
+    fetchPostNewProduct(newProduct, user_id) {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/yourproducts/${user_id.id}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    },
+                    body: JSON.stringify(newProduct)
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => {reject (e)})
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error);
+            }
+        })
     }
 
     resetValues() {
@@ -50,7 +87,7 @@ class NewProduct extends Component {
                 img: '',
                 description: '',
                 price: '',
-                advertising: 'None'
+                ad: 'None'
             }
         })
     }
@@ -116,7 +153,7 @@ class NewProduct extends Component {
                         
                         <label className="current-advertising-label" htmlFor="advertise">Ad Spending</label>
                         <select 
-                            id="advertising" 
+                            id="ad" 
                             onChange={(e) => this.handleChangeInput(e)}
                             value={this.state.item.advertise}>
                             <option value='None'>None</option>

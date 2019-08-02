@@ -12,7 +12,8 @@ import PurchasedItems from './PurchasedItems/purchasedItems';
 import SignUp from './Signup/signUp';
 import YourProducts from './YourProducts/yourProducts';
 import ErrorPopup from './Components/ErrorPopup/errorPopup';
-import Popup from './Components/Popup/popup';
+import Popup from './Components/Popup/popup'
+import TokenService from './services/Token-services';
 
 class App extends Component {
 
@@ -20,10 +21,12 @@ class App extends Component {
     super(props);
     
     this.state = {
-      yourItems: mockData.yourTopItems,
+      yourItems: [],
       shoppingItems: [],
-      purchasedItems: mockData.purchasedItems,
-      userInfo: mockData.user[0],
+      purchasedItems: [],
+      userInfo: '',
+      popularProducts: [],
+      usersPopularProducts: [],
       currentlyEditing: '',
       errorPopup: {status: false, messages: ''},
       popup: {status: false, messages: ''},
@@ -41,12 +44,13 @@ class App extends Component {
     }
 
     this.updateProductsState = this.updateProductsState.bind(this);
+    this.refreshUserData = this.refreshUserData.bind(this)
 
     delegate.register(this, this.updateProductsState)
   }
 
   componentDidMount() {
-    delegate.getNewProductToSell();
+    this.refreshUserData();
   }
 
   async changeUser(user_id) {
@@ -57,14 +61,34 @@ class App extends Component {
       })
       delegate.fetchYourProducts(user_id)
       .then(yourProducts => {
+        console.log('your products', yourProducts)
         this.setState({
           yourItems: yourProducts
         })
       })
       delegate.fetchGetShopProducts(user_id)
-      .then(shopProducts => {
+      .then(shoppingItems => {
         this.setState({
-          shoppingItems: shopProducts
+          shoppingItems
+        })
+        delegate.getNewProductToSell();
+      })
+      delegate.fetchPurchasedProducts(user_id)
+      .then(purchasedProducts => {
+        this.setState({
+          purchasedItems: purchasedProducts
+        })
+      })
+      delegate.fetchGetUsersPopularProducts(user_id)
+      .then(usersPopularProducts => {
+        this.setState({
+          usersPopularProducts: usersPopularProducts
+        })
+      })
+      delegate.fetchGetPopularProducts(user_id)
+      .then(popularProducts => {
+        this.setState({
+          popularProducts: popularProducts
         })
       })
     })
@@ -73,6 +97,13 @@ class App extends Component {
     })
   }
 
+  refreshUserData() {
+    const userSignedIn = TokenService.getUserId();
+    if(userSignedIn) {
+      this.changeUser({id: userSignedIn})
+    }
+  }
+ 
   setPopupMessages(popupToPop, messages) {
     return this.setState({
         [popupToPop]: {

@@ -83,7 +83,7 @@ class Login extends Component {
             .then(authInfo => {
                 const user_id = authInfo.user_id;
 
-                TokenService.saveAuthToken(authInfo.authToken);
+                TokenService.saveAuthToken(authInfo.authToken, user_id);
 
                 this.context.changeUser({id: user_id})
                 .then(res => {
