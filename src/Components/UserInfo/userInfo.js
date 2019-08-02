@@ -11,7 +11,7 @@ class UserInfo extends Component {
             <div className="info">
                 <div className="name-money">
                     <p className="name">{this.context.userInfo.username}</p>
-                    <p className="play-money-total">{this.context.totalMoney}</p>
+                    <p className="play-money-total">{this.context.userInfo.money}</p>
                 </div>
                 <div className="description">
                     <p>{this.context.userInfo.description}</p>
