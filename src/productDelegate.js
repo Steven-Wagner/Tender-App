@@ -46,17 +46,29 @@ const ProductDelegate = function() {
       }
 
     this.updateProductState = function (index, adCosts) {
+        const updatedProduct = Object.assign({}, this.app.state.currentlyEditing);
+
 
         if (adCosts[this.app.state.currentlyEditing.ad] > adCosts[this.app.state.yourItems[index].ad]) {
-            this.subtractTotalByPrice(adCosts[this.app.state.currentlyEditing.ad])
+            this.subtractTotalByPrice(adCosts[this.app.state.currentlyEditing.ad]);
+            updatedProduct.profit = parseFloat(updatedProduct.profit) - parseFloat(adCosts[this.app.state.currentlyEditing.ad]);
         }
     
         const updatedItemsArray =  JSON.parse(JSON.stringify(this.app.state.yourItems));
-        updatedItemsArray[index] = Object.assign({}, this.app.state.currentlyEditing);
+        updatedItemsArray[index] = updatedProduct;
 
         return this.setState({
             yourItems: updatedItemsArray,
             currentlyEditing: ''
+        })
+    }
+
+    this.subtractProfit = (index, lessProfit) => {
+        const updatedItems = Object.assign({}, this.app.state.yourItems);
+        updatedItems[index].profit = updatedItems[index].profit - lessProfit;
+
+        return this.setState({
+            yourItems: updatedItems
         })
     }
    
@@ -173,13 +185,18 @@ const ProductDelegate = function() {
         })
     }
 
-    this.addNewProduct = function(newItem) {
+    this.addNewProduct = function(newItem, adPrice) {
         console.log('newitem', newItem)
+
+        if (parseFloat(adPrice > 0)) {
+            this.subtractTotalByPrice(adPrice);
+            newItem.profit = newItem.profit - adPrice;
+        }
         const newYourItems = JSON.parse(JSON.stringify(this.app.state.yourItems));
 
         newYourItems.push(newItem);
 
-        return this.setState({
+        this.setState({
             yourItems: newYourItems
         })
     }
@@ -276,7 +293,8 @@ const ProductDelegate = function() {
            addNewProduct: this.addNewProduct.bind(this),
            handlePurchasedItemDelete: this.handlePurchasedItemDelete.bind(this),
            newPurchasedItem: this.newPurchasedItem.bind(this),
-           changeUser: this.changeUser.bind(this)
+           changeUser: this.changeUser.bind(this),
+           subtractProfit: this.subtractProfit.bind(this)
     }
 }
    

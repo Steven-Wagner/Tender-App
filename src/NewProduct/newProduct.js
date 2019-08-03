@@ -87,8 +87,8 @@ class NewProduct extends Component {
             this.fetchPostNewProduct(newProduct, {id: TokenService.getUserId()})
             .then(newProductId => {
                 newProduct.id = newProductId.id;
-                this.context.addNewProduct(newProduct)
-                this.context.subtractTotalByPrice(this.state.adCosts[this.state.item.ad])
+                this.context.addNewProduct(newProduct, this.state.adCosts[this.state.item.ad])
+                // this.context.subtractTotalByPrice(this.state.adCosts[this.state.item.ad])
                 this.context.setPopupMessages('popup', 'New Product Created!')
                 this.resetValues();
             })

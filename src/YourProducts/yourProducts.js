@@ -16,7 +16,8 @@ class YourProducts extends Component {
             adCosts: {
                 'Homepage ads': 0,
                 'Popup ads': 0,
-                'Annoying ads': 0
+                'Annoying ads': 0,
+                'None': 0
             }
         }
     }
