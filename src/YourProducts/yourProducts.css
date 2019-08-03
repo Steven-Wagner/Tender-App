@@ -39,3 +39,18 @@
     margin-top: 20px;
     font-weight: bold;
 }
+
+.edit-button {
+    font-size: 12px !important;
+    text-decoration: underline;
+    color: blue;
+    align-self: center;
+}
+
+.edit-button:hover {
+    cursor: pointer;
+}
+
+.your-product-title h2, .your-product-title p {
+    display: inline;
+}

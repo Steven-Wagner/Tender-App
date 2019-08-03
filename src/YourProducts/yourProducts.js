@@ -67,13 +67,14 @@ class YourProducts extends Component {
             return(<YourProduct 
                 item={item} 
                 adCosts={this.state.adCosts}
-                key={item.title} 
+                key={index} 
                 index={index}
                 handleChangeInput={this.context.handleChangeInput}
                 updateProductState={this.context.updateProductState}
                 handleDelete={this.context.handleDelete}
                 setPopupMessages={this.context.setPopupMessages}
-                validateUpdate={this.context.validateUpdate}/>)
+                validateUpdate={this.context.validateUpdate}
+                erroPopup={this.context.erroPopup}/>)
         })
 
         return(

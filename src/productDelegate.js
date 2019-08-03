@@ -158,6 +158,8 @@ const ProductDelegate = function() {
             errorMessages.push(`You can't afford ${this.app.state.currentlyEditing.ad}`)
         }
 
+        //validate title img and description
+
         if (errorMessages.length > 0) {
             this.app.setPopupMessages('errorPopup', errorMessages);
             return false;
@@ -186,7 +188,6 @@ const ProductDelegate = function() {
     }
 
     this.addNewProduct = function(newItem, adPrice) {
-        console.log('newitem', newItem)
 
         if (parseFloat(adPrice > 0)) {
             this.subtractTotalByPrice(adPrice);

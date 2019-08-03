@@ -2,31 +2,46 @@ import React, {Component} from 'react';
 import Stars from '../../Components/Stars/stars';
 import TokenService from '../../services/Token-services';
 import {API_BASE_URL} from '../../config';
+import EditPopup from './editPopup';
 
 class YourProduct extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            editPopup: {
+                type: '',
+                status: ''
+            }
+        }
+
         this.handleDelete = this.handleDelete.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.fetchPatchProduct = this.fetchPatchProduct.bind(this);
+        this.showEditPopup = this.showEditPopup.bind(this);
+        this.removeEditPopup = this.removeEditPopup.bind(this);
+        this.editButton = this.editButton.bind(this);
     }
 
     handleSubmit(e) {
-        e.preventDefault();
+        return new Promise((resolve, reject) => {
+            e.preventDefault();
 
-        const validate = this.props.validateUpdate(this.props.index, this.props.adCosts);
+            const validate = this.props.validateUpdate(this.props.index, this.props.adCosts);
 
-        if (validate) {
-            this.fetchPatchProduct(this.props.item)
-            .then(updatedProduct => {
-                this.props.updateProductState(this.props.index, this.props.adCosts);
-                this.props.setPopupMessages('popup', `${this.props.item.title} Updated!`);
-            })
-            .catch(error => {
-                this.props.setPopupMessages('errorPopup', [error.message])
-            })
-        }
+            if (validate) {
+                this.fetchPatchProduct(this.props.item)
+                .then(updatedProduct => {
+                    this.props.updateProductState(this.props.index, this.props.adCosts);
+                    this.props.setPopupMessages('popup', `${this.props.item.title} Updated!`);
+                    return resolve(true)
+                })
+                .catch(error => {
+                    this.props.setPopupMessages('errorPopup', [error.message])
+                    return resolve(false)
+                })
+            }
+        })
     }
 
     fetchPatchProduct(updatedProduct) {
@@ -56,14 +71,63 @@ class YourProduct extends Component {
         this.props.handleDelete(this.props.index);
     }
 
+    showEditPopup(e) {
+        this.setState({
+            editPopup: {
+                type: e.target.id,
+                status: true
+            }
+        })
+    }
+
+    removeEditPopup() {
+        this.setState({
+            editPopup: {
+                type: '',
+                status: false
+            }
+        })
+    }
+
+    editButton(type) {
+        const oneDay = 61 * 60 * 24 * 1000;
+        const now = new Date();
+        const oneDayAgo = new Date(now-oneDay);
+        if (new Date(this.props.item.date_created) > oneDayAgo || !this.props.item.date_created) {
+            return <p className='edit-button' id={type} onClick={(e) => this.showEditPopup(e)}>Edit {type}</p>
+        }
+        else {
+            return;
+        }
+    }
+
     render() {
+
+        const editPopup = this.state.editPopup.status 
+            ? 
+            <EditPopup 
+                item={this.props.item} 
+                type={this.state.editPopup.type}
+                removeEditPopup={this.removeEditPopup}
+                handleChangeInput={this.props.handleChangeInput}
+                handleSubmit={this.handleSubmit}
+                index={this.props.index}
+                errorPopup
+                /> 
+            : '';
+
         return(
             <section className="current-product">
-                <h2>{this.props.item.title}</h2>
+                {editPopup}
+                <div className='your-product-title'>
+                    <h2>{this.props.item.title}</h2>{this.editButton('title')}
+                </div>
                 <form className="change-items" onSubmit={(e) => this.handleSubmit(e)}>
                     <img className="product-pic" src={this.props.item.img} alt={this.props.item.title}/>
+                    {this.editButton('img')}
                     <Stars rating={this.props.item.rating}/>
                     <p>{this.props.item.description}</p>
+                    {this.editButton('description')}
                     <p>Sold: {this.props.item.sold}</p>
                     <p>Profit: {this.props.item.profit}</p>
                     <div className="price-chooser">
