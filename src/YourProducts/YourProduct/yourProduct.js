@@ -5,8 +5,6 @@ import {API_BASE_URL} from '../../config';
 
 class YourProduct extends Component {
 
-
-
     constructor(props) {
         super(props);
         this.handleDelete = this.handleDelete.bind(this);
@@ -17,12 +15,12 @@ class YourProduct extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const validate = this.props.validateUpdate(this.props.index);
+        const validate = this.props.validateUpdate(this.props.index, this.props.adCosts);
 
         if (validate) {
             this.fetchPatchProduct(this.props.item)
             .then(updatedProduct => {
-                this.props.updateProductState(this.props.index);
+                this.props.updateProductState(this.props.index, this.props.adCosts);
                 this.props.setPopupMessages('popup', `${this.props.item.title} Updated!`);
             })
             .catch(error => {
@@ -83,9 +81,9 @@ class YourProduct extends Component {
                         onChange={(e) => this.props.handleChangeInput(e, this.props.index)}
                         value={this.props.item.ad}>
                         <option value='None'>None</option>
-                        <option value='Homepage ads'>Homepage ads - 50 Play Money per day</option>
-                        <option value='Popup ads'>Popup ads - 100 Play Money per day</option>
-                        <option value='Annoying ads'>Annoying Ads - 150 Play Money per day</option>
+                        <option value='Homepage ads'>Homepage ads - {this.props.adCosts['Homepage ads']} Play Money per day</option>
+                        <option value='Popup ads'>Popup ads - {this.props.adCosts['Popup ads']} Play Money per day</option>
+                        <option value='Annoying ads'>Annoying Ads - {this.props.adCosts['Annoying ads']} Play Money per day</option>
                     </select>
                     <button id="submit-changes" type="submit">Submit Changes</button>           
                 </form>

@@ -134,7 +134,11 @@ const ProductDelegate = function() {
         })
     }
 
-    this.updateProductState = function (index) {
+    this.updateProductState = function (index, adCosts) {
+
+        if (adCosts[this.app.state.currentlyEditing.ad] > adCosts[this.app.state.yourItems[index].ad]) {
+            this.subtractTotalByPrice(adCosts[this.app.state.currentlyEditing.ad])
+        }
     
         const updatedItemsArray =  JSON.parse(JSON.stringify(this.app.state.yourItems));
         updatedItemsArray[index] = Object.assign({}, this.app.state.currentlyEditing);
@@ -212,7 +216,7 @@ const ProductDelegate = function() {
         })
     }
 
-    this.validateUpdate = function(index) {
+    this.validateUpdate = function(index, adCosts) {
         let errorMessages = [];
 
         if (this.app.state.currentlyEditing.index !== index) {
@@ -225,6 +229,10 @@ const ProductDelegate = function() {
 
         if (!this.app.state.currentlyEditing.price || this.app.state.currentlyEditing.price < 1) {
             errorMessages.push('Product must include a valid price of at least 1 Play Money')
+        }
+        
+        if (parseFloat(adCosts[this.app.state.currentlyEditing.ad]) > parseFloat(adCosts[this.app.state.yourItems[index].ad]) && parseFloat(adCosts[this.app.state.currentlyEditing.ad]) > parseFloat(this.app.state.userInfo.money)) {
+            errorMessages.push(`You can't afford ${this.app.state.currentlyEditing.ad}`)
         }
 
         if (errorMessages.length > 0) {

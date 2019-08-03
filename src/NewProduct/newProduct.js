@@ -21,11 +21,51 @@ class NewProduct extends Component {
                 creator_id: TokenService.getUserId(),
                 sold: 0,
                 profit: '0.00'
+            },
+            adCosts: {
+                'Homepage ads': 0,
+                'Popup ads': 0,
+                'Annoying ads': 0
             }
         }
         this.handleChangeInput = this.handleChangeInput.bind(this);
         this.validateNewProduct = this.validateNewProduct.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.getAdCosts()
+    }
+
+    getAdCosts() {
+        this.fetchGetSimpleAdCosts()
+        .then(adCosts => {
+            this.setState({
+                adCosts: adCosts
+            })
+        })
+    }
+
+    fetchGetSimpleAdCosts() {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/adCosts/`, {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    }
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => {reject (e)})
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error);
+            }
+        })
     }
 
     handleChangeInput(e) {
@@ -48,6 +88,7 @@ class NewProduct extends Component {
             .then(newProductId => {
                 newProduct.id = newProductId.id;
                 this.context.addNewProduct(newProduct)
+                this.context.subtractTotalByPrice(this.state.adCosts[this.state.item.ad])
                 this.context.setPopupMessages('popup', 'New Product Created!')
                 this.resetValues();
             })
@@ -97,6 +138,11 @@ class NewProduct extends Component {
 
         if (!item.title) {
             errorMessages.push('Item must have a title');
+        }
+
+        //user can afford ad
+        if (this.state.adCosts[this.state.item.ad] > this.context.userInfo.money) {
+            errorMessages.push(`You can't afford a ${this.state.item.ad}`)
         }
 
         if (isNaN(parseFloat(item.price)) || parseFloat(item.price) < 1) {
@@ -157,9 +203,9 @@ class NewProduct extends Component {
                             onChange={(e) => this.handleChangeInput(e)}
                             value={this.state.item.advertise}>
                             <option value='None'>None</option>
-                            <option value='Homepage ads'>Homepage ads - 50 Play Money per day</option>
-                            <option value='Popup ads'>Popup ads - 100 Play Money per day</option>
-                            <option value='Annoying ads'>Annoying Ads - 150 Play Money per day</option>
+                            <option value='Homepage ads'>Homepage ads - {this.state.adCosts['Homepage ads']} Play Money per day</option>
+                            <option value='Popup ads'>Popup ads - {this.state.adCosts['Popup ads']} Play Money per day</option>
+                            <option value='Annoying ads'>Annoying Ads - {this.state.adCosts['Annoying ads']} Play Money per day</option>
                         </select>
                     </div>
 

@@ -61,7 +61,6 @@ class App extends Component {
       })
       delegate.fetchYourProducts(user_id)
       .then(yourProducts => {
-        console.log('your products', yourProducts)
         this.setState({
           yourItems: yourProducts
         })
