@@ -37,7 +37,6 @@ class App extends Component {
       ...delegate.functions,
       canAfford: this.canAfford.bind(this),
       goBack: this.goBack.bind(this),
-      changeUser: this.changeUser.bind(this),
 
       setPopupMessages: this.setPopupMessages.bind(this),
       removePopup: this.removePopup.bind(this)
@@ -53,53 +52,10 @@ class App extends Component {
     this.refreshUserData();
   }
 
-  async changeUser(user_id) {
-    return await delegate.fetchGetUserInfo(user_id)
-    .then(userInfo => {
-      this.setState({
-        userInfo: userInfo.userInfo
-      })
-      delegate.fetchYourProducts(user_id)
-      .then(yourProducts => {
-        this.setState({
-          yourItems: yourProducts
-        })
-      })
-      delegate.fetchGetShopProducts(user_id)
-      .then(shoppingItems => {
-        this.setState({
-          shoppingItems
-        })
-        delegate.getNewProductToSell();
-      })
-      delegate.fetchPurchasedProducts(user_id)
-      .then(purchasedProducts => {
-        this.setState({
-          purchasedItems: purchasedProducts
-        })
-      })
-      delegate.fetchGetUsersPopularProducts(user_id)
-      .then(usersPopularProducts => {
-        this.setState({
-          usersPopularProducts: usersPopularProducts
-        })
-      })
-      delegate.fetchGetPopularProducts(user_id)
-      .then(popularProducts => {
-        this.setState({
-          popularProducts: popularProducts
-        })
-      })
-    })
-    .catch(error => {
-      return error
-    })
-  }
-
   refreshUserData() {
     const userSignedIn = TokenService.getUserId();
     if(userSignedIn) {
-      this.changeUser({id: userSignedIn})
+      delegate.changeUser({id: userSignedIn})
     }
   }
  

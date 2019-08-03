@@ -1,138 +1,49 @@
-import {API_BASE_URL} from '../src/config';
-import TokenService from '../src/services/Token-services';
+import AppService from './app-service';
 
 const ProductDelegate = function() {
 
-    this.fetchGetUsersPopularProducts = user_id => {
-        return new Promise((resolve, reject) => {
-            try {
-                fetch(`${API_BASE_URL}/yourProducts/popular/${user_id.id}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json",
-                        "authorization": `bearer ${TokenService.getAuthToken()}`
-                    }
-                })
-                .then(res => {
-                    return (!res.ok)
-                        ? res.json().then(e => {reject (e)})
-                        : resolve(res.json())
-                })
-            }
-            catch(error) {
-                reject(error);
-            }
+    this.changeUser = user_id => {
+        return AppService.fetchGetUserInfo(user_id)
+        .then(userInfo => {
+          this.setState({
+            userInfo: userInfo.userInfo
+          })
+          AppService.fetchYourProducts(user_id)
+          .then(yourProducts => {
+            this.setState({
+              yourItems: yourProducts
+            })
+          })
+          AppService.fetchGetShopProducts(user_id)
+          .then(shoppingItems => {
+            this.setState({
+              shoppingItems
+            })
+            this.getNewProductToSell();
+          })
+          AppService.fetchPurchasedProducts(user_id)
+          .then(purchasedProducts => {
+            this.setState({
+              purchasedItems: purchasedProducts
+            })
+          })
+          AppService.fetchGetUsersPopularProducts(user_id)
+          .then(usersPopularProducts => {
+            this.setState({
+              usersPopularProducts: usersPopularProducts
+            })
+          })
+          AppService.fetchGetPopularProducts(user_id)
+          .then(popularProducts => {
+            this.setState({
+              popularProducts: popularProducts
+            })
+          })
         })
-    }
-
-    this.fetchGetPopularProducts = user_id => {
-        return new Promise((resolve, reject) => {
-            try {
-                fetch(`${API_BASE_URL}/shopProducts/popular/${user_id.id}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json",
-                        "authorization": `bearer ${TokenService.getAuthToken()}`
-                    }
-                })
-                .then(res => {
-                    return (!res.ok)
-                        ? res.json().then(e => {reject (e)})
-                        : resolve(res.json())
-                })
-            }
-            catch(error) {
-                reject(error);
-            }
+        .catch(error => {
+          return error
         })
-    }
-
-    this.fetchPurchasedProducts = user_id => {
-        return new Promise((resolve, reject) => {
-            try {
-                fetch(`${API_BASE_URL}/yourProducts/purchased/${user_id.id}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json",
-                        "authorization": `bearer ${TokenService.getAuthToken()}`
-                    }
-                })
-                .then(res => {
-                    return (!res.ok)
-                        ? res.json().then(e => {reject (e)})
-                        : resolve(res.json())
-                })
-            }
-            catch(error) {
-                reject(error);
-            }
-        })
-    }
-
-    this.fetchGetShopProducts = user_id => {
-        return new Promise((resolve, reject) => {
-            try {
-                fetch(`${API_BASE_URL}/shopProducts/${user_id.id}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json",
-                        "authorization": `bearer ${TokenService.getAuthToken()}`
-                    }
-                })
-                .then(res => {
-                    return (!res.ok)
-                        ? res.json().then(e => {reject (e)})
-                        : resolve(res.json())
-                })
-            }
-            catch(error) {
-                reject(error);
-            }
-        })
-    }
-    this.fetchGetUserInfo = user_id => {
-        return new Promise((resolve, reject) => {
-            try {
-                fetch(`${API_BASE_URL}/userInfo/${user_id.id}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json",
-                        "authorization": `bearer ${TokenService.getAuthToken()}`
-                    }
-                })
-                .then(res => {
-                    return (!res.ok)
-                        ? res.json().then(e => {reject (e)})
-                        : resolve(res.json())
-                })
-            }
-            catch(error) {
-                reject(error);
-            }
-        })
-    }
-
-    this.fetchYourProducts = user_id => {
-        return new Promise((resolve, reject) => {
-            try {
-                fetch(`${API_BASE_URL}/yourProducts/${user_id.id}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json",
-                        "authorization": `bearer ${TokenService.getAuthToken()}`
-                    }
-                })
-                .then(res => {
-                    return (!res.ok)
-                        ? res.json().then(e => {reject (e)})
-                        : resolve(res.json())
-                })
-            }
-            catch(error) {
-                reject(error);
-            }
-        })
-    }
+      }
 
     this.updateProductState = function (index, adCosts) {
 
@@ -344,7 +255,6 @@ const ProductDelegate = function() {
 
         if( this.app && this.function instanceof Function ){
             let receiver = this.app;
-            let method = this.function;
             let argument = newState;
 
             // this.app[this.function](newState);
@@ -366,13 +276,7 @@ const ProductDelegate = function() {
            addNewProduct: this.addNewProduct.bind(this),
            handlePurchasedItemDelete: this.handlePurchasedItemDelete.bind(this),
            newPurchasedItem: this.newPurchasedItem.bind(this),
-           fetchGetUserInfo: this.fetchGetUserInfo.bind(this),
-           fetchYourProducts: this.fetchYourProducts.bind(this),
-           fetchGetShopProducts: this.fetchGetShopProducts.bind(this),
-           fetchPurchasedProducts: this.fetchPurchasedProducts.bind(this),
-           fetchGetUsersPopularProducts: this.fetchGetUsersPopularProducts.bind(this),
-           fetchGetPopularProducts: this.fetchGetPopularProducts.bind(this)
-     
+           changeUser: this.changeUser.bind(this)
     }
 }
    
