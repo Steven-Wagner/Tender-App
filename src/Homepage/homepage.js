@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Nav from '../Components/Nav/nav';
 import Footer from '../Components/Footer/footer';
-import Ad from '../Components/Ad/ad';
+import HomepageAd from '../Components/Hompage Ad/homepage-ad';
 import UserInfo from '../Components/UserInfo/userInfo';
 import TopSellingItems from '../Components/TopSellingItems/topSellingItems'
 import TenderContext from '../context';
@@ -19,7 +19,7 @@ class Homepage extends Component {
             <div className="page-wrapper">
                 <Nav currentComponent='Homepage'/>
 
-                <Ad/>
+                <HomepageAd/>
                 <UserInfo/>
 
                 <TopSellingItems 

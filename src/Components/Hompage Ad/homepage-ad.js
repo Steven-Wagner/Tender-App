@@ -45,7 +45,6 @@ class Ad extends Component {
     fetchGetHomepageAds() {
         return new Promise((resolve, reject) => {
             try {
-                console.log('user_id', TokenService.getUserId())
                 fetch(`${API_BASE_URL}/ads/Homepage ads/${TokenService.getUserId()}`, {
                     method: "GET",
                     headers: {
