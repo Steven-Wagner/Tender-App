@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import TenderContext from '../../context';
-import mockData from '../../mockData';
 import './ad.css'
+import TokenService from '../../services/Token-services';
+import {API_BASE_URL} from '../../config';
 
 class Ad extends Component {
 
@@ -11,11 +12,10 @@ class Ad extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            adData: mockData.ads,
             currentAd: {
-                title: mockData.ads[0].title,
-                img: mockData.ads[0].img,
-                price: mockData.ads[0].price
+                title: '',
+                img: '',
+                price: ''
             }
         }
 
@@ -25,6 +25,7 @@ class Ad extends Component {
 
     componentDidMount() {
         this.setAdInterval = setInterval(() => this.setRandomAd(), 5000);
+        this.setRandomAd();
     }
 
     componentWillUnmount() {
@@ -32,14 +33,34 @@ class Ad extends Component {
     }
 
     setRandomAd() {
-        const newAdIndex = Math.floor(Math.random()*this.state.adData.length)
 
-        this.setState({
-            currentAd: {
-                title: mockData.ads[newAdIndex].title,
-                img: mockData.ads[newAdIndex].img,
-                price: mockData.ads[newAdIndex].price,
-                description: mockData.ads[newAdIndex].description
+        this.fetchGetHomepageAds()
+        .then(newAd => {
+            this.setState({
+                currentAd: newAd
+            })
+        })
+    }
+
+    fetchGetHomepageAds() {
+        return new Promise((resolve, reject) => {
+            try {
+                console.log('user_id', TokenService.getUserId())
+                fetch(`${API_BASE_URL}/ads/Homepage ads/${TokenService.getUserId()}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    }
+                })
+                .then(res => {
+                    return (!res.ok)
+                        ? res.json().then(e => {reject (e)})
+                        : resolve(res.json())
+                })
+            }
+            catch(error) {
+                reject(error);
             }
         })
     }
@@ -49,15 +70,24 @@ class Ad extends Component {
     }
 
     render() {
+        let content;
+
+        if (this.state.currentAd.title) {
+            content =<div className='ad'>
+                    <Link to="/shop/" onClick={() => this.handleAdClicked()}>
+                        <h3>{this.state.currentAd.title}</h3>
+                        <img className="ad-img" src={this.state.currentAd.img} alt={this.state.currentAd.title}/>
+                        <p className="description">{this.state.currentAd.description}</p>
+                        <p>Price: {this.state.currentAd.price}</p>
+                    </Link>
+                </div>
+        }
+        else {
+            content = ''
+        }
+
         return(
-            <div className='ad'>
-                <Link to="/shop/" onClick={() => this.handleAdClicked()}>
-                    <h3>{this.state.currentAd.title}</h3>
-                    <img className="ad-img" src={this.state.currentAd.img} alt={mockData.ads[0].title}/>
-                    <p className="description">{this.state.currentAd.description}</p>
-                    <p>Price: {this.state.currentAd.price}</p>
-                </Link>
-            </div>
+            content
         )
     }
 } 
