@@ -92,7 +92,13 @@ const ProductDelegate = function() {
     this.getNewProductToSell = function(indexToIncrease = 1) {
         let newIndex = this.app.state.currentShoppingItem.index + indexToIncrease;
 
-        if (this.app.state.shoppingItems.length !== 0 && newIndex < this.app.state.shoppingItems.length) {
+        if (this.app.state.shoppingItems.length === 0) {
+            return this.setState({
+                currentShoppingItem: {index: -1}
+            })
+        }
+
+        if (newIndex < this.app.state.shoppingItems.length) {
             return this.setState({
                 currentShoppingItem: {
                     index: newIndex,
@@ -106,9 +112,8 @@ const ProductDelegate = function() {
         }
         else {
             return this.setState({
-                currentShoppingItem: {
-                    index: -1,
-                }
+                currentShoppingItem: 
+                    this.app.state.shoppingItems[0]
             })
         }
     } 
