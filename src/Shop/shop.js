@@ -28,7 +28,7 @@ class Shop extends Component {
             this.fetchPostPurchase(this.context.currentShoppingItem)
             .then(purchaseId => {
                 let productIndex;
-                
+
                 if (this.context.currentShoppingItem.ad) {
                     productIndex = this.getProductIndexById(this.context.currentShoppingItem.id)
                 }
@@ -41,7 +41,7 @@ class Shop extends Component {
                 this.context.getNewProductToSell(0);
             })
             .catch(error => {
-                this.context.setPopupMessages('errorPopup', error.message)
+                this.context.setPopupMessages('errorPopup', [error.message])
             })
         }
         else {

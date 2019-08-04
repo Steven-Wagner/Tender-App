@@ -5,6 +5,7 @@ function ErrorMesseges(props) {
     let errorMessages = null;
 
     if (props.errorMessages.length > 0) {
+        console.log('props', props)
         errorMessages = props.errorMessages.map((message, index) => {
             return <Error message={message} key={index}/>
         })
