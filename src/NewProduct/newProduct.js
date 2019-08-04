@@ -141,7 +141,7 @@ class NewProduct extends Component {
         }
 
         //user can afford ad
-        if (this.state.adCosts[this.state.item.ad] > this.context.userInfo.money) {
+        if (parseFloat(this.state.adCosts[this.state.item.ad]) > parseFloat(this.context.userInfo.money)) {
             errorMessages.push(`You can't afford a ${this.state.item.ad}`)
         }
 

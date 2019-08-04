@@ -194,9 +194,9 @@ const ProductDelegate = function() {
 
     this.addNewProduct = function(newItem, adPrice) {
 
-        if (parseFloat(adPrice > 0)) {
+        if (parseFloat(adPrice) > 0) {
             this.subtractTotalByPrice(adPrice);
-            newItem.profit = newItem.profit - adPrice;
+            newItem.profit = parseFloat(newItem.profit) - parseFloat(adPrice);
         }
         const newYourItems = JSON.parse(JSON.stringify(this.app.state.yourItems));
 
