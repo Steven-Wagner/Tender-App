@@ -14,6 +14,7 @@ import YourProducts from './YourProducts/yourProducts';
 import ErrorPopup from './Components/ErrorPopup/errorPopup';
 import Popup from './Components/Popup/popup'
 import TokenService from './services/Token-services';
+import PopupAd from './Components/Popup-ad/popup-ad';
 
 class App extends Component {
 
@@ -116,6 +117,7 @@ class App extends Component {
         {displayErrorPopup}
         {displayPopup}
         <ProductsProvider value={this.state}>
+          <PopupAd/>
           <Route
             exact path="/"
             component={LandingPage}

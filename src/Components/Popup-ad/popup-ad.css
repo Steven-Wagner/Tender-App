@@ -1,0 +1,37 @@
+.popup-ad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    width: 90%;
+    max-width: 650px;
+    max-height: 90vh;
+    top: 50px;
+    left: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: gray;
+    z-index: 10;
+
+    font-size: 1em;
+    color: blue;
+}
+
+.popup-ad h3 {
+    margin: 5px;
+}
+
+.popup-ad .description {
+    margin: 0px;
+}
+
+.popup-ad button {
+    padding: 5px;
+    margin: 5px;
+    font-size: 1em;
+}
+
+.popupad-buttons {
+    display: flex;
+    justify-content: space-around;
+}
