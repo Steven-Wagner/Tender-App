@@ -28,8 +28,10 @@ class PopupAd extends Component {
     }
 
     componentDidMount() {
-        this.setAdInterval = setInterval(() => this.setRandomAd(), 120000);
-        this.setRandomAd();
+        if (TokenService.getUserId()) {
+            this.setAdInterval = setInterval(() => this.setRandomAd(), 120000);
+            this.setRandomAd();
+        }
     }
 
     componentWillUnmount() {
