@@ -24,11 +24,11 @@ class AnnoyingAd extends Component {
         this.setRandomAd = this.setRandomAd.bind(this);
         this.handleAdClicked = this.handleAdClicked.bind(this);
         this.removePopup = this.removePopup.bind(this);
-        this.fetchGetAnnoyingAd = this.fetchGetPopupAd.bind(this);
+        this.fetchGetAnnoyingAd = this.fetchGetAnnoyingAd.bind(this);
     }
 
     componentDidMount() {
-        this.setAdInterval = setInterval(() => this.setRandomAd(), 120000);
+        this.setAdInterval = setInterval(() => this.setRandomAd(), 18000);
         this.setRandomAd();
     }
 
@@ -93,14 +93,17 @@ class AnnoyingAd extends Component {
                     <img className="ad-img" src={this.state.currentAd.img} alt={this.state.currentAd.title}/>
                     <p className="description">{this.state.currentAd.description}</p>
                     <p>Price: {this.state.currentAd.price}</p>
+                    <p>{this.state.currentAd.sold} people have already bought this product. Don't you want to be like them!</p>
                 </Link>
                 <div className='annoyingad-buttons'>
+                    <div className='confuse-buttons'>
+                        <Link to="/shop/" onClick={() => this.handleAdClicked()}>
+                            <button>I'm not not Interested</button>
+                        </Link>
+                        <button className='not-interested-button' onClick={() => this.removePopup()}>I'm not not not Interested</button>
+                    </div>
                     <Link to="/shop/" onClick={() => this.handleAdClicked()}>
-                        <button>I'm not not Interested</button>
-                    </Link>
-                    <button className='not-interested-button' onClick={() => this.removePopup()}>I'm not not not Interested</button>
-                    <Link to="/shop/" onClick={() => this.handleAdClicked()}>
-                        <button>I Want It!</button>
+                        <button className='want-it'>I Want It!</button>
                     </Link>
                 </div>
             </div>
