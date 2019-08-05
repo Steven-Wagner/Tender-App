@@ -111,9 +111,11 @@ const ProductDelegate = function() {
             })
         }
         else {
+            const firstProduct = Object.assign({}, this.app.state.shoppingItems[0]);
+            firstProduct.index = 0
             return this.setState({
                 currentShoppingItem: 
-                    this.app.state.shoppingItems[0]
+                    firstProduct
             })
         }
     } 
