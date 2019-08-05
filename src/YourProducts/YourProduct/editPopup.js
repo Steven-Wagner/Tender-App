@@ -6,13 +6,13 @@ class EditPopup extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            oldValues: 
-                this.props.item
-            
+            oldValues: this.props.item,
+            img: ''
         }
 
         this.handleEditPopupSubmit = this.handleEditPopupSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
+        this.handleChangeImg = this.handleChangeImg.bind(this);
     }
 
     handleEditPopupSubmit(e) {
@@ -28,6 +28,13 @@ class EditPopup extends Component {
         const infoToChange = {target: {id: type, value: this.state.oldValues[type]}};
         this.props.handleChangeInput(infoToChange, this.props.index);
         this.props.removeEditPopup();
+    }
+
+    handleChangeImg(e, index) {
+        this.setState({
+            img: e.target.value
+        })
+        this.props.handleChangeInput(e, index)
     }
 
     render() {
@@ -52,10 +59,10 @@ class EditPopup extends Component {
             <form className="change-popup-items" onSubmit={(e) => this.handleEditPopupSubmit(e)}>
                 <label htmlFor="img">Img</label>
                     <input 
-                        value={this.props.item.img}
+                        value={this.state.img}
                         type="url" 
                         id="img"
-                        onChange={(e) => this.props.handleChangeInput(e, this.props.index)}
+                        onChange={(e) => this.handleChangeImg(e, this.props.index)}
                     />
                 <button id="submit-changes" type="submit">Submit Changes</button>  
                 <button id="cancel-edit" onClick={(e) => this.handleCancel(this.props.type)}>Cancel</button>  
