@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import TenderContext from '../../context';
-import './popup-ad.css'
+import './annoying-ad.css'
 import TokenService from '../../services/Token-services';
 import {API_BASE_URL} from '../../config';
 
-class PopupAd extends Component {
+class AnnoyingAd extends Component {
 
     static contextType = TenderContext;
 
@@ -24,7 +24,7 @@ class PopupAd extends Component {
         this.setRandomAd = this.setRandomAd.bind(this);
         this.handleAdClicked = this.handleAdClicked.bind(this);
         this.removePopup = this.removePopup.bind(this);
-        this.fetchGetPopupAd = this.fetchGetPopupAd.bind(this);
+        this.fetchGetAnnoyingAd = this.fetchGetPopupAd.bind(this);
     }
 
     componentDidMount() {
@@ -38,7 +38,7 @@ class PopupAd extends Component {
 
     setRandomAd() {
 
-        this.fetchGetPopupAd()
+        this.fetchGetAnnoyingAd()
         .then(newAd => {
             this.setState({
                 currentAd: newAd,
@@ -47,10 +47,10 @@ class PopupAd extends Component {
         })
     }
 
-    fetchGetPopupAd() {
+    fetchGetAnnoyingAd() {
         return new Promise((resolve, reject) => {
             try {
-                fetch(`${API_BASE_URL}/ads/Popup ads/${TokenService.getUserId()}`, {
+                fetch(`${API_BASE_URL}/ads/Annoying ads/${TokenService.getUserId()}`, {
                     method: "GET",
                     headers: {
                         "Content-type": "application/json",
@@ -86,7 +86,7 @@ class PopupAd extends Component {
         }
 
         return(
-            <div className='popup-ad'>
+            <div className='annoying-ad'>
                 <h3>Check Out This Awesome Product!</h3>
                 <Link to="/shop/" onClick={() => this.handleAdClicked()}>
                     <h3>{this.state.currentAd.title}</h3>
@@ -94,8 +94,11 @@ class PopupAd extends Component {
                     <p className="description">{this.state.currentAd.description}</p>
                     <p>Price: {this.state.currentAd.price}</p>
                 </Link>
-                <div className='popupad-buttons'>
-                    <button onClick={() => this.removePopup()}>No Thanks</button>
+                <div className='annoyingad-buttons'>
+                    <Link to="/shop/" onClick={() => this.handleAdClicked()}>
+                        <button>I'm not not Interested</button>
+                    </Link>
+                    <button className='not-interested-button' onClick={() => this.removePopup()}>I'm not not not Interested</button>
                     <Link to="/shop/" onClick={() => this.handleAdClicked()}>
                         <button>I Want It!</button>
                     </Link>
@@ -105,4 +108,4 @@ class PopupAd extends Component {
     }
 } 
 
-export default PopupAd;
+export default AnnoyingAd;

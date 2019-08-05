@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import mockData from '../../mockData';
 import ProductDetails from '../ProductDetails/productDetails';
 import './topSellingItems.css';
 import TenderContext from '../../context';

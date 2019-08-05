@@ -4,6 +4,7 @@ import CurrentProduct from './CurrentProduct/currentProduct';
 import ShopInfoBar from './ShopInfoBar/shopInfoBar';
 import TokenService from '../services/Token-services';
 import {API_BASE_URL} from '../config';
+import AnnoyingAd from '../Components/Annoying-ad/annoying-ad';
 
 import './shop.css';
 
@@ -95,6 +96,7 @@ class Shop extends Component {
     render() {
         return(
             <div className="page-wrapper">
+                <AnnoyingAd/>
                 <ShopInfoBar 
                     totalMoney={this.context.userInfo.money}
                     handleDone={this.handleDone}/>
