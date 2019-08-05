@@ -97,6 +97,14 @@ const ProductDelegate = function() {
                 currentShoppingItem: {index: -1}
             })
         }
+        
+        if (this.app.state.shoppingItems.length === 1 && this.app.state.currentShoppingItem.title === this.app.state.shoppingItems[0].title) {
+            console.log('currentshoppingItem', this.app.state.currentShoppingItem.title)
+            console.log('shoppingItem', this.app.state.shoppingItems.title)
+            return this.setState({
+                currentShoppingItem: {index: -1}
+            })
+        }
 
         if (newIndex < this.app.state.shoppingItems.length) {
             return this.setState({
