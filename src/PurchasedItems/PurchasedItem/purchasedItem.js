@@ -7,7 +7,11 @@ function PurchasedItem(props) {
             <h2>{props.item.title}</h2>
             <img className="product-pic" src={props.item.img} alt={props.item.title}/>
             {/* <Stars rating={props.item.rating}/> */}
+<<<<<<< HEAD
             <p>{props.item.description}</p>
+=======
+            <p className="description">{props.item.description}</p>
+>>>>>>> descriptionCss
             <p>Price: {props.item.price}</p>
             <p>Bonuses: {props.item.bonus}</p>
             <div className="choose-buttons">

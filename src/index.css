@@ -79,6 +79,17 @@ a {
   color: black;
 }
 
+.description {
+  font-size: 20px;
+}
+
+.select-ad {
+  padding: 10px;
+  font-size: 20px;
+  align-self: center;
+  width: 100%;
+}
+
 @media only screen and (min-width: 650px) {
   .page-wrapper {
     display: flex;

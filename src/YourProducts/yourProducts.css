@@ -1,6 +1,7 @@
 .change-items {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .change-items p, .price-chooser {
@@ -53,4 +54,8 @@
 
 .your-product-title h2, .your-product-title p {
     display: inline;
+}
+
+.change-items input, .change-items select {
+    border-radius: 5px;
 }

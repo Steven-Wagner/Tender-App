@@ -126,7 +126,11 @@ class YourProduct extends Component {
                     <img className="product-pic" src={this.props.item.img} alt={this.props.item.title}/>
                     {this.editButton('img')}
                     {/* <Stars rating={this.props.item.rating}/> */}
+<<<<<<< HEAD
                     <p>{this.props.item.description}</p>
+=======
+                    <p className="description">{this.props.item.description}</p>
+>>>>>>> descriptionCss
                     {this.editButton('description')}
                     <p>Sold: {this.props.item.sold}</p>
                     <p>Profit: {this.props.item.profit}</p>
@@ -141,6 +145,7 @@ class YourProduct extends Component {
                     </div>
                     <label className="current-advertising-label" htmlFor="currentAdvertising">Current Advertising:</label>
                     <select 
+                        className="select-ad"
                         id="ad" 
                         onChange={(e) => this.props.handleChangeInput(e, this.props.index)}
                         value={this.props.item.ad}>

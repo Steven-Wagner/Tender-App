@@ -198,7 +198,8 @@ class NewProduct extends Component {
                         
                         <label className="current-advertising-label" htmlFor="advertise">Ad Spending</label>
                         <select 
-                            id="ad" 
+                            id="ad"
+                            className="select-ad"
                             onChange={(e) => this.handleChangeInput(e)}
                             value={this.state.item.advertise}>
                             <option value='None'>None</option>
