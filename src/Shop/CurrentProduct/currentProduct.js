@@ -21,7 +21,7 @@ function CurrentProduct(props) {
             <img className='product-pic' src={props.item.img} alt={props.item.title}/>
             <Stars rating={props.item.rating}/>
             <p>Price: {props.item.price}</p>
-            <p>{props.item.description}</p>
+            <p className="description">{props.item.description}</p>
         </section>
     )
 }

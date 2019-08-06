@@ -93,7 +93,7 @@ class AnnoyingAd extends Component {
                     <img className="ad-img" src={this.state.currentAd.img} alt={this.state.currentAd.title}/>
                     <p className="description">{this.state.currentAd.description}</p>
                     <p>Price: {this.state.currentAd.price}</p>
-                    <p>{this.state.currentAd.sold} people have already bought this product. Don't you want to be like them!</p>
+                    <p className="number-sold">{this.state.currentAd.sold} people have already bought this product. Don't you want to be like them!</p>
                 </Link>
                 <div className='annoyingad-buttons'>
                     <div className='confuse-buttons'>

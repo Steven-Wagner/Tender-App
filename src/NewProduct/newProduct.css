@@ -1,6 +1,7 @@
 .new-product-form {
     display: flex;
     flex-direction: column;
+    margin: 0 20px;
 }
 
 .price-ad-wrapper {
@@ -22,17 +23,13 @@
 .new-product-form input, 
 .new-product-form textarea, 
 .new-product-form select {
-    margin: 20px;
-    padding: 5px;
+    margin: 20px 0;
+    padding: 10px;
     border-radius: 5px;
 }
 
 #title {
     font-size: 1.5em;
-}
-
-.price {
-    margin-left: 20px;
 }
 
 #img, #description, #price {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Stars from '../../Components/Stars/stars';
+// import Stars from '../../Components/Stars/stars';
 import TokenService from '../../services/Token-services';
 import {API_BASE_URL} from '../../config';
 import EditPopup from './editPopup';
@@ -125,8 +125,8 @@ class YourProduct extends Component {
                 <form className="change-items" onSubmit={(e) => this.handleSubmit(e)}>
                     <img className="product-pic" src={this.props.item.img} alt={this.props.item.title}/>
                     {this.editButton('img')}
-                    <Stars rating={this.props.item.rating}/>
-                    <p>{this.props.item.description}</p>
+                    {/* <Stars rating={this.props.item.rating}/> */}
+                    <p className="description">{this.props.item.description}</p>
                     {this.editButton('description')}
                     <p>Sold: {this.props.item.sold}</p>
                     <p>Profit: {this.props.item.profit}</p>
@@ -141,6 +141,7 @@ class YourProduct extends Component {
                     </div>
                     <label className="current-advertising-label" htmlFor="currentAdvertising">Current Advertising:</label>
                     <select 
+                        className="select-ad"
                         id="ad" 
                         onChange={(e) => this.props.handleChangeInput(e, this.props.index)}
                         value={this.props.item.ad}>
