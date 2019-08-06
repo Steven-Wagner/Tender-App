@@ -126,11 +126,10 @@ class YourProduct extends Component {
                     <img className="product-pic" src={this.props.item.img} alt={this.props.item.title}/>
                     {this.editButton('img')}
                     {/* <Stars rating={this.props.item.rating}/> */}
-<<<<<<< HEAD
+
                     <p>{this.props.item.description}</p>
-=======
                     <p className="description">{this.props.item.description}</p>
->>>>>>> descriptionCss
+
                     {this.editButton('description')}
                     <p>Sold: {this.props.item.sold}</p>
                     <p>Profit: {this.props.item.profit}</p>
