@@ -28,10 +28,8 @@ class PopupAd extends Component {
     }
 
     componentDidMount() {
-        if (TokenService.getUserId()) {
-            this.setAdInterval = setInterval(() => this.setRandomAd(), 120000);
-            this.setRandomAd();
-        }
+        this.setAdInterval = setInterval(() => this.setRandomAd(), 120000);
+        this.setRandomAd();
     }
 
     componentWillUnmount() {
@@ -40,13 +38,15 @@ class PopupAd extends Component {
 
     setRandomAd() {
 
-        this.fetchGetPopupAd()
-        .then(newAd => {
-            this.setState({
-                currentAd: newAd,
-                visable: true
+        if (TokenService.getUserId()) {
+            this.fetchGetPopupAd()
+            .then(newAd => {
+                this.setState({
+                    currentAd: newAd,
+                    visable: true
+                })
             })
-        })
+        }
     }
 
     fetchGetPopupAd() {
