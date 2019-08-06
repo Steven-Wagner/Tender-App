@@ -210,7 +210,7 @@ const ProductDelegate = function() {
         }
         const newYourItems = JSON.parse(JSON.stringify(this.app.state.yourItems));
 
-        newYourItems.push(newItem);
+        newYourItems.unshift(newItem);
 
         this.setState({
             yourItems: newYourItems
