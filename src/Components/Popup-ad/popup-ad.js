@@ -90,12 +90,18 @@ class PopupAd extends Component {
             return '';
         }
 
+        //If there is no img, it will not display
+        let displayImg = '';
+        if (this.props.item.img) {
+            displayImg = <img className="ad-img" src={this.props.item.img} alt={this.props.item.title}/>
+        }
+
         return(
             <div className='popup-ad'>
                 <h3>Check Out This Awesome Product!</h3>
                 <Link to="/shop/" onClick={() => this.handleAdClicked()}>
                     <h3>{this.state.currentAd.title}</h3>
-                    <img className="ad-img" src={this.state.currentAd.img} alt={this.state.currentAd.title}/>
+                    {displayImg}
                     <p className="description">{shortDescription}...</p>
                     <p>Price: {this.state.currentAd.price}</p>
                 </Link>

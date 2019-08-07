@@ -102,6 +102,11 @@ class YourProduct extends Component {
     }
 
     render() {
+        let displayImg = '';
+
+        if (this.props.item.img) {
+            displayImg = <img className="product-pic" src={this.props.item.img} alt={this.props.item.title}/>
+        }
 
         const editPopup = this.state.editPopup.status 
             ? 
@@ -123,7 +128,7 @@ class YourProduct extends Component {
                     <h2>{this.props.item.title}</h2>{this.editButton('title')}
                 </div>
                 <form className="change-items" onSubmit={(e) => this.handleSubmit(e)}>
-                    <img className="product-pic" src={this.props.item.img} alt={this.props.item.title}/>
+                    {displayImg}
                     {this.editButton('img')}
                     {/* <Stars rating={this.props.item.rating}/> */}
 

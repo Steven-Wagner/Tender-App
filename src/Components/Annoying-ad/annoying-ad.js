@@ -81,9 +81,14 @@ class AnnoyingAd extends Component {
 
     render() {
 
+        //If there is no img, it will not display
+        let displayImg = '';
+        if (this.props.item.img) {
+            displayImg = <img className="ad-img" src={this.props.item.img} alt={this.props.item.title}/>
+        }
+
         //ad will only show first 150 characters of description
         const shortDescription = this.state.currentAd.description.substring(0,150);
-
         if (!this.state.currentAd.title || !this.state.visable) {
             return '';
         }
@@ -93,7 +98,7 @@ class AnnoyingAd extends Component {
                 <h3>Check Out This Awesome Product!</h3>
                 <Link to="/shop/" onClick={() => this.handleAdClicked()}>
                     <h3>{this.state.currentAd.title}</h3>
-                    <img className="ad-img" src={this.state.currentAd.img} alt={this.state.currentAd.title}/>
+                    {displayImg}
                     <p className="description">{shortDescription}...</p>
                     <p>Price: {this.state.currentAd.price}</p>
                     <p className="number-sold">{this.state.currentAd.sold} people have already bought this product. Don't you want to be like them!</p>
