@@ -82,8 +82,6 @@ class PopupAd extends Component {
     }
 
     render() {
-
-        //Only show popup if an ad exists
         if (!this.state.currentAd.title || !this.state.visable) {
             return '';
         }

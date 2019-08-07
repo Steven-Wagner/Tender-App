@@ -15,6 +15,7 @@ import ErrorPopup from './Components/ErrorPopup/errorPopup';
 import Popup from './Components/Popup/popup'
 import TokenService from './services/Token-services';
 import PopupAd from './Components/Popup-ad/popup-ad';
+import Footer from './Components/Footer/footer';
 
 class App extends Component {
 
@@ -151,6 +152,7 @@ class App extends Component {
             component={YourProducts}
           />
         </ProductsProvider>
+        <Footer/>
       </main>
     );
   }

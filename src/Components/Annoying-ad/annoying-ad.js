@@ -87,8 +87,8 @@ class AnnoyingAd extends Component {
 
         //If there is no img, it will not display
         let displayImg = '';
-        if (this.props.item.img) {
-            displayImg = <img className="ad-img" src={this.props.item.img} alt={this.props.item.title}/>
+        if (this.state.currentAd.img) {
+            displayImg = <img className="ad-img" src={this.state.currentAd.img} alt={this.state.currentAd.title}/>
         }
 
         //ad will only show first 150 characters of description
