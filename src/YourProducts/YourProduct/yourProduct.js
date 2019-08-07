@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import TokenService from '../../services/Token-services';
 import {API_BASE_URL} from '../../config';
 import EditPopup from './editPopup';
+import yourProductsService from './yourProduct-service';
 
 class YourProduct extends Component {
 
@@ -136,7 +137,10 @@ class YourProduct extends Component {
 
                     {this.editButton('description')}
                     <p>Sold: {this.props.item.sold}</p>
-                    <p>Profit: {this.props.item.profit}</p>
+                    <p 
+                        style={yourProductsService.getProfitColor(this.props.item.profit)}>
+                        Profit: {this.props.item.profit}
+                    </p>
                     <div className="price-chooser">
                         <label className="price-label" htmlFor="currentPrice">Price:</label>
                         <input 
