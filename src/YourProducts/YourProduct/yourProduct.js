@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 // import Stars from '../../Components/Stars/stars';
-import TokenService from '../../services/Token-services';
-import {API_BASE_URL} from '../../config';
 import EditPopup from './editPopup';
-import yourProductsService from './yourProduct-service';
+import yourProductService from './yourProduct-service';
 
 class YourProduct extends Component {
 
@@ -16,9 +14,7 @@ class YourProduct extends Component {
             }
         }
 
-        this.handleDelete = this.handleDelete.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.fetchPatchProduct = this.fetchPatchProduct.bind(this);
         this.showEditPopup = this.showEditPopup.bind(this);
         this.removeEditPopup = this.removeEditPopup.bind(this);
         this.editButton = this.editButton.bind(this);
@@ -31,7 +27,7 @@ class YourProduct extends Component {
             const validate = this.props.validateUpdate(this.props.index, this.props.adCosts);
 
             if (validate) {
-                this.fetchPatchProduct(this.props.item)
+                yourProductService.fetchPatchProduct(this.props.item)
                 .then(updatedProduct => {
                     this.props.updateProductState(this.props.index, this.props.adCosts);
                     this.props.setPopupMessages('popup', `${this.props.item.title} Updated!`);
@@ -43,33 +39,6 @@ class YourProduct extends Component {
                 })
             }
         })
-    }
-
-    fetchPatchProduct(updatedProduct) {
-        return new Promise((resolve, reject) => {
-            try {
-                fetch(`${API_BASE_URL}/yourProducts/${updatedProduct.creator_id}`, {
-                    method: "PATCH",
-                    headers: {
-                        "Content-type": "application/json",
-                        "authorization": `bearer ${TokenService.getAuthToken()}`
-                    },
-                    body: JSON.stringify(updatedProduct)
-                })
-                .then(res => {
-                    return (!res.ok)
-                        ? res.json().then(e => {reject (e)})
-                        : resolve(res.json())
-                })
-            }
-            catch(error) {
-                reject(error);
-            }
-        })
-    }
-
-    handleDelete() {
-        this.props.handleDelete(this.props.index);
     }
 
     showEditPopup(e) {
@@ -138,7 +107,7 @@ class YourProduct extends Component {
                     {this.editButton('description')}
                     <p>Sold: {this.props.item.sold}</p>
                     <p 
-                        style={yourProductsService.getProfitColor(this.props.item.profit)}>
+                        style={yourProductService.getProfitColor(this.props.item.profit)}>
                         Profit: {this.props.item.profit}
                     </p>
                     <div className="price-chooser">
