@@ -11,10 +11,6 @@ function PurchasedItem(props) {
             <p>Price: {props.item.price}</p>
             <p>Bonuses: {props.item.bonus}</p>
             <div className="choose-buttons">
-                <button
-                    onClick={() => props.handleDelete(props.index)}>
-                    Delete
-                </button>
                 {/* <button>Reviews</button> */}
             </div>
         </section>

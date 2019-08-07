@@ -139,20 +139,6 @@ const ProductDelegate = function() {
             userInfo: newUserInfo
         })
     }
-   
-    this.handleDelete = function(index) {
-        const updatedItemsArray = this.app.state.yourItems.filter((item, i) => {
-            return i !== index
-        })
-        const currentlyEditingObject = this.app.state.currentlyEditing.index === index
-            ? {}
-            : this.app.state.currentlyEditing
-
-        return this.setState({
-            yourItems: updatedItemsArray,
-            currentlyEditing: currentlyEditingObject
-        })
-    }
 
     this.validateUpdate = function(index, adCosts) {
         let errorMessages = [];
@@ -230,16 +216,6 @@ const ProductDelegate = function() {
             purchasedItems: newPurchasedItems
         })
     }
-
-    this.handlePurchasedItemDelete = function(index) {
-        const updatedItemsArray = this.app.state.purchasedItems.filter((item, i) => {
-            return i !== index;
-        })
-
-        return this.setState({
-            purchasedItems: updatedItemsArray
-        })
-    }
    
     this.handleChangeInput = function(e, index) {
         let newInput = Object.assign({}, this.app.state.currentlyEditing);
@@ -299,7 +275,6 @@ const ProductDelegate = function() {
    
            handleChangeInput: this.handleChangeInput.bind(this),
            updateProductState: this.updateProductState.bind(this),
-           handleDelete: this.handleDelete.bind(this),
            updateCurrentShoppingItem: this.updateCurrentShoppingItem.bind(this),
            getNewProductToSell: this.getNewProductToSell.bind(this),
            removeItemFromState: this.removeItemFromState.bind(this),
@@ -307,7 +282,6 @@ const ProductDelegate = function() {
            setCurrentProductToLiked: this.setCurrentProductToLiked.bind(this),
            validateUpdate: this.validateUpdate.bind(this),
            addNewProduct: this.addNewProduct.bind(this),
-           handlePurchasedItemDelete: this.handlePurchasedItemDelete.bind(this),
            newPurchasedItem: this.newPurchasedItem.bind(this),
            changeUser: this.changeUser.bind(this),
            subtractProfit: this.subtractProfit.bind(this)

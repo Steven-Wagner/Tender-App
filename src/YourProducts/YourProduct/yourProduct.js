@@ -156,7 +156,6 @@ class YourProduct extends Component {
                     <button id="submit-changes" type="submit">Submit Changes</button>           
                 </form>
                 <div className="choose-buttons">
-                    <button onClick={() => this.props.handleDelete(this.props.index)}>Delete</button>
                     {/* <button> See Reviews</button> */}
                 </div>
             </section>
