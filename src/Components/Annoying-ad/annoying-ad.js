@@ -80,6 +80,10 @@ class AnnoyingAd extends Component {
     }
 
     render() {
+        //if there is no ad, popup will not display
+        if (!this.state.currentAd.title || !this.state.visable) {
+            return '';
+        }
 
         //If there is no img, it will not display
         let displayImg = '';
@@ -88,9 +92,9 @@ class AnnoyingAd extends Component {
         }
 
         //ad will only show first 150 characters of description
-        const shortDescription = this.state.currentAd.description.substring(0,150);
-        if (!this.state.currentAd.title || !this.state.visable) {
-            return '';
+        let shortDescription = 'No Description';
+        if (this.state.currentAd.description) {
+        shortDescription = this.state.currentAd.description.substring(0,150);
         }
 
         return(

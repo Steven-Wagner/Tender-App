@@ -83,11 +83,15 @@ class PopupAd extends Component {
 
     render() {
 
-        //ad will only show first 150 characters of description
-        const shortDescription = this.state.currentAd.description.substring(0,150);
-
+        //Only show popup if an ad exists
         if (!this.state.currentAd.title || !this.state.visable) {
             return '';
+        }
+
+        //ad will only show first 150 characters of description
+        let shortDescription = 'No Description';
+        if (this.state.currentAd.description) {
+        shortDescription = this.state.currentAd.description.substring(0,150);
         }
 
         //If there is no img, it will not display
