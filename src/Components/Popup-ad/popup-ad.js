@@ -83,6 +83,9 @@ class PopupAd extends Component {
 
     render() {
 
+        //ad will only show first 150 characters of description
+        const shortDescription = this.state.currentAd.description.substring(0,150);
+
         if (!this.state.currentAd.title || !this.state.visable) {
             return '';
         }
@@ -93,7 +96,7 @@ class PopupAd extends Component {
                 <Link to="/shop/" onClick={() => this.handleAdClicked()}>
                     <h3>{this.state.currentAd.title}</h3>
                     <img className="ad-img" src={this.state.currentAd.img} alt={this.state.currentAd.title}/>
-                    <p className="description">{this.state.currentAd.description}</p>
+                    <p className="description">{shortDescription}...</p>
                     <p>Price: {this.state.currentAd.price}</p>
                 </Link>
                 <div className='popupad-buttons'>
