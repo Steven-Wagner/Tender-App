@@ -78,13 +78,15 @@ class YourProducts extends Component {
         })
 
         return(
-            <div className="page-wrapper">
+            <div className="nav-space">
                 <Nav currentComponent='YourProducts'/>
-                <header>
-                    <h2 className="page-header">Your Products</h2>
-                </header>
-                <div className="list-of-items">
-                    {items}
+                <div className="page-wrapper">
+                    <header>
+                        <h2 className="page-header">Your Products</h2>
+                    </header>
+                    <div className="list-of-items">
+                        {items}
+                    </div>
                 </div>
             </div>
         )

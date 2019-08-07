@@ -5,6 +5,10 @@
     width: 100%;
 }
 
+div .shop-wrapper {
+    padding-top: 0px;
+}
+
 .done-button {
     padding: 5px;
     margin: 5px;

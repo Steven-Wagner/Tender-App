@@ -8,6 +8,10 @@ footer {
   width: 100vw;
 }
 
+nav {
+  position: fixed;
+}
+
 nav a {
     margin: 5px;
     text-decoration: none;

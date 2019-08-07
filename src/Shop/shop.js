@@ -95,7 +95,7 @@ class Shop extends Component {
 
     render() {
         return(
-            <div className="page-wrapper">
+            <div className="page-wrapper shop-wrapper">
                 <AnnoyingAd/>
                 <ShopInfoBar 
                     totalMoney={this.context.userInfo.money}

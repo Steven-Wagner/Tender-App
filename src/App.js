@@ -33,6 +33,8 @@ class App extends Component {
       errorPopup: {status: false, messages: ''},
       popup: {status: false, messages: ''},
       totalMoney: mockData.user[0].money,
+      currentYOffset: 0,
+      navVisable: true,
       currentShoppingItem: {
         index: -1
       },
@@ -46,12 +48,35 @@ class App extends Component {
 
     this.updateProductsState = this.updateProductsState.bind(this);
     this.refreshUserData = this.refreshUserData.bind(this)
+    this.handleScroll = this.handleScroll.bind(this);
 
     delegate.register(this, this.updateProductsState)
   }
 
   componentDidMount() {
     this.refreshUserData();
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll(e) {
+    const currentYOffset = window.pageYOffset;
+    const oldY = this.state.currentYOffset;
+    if (currentYOffset > oldY) {
+      this.setState({
+        currentYOffset: currentYOffset,
+        navVisable: false
+      })
+    }
+    else {
+      this.setState({
+        currentYOffset: currentYOffset,
+        navVisable: true
+      })
+    }
   }
 
   refreshUserData() {

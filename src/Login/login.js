@@ -130,33 +130,34 @@ class Login extends Component {
 
     render() {
         return(
-            <div className="page-wrapper">
+            <div className="nav-space">
                 <Nav currentComponent='Login'/>
-                <header>
-                    <h2 className="page-header">Login</h2>
-                </header>
+                <div className="page-wrapper">
+                    <header>
+                        <h2 className="page-header">Login</h2>
+                    </header>
 
-                <ErrorMessages errorMessages={this.state.errorMessages}/>
+                    <ErrorMessages errorMessages={this.state.errorMessages}/>
 
-                <form className="login-form" onSubmit={(e) => this.handleSubmit(e)}>
-                    <label htmlFor="username">Username/Company Name</label>
-                    <input id="username" type="text"
-                        onChange={(e) => this.handleChangeInput(e)}/>
+                    <form className="login-form" onSubmit={(e) => this.handleSubmit(e)}>
+                        <label htmlFor="username">Username/Company Name</label>
+                        <input id="username" type="text"
+                            onChange={(e) => this.handleChangeInput(e)}/>
 
-                    <label htmlFor="password">Password</label>
-                    <input id="password" type="password" 
-                        onChange={(e) => this.handleChangeInput(e)}/>
+                        <label htmlFor="password">Password</label>
+                        <input id="password" type="password" 
+                            onChange={(e) => this.handleChangeInput(e)}/>
 
-                    <div className="choose-buttons">
-                        <button
-                            onClick={(e) => this.handleCancel(e)}>
-                            Cancel
-                        </button>
-                        <button type="submit">Submit</button>
-                    </div>
-                </form>
+                        <div className="choose-buttons">
+                            <button
+                                onClick={(e) => this.handleCancel(e)}>
+                                Cancel
+                            </button>
+                            <button type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
         )
     }
 }

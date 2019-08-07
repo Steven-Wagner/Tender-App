@@ -157,61 +157,63 @@ class NewProduct extends Component {
 
     render() {
         return(
-            <div className="page-wrapper">
+            <div className="nav-space">
                 <Nav currentComponent={'NewProduct'}/>
-                <header>
-                    <h2 className="page-header">New Product</h2>
-                </header>
-                <form id='productForm' className="new-product-form" onSubmit={(e) => this.handleSubmit(e)}>
-                    <label htmlFor="title">Title</label>
-                    <input 
-                        value={this.state.item.title}
-                        type="text" 
-                        id="title"
-                        onChange={(e) => this.handleChangeInput(e)}/>
-                    
-                    <label htmlFor="img">Image URL (optinal)</label>
-                    <input 
-                        value={this.state.item.img}
-                        type="url" 
-                        id="img"
-                        onChange={(e) => this.handleChangeInput(e)}/>
-
-                    <label htmlFor="description">Product Description</label>
-                    <textarea 
-                        value={this.state.item.description}
-                        id="description" 
-                        placeholder='Machine washable with like colors'
-                        onChange={(e) => this.handleChangeInput(e)}>
-                    </textarea>
-
-                    <div className="price-ad-wrapper">
-                        <div className="price-wrapper">
-                            <label className="price" htmlFor="price">Price:</label>
-                            <input 
-                                value={this.state.item.price}
-                                id="price" 
-                                type="number" 
-                                step="1"
-                                onChange={(e) => this.handleChangeInput(e)}/>
-                        </div>
+                <div className="page-wrapper">
+                    <header>
+                        <h2 className="page-header">New Product</h2>
+                    </header>
+                    <form id='productForm' className="new-product-form" onSubmit={(e) => this.handleSubmit(e)}>
+                        <label htmlFor="title">Title</label>
+                        <input 
+                            value={this.state.item.title}
+                            type="text" 
+                            id="title"
+                            onChange={(e) => this.handleChangeInput(e)}/>
                         
-                        <label className="current-advertising-label" htmlFor="advertise">Ad Spending</label>
-                        <select 
-                            id="ad"
-                            className="select-ad"
-                            onChange={(e) => this.handleChangeInput(e)}
-                            value={this.state.item.advertise}>
-                            <option value='None'>None</option>
-                            <option value='Homepage ads'>Homepage ads - {this.state.adCosts['Homepage ads']} Play Money per day</option>
-                            <option value='Popup ads'>Popup ads - {this.state.adCosts['Popup ads']} Play Money per day</option>
-                            <option value='Annoying ads'>Annoying Ads - {this.state.adCosts['Annoying ads']} Play Money per day</option>
-                        </select>
-                    </div>
+                        <label htmlFor="img">Image URL (optinal)</label>
+                        <input 
+                            value={this.state.item.img}
+                            type="url" 
+                            id="img"
+                            onChange={(e) => this.handleChangeInput(e)}/>
 
-                    <button className="submit-new-product-btn" type='submit'>Submit</button>
+                        <label htmlFor="description">Product Description</label>
+                        <textarea 
+                            value={this.state.item.description}
+                            id="description" 
+                            placeholder='Machine washable with like colors'
+                            onChange={(e) => this.handleChangeInput(e)}>
+                        </textarea>
 
-                </form>
+                        <div className="price-ad-wrapper">
+                            <div className="price-wrapper">
+                                <label className="price" htmlFor="price">Price:</label>
+                                <input 
+                                    value={this.state.item.price}
+                                    id="price" 
+                                    type="number" 
+                                    step="1"
+                                    onChange={(e) => this.handleChangeInput(e)}/>
+                            </div>
+                            
+                            <label className="current-advertising-label" htmlFor="advertise">Ad Spending</label>
+                            <select 
+                                id="ad"
+                                className="select-ad"
+                                onChange={(e) => this.handleChangeInput(e)}
+                                value={this.state.item.advertise}>
+                                <option value='None'>None</option>
+                                <option value='Homepage ads'>Homepage ads - {this.state.adCosts['Homepage ads']} Play Money per day</option>
+                                <option value='Popup ads'>Popup ads - {this.state.adCosts['Popup ads']} Play Money per day</option>
+                                <option value='Annoying ads'>Annoying Ads - {this.state.adCosts['Annoying ads']} Play Money per day</option>
+                            </select>
+                        </div>
+
+                        <button className="submit-new-product-btn" type='submit'>Submit</button>
+
+                    </form>
+                </div>
             </div>
         )
     }

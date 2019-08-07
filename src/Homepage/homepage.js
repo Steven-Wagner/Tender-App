@@ -16,20 +16,21 @@ class Homepage extends Component {
 
     render() {
         return(
-            <div className="page-wrapper">
+            <div className="nav-space">
                 <Nav currentComponent='Homepage'/>
+                <div className="page-wrapper">
+                    <HomepageAd/>
+                    <UserInfo/>
 
-                <HomepageAd/>
-                <UserInfo/>
+                    <TopSellingItems 
+                        status='user'
+                        popularProducts={this.context.usersPopularProducts}/>
+                    <TopSellingItems 
+                        status='overall'
+                        popularProducts={this.context.popularProducts}/>
 
-                <TopSellingItems 
-                    status='user'
-                    popularProducts={this.context.usersPopularProducts}/>
-                <TopSellingItems 
-                    status='overall'
-                    popularProducts={this.context.popularProducts}/>
-
-                <Footer/>
+                    <Footer/>
+                </div>
             </div>
         )
     }

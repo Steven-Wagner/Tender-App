@@ -6,11 +6,13 @@ import Footer from '../Components/Footer/footer';
 
 function LandingPage() {
     return(
-        <div className="page-wrapper">
-            <Nav currentComponent='LandingPage'/>
-            <MainTitle/>
-            <LandingPageContent/>
-            <Footer/>
+        <div className="nav-space">
+                <Nav currentComponent='LandingPage'/>
+            <div className="page-wrapper">
+                <MainTitle/>
+                <LandingPageContent/>
+                <Footer/>
+            </div>
         </div>
     );
 }

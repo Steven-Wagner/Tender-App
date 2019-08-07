@@ -18,13 +18,15 @@ class PurchasedItems extends Component {
         })
 
         return(
-            <div className="page-wrapper">
+            <div className="nav-space">
                 <Nav currentComponent='PurchasedItems'/>
-                <header>
-                    <h2 className="page-header">Purchased Products</h2>
-                </header>
-                <div className="list-of-items">
-                    {items}
+                <div className="page-wrapper">
+                    <header>
+                        <h2 className="page-header">Purchased Products</h2>
+                    </header>
+                    <div className="list-of-items">
+                        {items}
+                    </div>
                 </div>
             </div>
         )

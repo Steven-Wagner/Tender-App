@@ -139,41 +139,42 @@ class SignUp extends Component {
 
     render() {
         return(
-            <div className="page-wrapper">
+            <div className="nav-space">
                 <Nav currentComponent='SignUp'/>
-                <header>
-                    <h2 className="page-header">Sign Up</h2>
-                </header>
+                <div className="page-wrapper">
+                    <header>
+                        <h2 className="page-header">Sign Up</h2>
+                    </header>
 
-                <ErrorMessages errorMessages={this.state.errorMessages}/>
+                    <ErrorMessages errorMessages={this.state.errorMessages}/>
 
-                <form className="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
-                    <label htmlFor="username">Username/Company Name</label>
-                    <input id="username" type="text" 
-                        value={this.state.user.username}
-                        onChange={(e) => this.handleChangeInput(e)}/>
+                    <form className="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
+                        <label htmlFor="username">Username/Company Name</label>
+                        <input id="username" type="text" 
+                            value={this.state.user.username}
+                            onChange={(e) => this.handleChangeInput(e)}/>
 
-                    <label htmlFor="password">Password</label>
-                    <input id="password" type="password" 
-                        value={this.state.user.password}
-                        onChange={(e) => this.handleChangeInput(e)}/>
+                        <label htmlFor="password">Password</label>
+                        <input id="password" type="password" 
+                            value={this.state.user.password}
+                            onChange={(e) => this.handleChangeInput(e)}/>
 
-                    <label htmlFor="description">Description</label>
-                    <textarea id="description"
-                        onChange={(e) => this.handleChangeInput(e)}
-                        value={this.state.user.description}>
-                    </textarea>
+                        <label htmlFor="description">Description</label>
+                        <textarea id="description"
+                            onChange={(e) => this.handleChangeInput(e)}
+                            value={this.state.user.description}>
+                        </textarea>
 
-                    <div className="choose-buttons">
-                        <button 
-                            onClick={(e) => this.handleCancel(e)}>
-                            Cancel
-                        </button>
-                        <button type="submit">Submit</button>
-                    </div>
-                </form>
+                        <div className="choose-buttons">
+                            <button 
+                                onClick={(e) => this.handleCancel(e)}>
+                                Cancel
+                            </button>
+                            <button type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
         )
     }
 }
