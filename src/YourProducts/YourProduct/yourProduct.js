@@ -127,7 +127,6 @@ class YourProduct extends Component {
                     {this.editButton('img')}
                     {/* <Stars rating={this.props.item.rating}/> */}
 
-                    <p>{this.props.item.description}</p>
                     <p className="description">{this.props.item.description}</p>
 
                     {this.editButton('description')}
