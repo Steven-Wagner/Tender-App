@@ -32,8 +32,8 @@ section {
 }
 
 .product-img {
-    min-height: 200px;
-    max-height: 400px;
+    min-height: 50px;
+    max-height: 200px;
     max-width: 75%;
     border-radius: 5px;
     box-shadow: 3px 3px 5px;

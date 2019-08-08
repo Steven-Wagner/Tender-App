@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Route, withRouter} from "react-router-dom";
 import {ProductsProvider} from './context';
 import delegate from './productDelegate';
-import mockData from './mockData';
 import LandingPage from './landingPage/landingPage';
 import Login from './Login/login';
 import Homepage from './Homepage/homepage';
@@ -32,7 +31,6 @@ class App extends Component {
       currentlyEditing: '',
       errorPopup: {status: false, messages: ''},
       popup: {status: false, messages: ''},
-      totalMoney: mockData.user[0].money,
       currentYOffset: 0,
       navVisable: true,
       currentShoppingItem: {
