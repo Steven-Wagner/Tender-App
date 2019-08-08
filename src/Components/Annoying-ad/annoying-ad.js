@@ -97,27 +97,53 @@ class AnnoyingAd extends Component {
         shortDescription = this.state.currentAd.description.substring(0,150);
         }
 
+        let adContent = 
+        <Link className="ad-click" to="/shop/" onClick={() => this.handleAdClicked()}>
+            <h3>{this.state.currentAd.title}</h3>
+            {displayImg}
+            <p className="description">{shortDescription}...</p>
+            <p className="price">Price: {this.state.currentAd.price}</p>
+            <p className="number-sold">{this.state.currentAd.sold} people have already bought this product. Don't you want to be like them!</p>
+        </Link>;
+
+        let buttons =
+        <div className='annoyingad-buttons'>
+            <div className='confuse-buttons'>
+                <Link to="/shop/" onClick={() => this.handleAdClicked()}>
+                    <button>I'm not not Interested</button>
+                </Link>
+                <button className='not-interested-button' onClick={() => this.removePopup()}>I'm not not not Interested</button>
+            </div>
+            <Link to="/shop/" onClick={() => this.handleAdClicked()}>
+                <button className='want-it'>I Want It!</button>
+            </Link>
+        </div>
+
+        if (this.props.pathname === '/shop/') {
+            adContent =
+            <div className="ad-click" to="/shop/" onClick={() => this.handleAdClicked()}>
+                <h3 className="anoying-ad-header">{this.state.currentAd.title}</h3>
+                {displayImg}
+                <p className="description">{shortDescription}...</p>
+                <p className="price">Price: {this.state.currentAd.price}</p>
+                <p className="number-sold">{this.state.currentAd.sold} people have already bought this product. Don't you want to be like them!</p>
+            </div>;
+
+            buttons =
+            <div className='annoyingad-buttons'>
+                <div className='confuse-buttons'>
+                    <button onClick={() => this.handleAdClicked()}>I'm not not Interested</button>
+                    <button className='not-interested-button' onClick={() => this.removePopup()}>I'm not not not Interested</button>
+                </div>
+                    <button onClick={() => this.handleAdClicked()} className='want-it'>I Want It!</button>
+            </div>
+        }
+
         return(
             <div className='annoying-ad'>
-                <h3>Check Out This Awesome Product!</h3>
-                <Link to="/shop/" onClick={() => this.handleAdClicked()}>
-                    <h3>{this.state.currentAd.title}</h3>
-                    {displayImg}
-                    <p className="description">{shortDescription}...</p>
-                    <p>Price: {this.state.currentAd.price}</p>
-                    <p className="number-sold">{this.state.currentAd.sold} people have already bought this product. Don't you want to be like them!</p>
-                </Link>
-                <div className='annoyingad-buttons'>
-                    <div className='confuse-buttons'>
-                        <Link to="/shop/" onClick={() => this.handleAdClicked()}>
-                            <button>I'm not not Interested</button>
-                        </Link>
-                        <button className='not-interested-button' onClick={() => this.removePopup()}>I'm not not not Interested</button>
-                    </div>
-                    <Link to="/shop/" onClick={() => this.handleAdClicked()}>
-                        <button className='want-it'>I Want It!</button>
-                    </Link>
-                </div>
+                <h3 className="annoying-ad-header">Check Out This Awesome Product!</h3>
+                {adContent}
+                {buttons}
             </div>
         )
     }

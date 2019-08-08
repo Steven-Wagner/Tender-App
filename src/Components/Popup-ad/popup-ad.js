@@ -98,21 +98,43 @@ class PopupAd extends Component {
             displayImg = <img className="ad-img" src={this.state.currentAd.img} alt={this.state.currentAd.title}/>
         }
 
+        let adContent =
+            <Link to="/shop/" onClick={() => this.handleAdClicked()}>
+                <h3>{this.state.currentAd.title}</h3>
+                {displayImg}
+                <p className="description">{shortDescription}...</p>
+                <p className="price">Price: {this.state.currentAd.price}</p>
+            </Link>;
+
+        let choiceButtons = 
+        <div className='popupad-buttons'>
+            <button onClick={() => this.removePopup()}>No Thanks</button>
+            <Link to="/shop/" onClick={() => this.handleAdClicked()}>
+                <button>I Want It!</button>
+            </Link>
+        </div>
+
+        if (this.props.pathname === '/shop/') {
+            adContent =
+            <div onClick={() => this.handleAdClicked()}>
+                <h3>{this.state.currentAd.title}</h3>
+                {displayImg}
+                <p className="description">{shortDescription}...</p>
+                <p className="price">Price: {this.state.currentAd.price}</p>
+            </div>;
+
+            choiceButtons =
+            <div className='popupad-buttons'>
+                <button onClick={() => this.removePopup()}>No Thanks</button>
+                <button onClick={() => this.handleAdClicked()}>I Want It!</button>
+            </div>;
+        }
+
         return(
             <div className='popup-ad'>
-                <h3>Check Out This Awesome Product!</h3>
-                <Link to="/shop/" onClick={() => this.handleAdClicked()}>
-                    <h3>{this.state.currentAd.title}</h3>
-                    {displayImg}
-                    <p className="description">{shortDescription}...</p>
-                    <p>Price: {this.state.currentAd.price}</p>
-                </Link>
-                <div className='popupad-buttons'>
-                    <button onClick={() => this.removePopup()}>No Thanks</button>
-                    <Link to="/shop/" onClick={() => this.handleAdClicked()}>
-                        <button>I Want It!</button>
-                    </Link>
-                </div>
+                <h3 className="popup-header">Check Out This Awesome Product!</h3>
+                {adContent}
+                {choiceButtons}
             </div>
         )
     }

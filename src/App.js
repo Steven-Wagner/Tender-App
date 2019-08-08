@@ -141,7 +141,8 @@ class App extends Component {
         {displayErrorPopup}
         {displayPopup}
         <ProductsProvider value={this.state}>
-          <PopupAd/>
+          <PopupAd
+            pathname={this.props.history.location.pathname}/>
           <Route
             exact path="/"
             component={LandingPage}

@@ -96,7 +96,8 @@ class Shop extends Component {
     render() {
         return(
             <div className="page-wrapper shop-wrapper">
-                <AnnoyingAd/>
+                <AnnoyingAd
+                    pathname={this.props.history.location.pathname}/>
                 <ShopInfoBar 
                     totalMoney={this.context.userInfo.money}
                     handleDone={this.handleDone}/>
