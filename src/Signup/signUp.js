@@ -33,6 +33,10 @@ class SignUp extends Component {
         this.fetchPostNewUser = this.fetchPostNewUser.bind(this);
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     handleChangeInput(e) {
         const newUserInfo = Object.assign({}, this.state.user)
         newUserInfo[e.target.id] = e.target.value;

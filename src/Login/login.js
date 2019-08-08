@@ -26,6 +26,10 @@ class Login extends Component {
         this.submitLoginInfo = this.submitLoginInfo.bind(this);
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     handleChangeInput(e) {
         this.setState({
             [e.target.id]: e.target.value

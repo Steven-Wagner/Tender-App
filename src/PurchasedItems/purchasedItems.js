@@ -7,6 +7,10 @@ class PurchasedItems extends Component {
 
     static contextType = TenderContext;
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     render() {
 
         const items = this.context.purchasedItems.map((item, i) => {

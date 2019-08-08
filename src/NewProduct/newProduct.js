@@ -34,6 +34,7 @@ class NewProduct extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0);
         this.getAdCosts()
     }
 
@@ -90,6 +91,8 @@ class NewProduct extends Component {
                 this.context.addNewProduct(newProduct, this.state.adCosts[this.state.item.ad])
                 this.context.setPopupMessages('popup', 'New Product Created!')
                 this.resetValues();
+                window.scrollTo(0, 0);
+
             })
             .catch(error => {
                 this.context.setPopupMessages('errorPopup', [error.message])
