@@ -15,6 +15,13 @@ class EditPopup extends Component {
         this.handleChangeImg = this.handleChangeImg.bind(this);
     }
 
+    componentDidMount() {
+        if(this.props.type === 'img') {
+            const setImgToUndefined = {target: {id: 'img', value: ''}};
+            this.props.handleChangeInput(setImgToUndefined, this.props.index)
+        }
+    }
+
     handleEditPopupSubmit(e) {
         this.props.handleSubmit(e)
         .then(success => {
