@@ -15,6 +15,10 @@ import Popup from './Components/Popup/popup'
 import TokenService from './services/Token-services';
 import PopupAd from './Components/Popup-ad/popup-ad';
 import Footer from './Components/Footer/footer';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCoins } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faCoins);
 
 class App extends Component {
 

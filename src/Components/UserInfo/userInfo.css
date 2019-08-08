@@ -27,10 +27,6 @@
 .play-money-total {
     font-weight: bold;
     padding: 0 5px;
-    border: 1px solid black;
-    border-radius: 10px;
-    height: 1.5em;
-    margin-top: 10px;
 }
 
 .description {
