@@ -27,7 +27,12 @@ div .shop-wrapper {
 }
 
 .current-product h2 {
-    margin: 0;
+    margin: 10px;
+}
+
+.current-product .price {
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 .product-pic {

@@ -13,7 +13,7 @@
     background-color: gray;
     z-index: 10;
     overflow-y: scroll;
-	overflow-x: hidden;
+    overflow-x: hidden;
 
     font-size: 1em;
     color: rgb(0, 255, 55);

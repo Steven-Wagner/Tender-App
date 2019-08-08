@@ -17,10 +17,11 @@ function CurrentProduct(props) {
                 <button onClick={() => props.handleSkip()}>Skip</button>
                 <button onClick={() => props.handleBuy()}>Buy</button>
             </div>
-            {/* <button onClick={() => props.handleLike()}>Like</button> */}            <h2>{props.item.title}</h2>
+            {/* <button onClick={() => props.handleLike()}>Like</button> */}            
+            <h2>{props.item.title}</h2>
             <img className='product-pic' src={props.item.img} alt={props.item.title}/>
             {/* <Stars rating={props.item.rating}/> */}
-            <p>Price: {props.item.price}</p>
+            <p className="price">Price: {props.item.price}</p>
             <p className="description">{props.item.description}</p>
         </section>
     )

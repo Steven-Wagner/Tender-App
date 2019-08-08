@@ -73,11 +73,11 @@ class Ad extends Component {
 
         if (this.state.currentAd.title) {
             content =<div className='ad'>
+                    <div className="home-info-ad">Advertisment</div>
                     <Link to="/shop/" onClick={() => this.handleAdClicked()}>
                         <h3>{this.state.currentAd.title}</h3>
                         <img className="ad-img" src={this.state.currentAd.img} alt={this.state.currentAd.title}/>
-                        <p className="description">{this.state.currentAd.description}</p>
-                        <p>Price: {this.state.currentAd.price}</p>
+                        <p className="price">Price: {this.state.currentAd.price}</p>
                     </Link>
                 </div>
         }
