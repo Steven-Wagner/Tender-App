@@ -17,8 +17,9 @@ import PopupAd from './Components/Popup-ad/popup-ad';
 import Footer from './Components/Footer/footer';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faCoins);
+library.add(faCoins, faShoppingCart);
 
 class App extends Component {
 

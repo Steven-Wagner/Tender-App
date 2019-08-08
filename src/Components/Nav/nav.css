@@ -22,3 +22,7 @@ nav a {
 nav a:hover {
     color: rgb(28, 133, 238);
 }
+
+.shopping-cart-icon {
+  margin-right: 2px;
+}

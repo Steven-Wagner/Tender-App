@@ -28,7 +28,7 @@ class AnnoyingAd extends Component {
     }
 
     componentDidMount() {
-        this.setAdInterval = setInterval(() => this.setRandomAd(), 30000);
+        this.setAdInterval = setInterval(() => this.setRandomAd(), 60000);
         this.setRandomAd();
     }
 

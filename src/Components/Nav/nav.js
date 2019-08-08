@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import './nav.css';
 import TokenService from '../../services/Token-services';
 import TenderContext from '../../context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Nav extends Component {
 
@@ -19,7 +20,7 @@ class Nav extends Component {
     render() {
 
         const shop = 
-            <Link to={'/shop/'} key='shop'>Shop</Link>
+            <Link to={'/shop/'} key='shop'><FontAwesomeIcon className="shopping-cart-icon" icon="shopping-cart" />Shop</Link>
         const homescreen = 
             <Link to={'/homepage/'} key='homepage'>Homepage</Link>
         const yourProducts = 
