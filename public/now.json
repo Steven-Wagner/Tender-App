@@ -4,6 +4,10 @@
     "alias": "stevenwagner-tender-app",
     "routes": [
         {
+          "src": "^/manifest.json",
+          "dest": "/manifest.json"
+        },
+        {
           "src": "^/static/(.*)",
           "dest": "/static/$1"
         },
@@ -11,13 +15,5 @@
           "src": ".*",
           "dest": "/index.html"
         }
-    ],
-    "build": {
-      "env": {
-        "REACT_APP_API_BASE_URL": "https://cryptic-depths-79803.herokuapp.com/api"
-      }
-    },
-    "env": {
-        "REACT_APP_API_BASE_URL": "https://cryptic-depths-79803.herokuapp.com/api"
-      }
+    ]
   }
