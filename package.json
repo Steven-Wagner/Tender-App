@@ -6,19 +6,22 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.21",
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "env-cmd": "^9.0.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "webpack": "4.29.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm audit && npm run build",
+    "predeploy": "npm run build:production",
     "deploy": "now ./build",
-    "postdeploy": "now alias -A ./build/now.json"
+    "postdeploy": "now alias -A ./build/now.json",
+    "build:production": "env-cmd .env.production npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
