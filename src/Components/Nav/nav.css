@@ -3,24 +3,25 @@ footer {
   display: flex;
   justify-content: center;
   padding: 5px 0;
-  background-color: rgb(219, 248, 255);
+  background-color: rgb(17, 30, 71);
   flex-wrap: wrap;
   width: 100vw;
 }
 
 nav {
   position: fixed;
+  box-shadow: 0px 3px 3px black;
 }
 
 nav a {
     margin: 0px 15px;
     text-decoration: none;
     font-weight: bold;
-    color: rgb(88, 108, 223);
+    color: rgb(255, 255, 255);
 }
 
 nav a:hover {
-    color: rgb(28, 133, 238);
+    color: rgb(182, 182, 182);
 }
 
 .shopping-cart-icon {
