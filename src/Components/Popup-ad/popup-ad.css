@@ -48,7 +48,7 @@
 }
 
 @media only screen and (min-width: 650px) {
-    .annoying-ad {
+    .popup-ad {
         overflow-y: unset;
         overflow-x: unset;
     }
