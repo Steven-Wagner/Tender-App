@@ -12,6 +12,8 @@
     border-radius: 5px;
     border: 1px solid black;
     background-color: gray;
+    overflow-y: scroll;
+    overflow-x: hidden;
     z-index: 10;
     margin: 0 auto;
 
@@ -43,4 +45,11 @@
 
 .popup-ad .price {
     font-weight: bold;
+}
+
+@media only screen and (min-width: 650px) {
+    .annoying-ad {
+        overflow-y: unset;
+        overflow-x: unset;
+    }
 }
