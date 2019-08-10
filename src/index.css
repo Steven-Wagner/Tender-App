@@ -40,6 +40,7 @@ footer {
   width: 100%;
   padding: 3px;
   height: 40px;
+  color: white;
 }
 
 section:nth-child(even) {
@@ -84,7 +85,8 @@ textarea {
 
 button {
   border-radius: 10px;
-  background-color: rgb(126, 209, 248); 
+  background-color: rgb(17, 30, 71); 
+  color: white;
   font-weight: bold;
 }
 
