@@ -21,3 +21,24 @@
     display: flex;
     justify-content: space-between;
 }
+
+@media only screen and (min-width: 650px) {
+    .list-of-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+
+    .purchased-product {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-content: space-between;
+    }
+
+    .product-pic {
+        align-self: center;
+    }
+}

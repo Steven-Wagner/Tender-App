@@ -34,6 +34,10 @@ header {
   padding: 15px;
 }
 
+.page-header {
+  margin: 0px;
+}
+
 footer {
   position: absolute;
   bottom: 0;
@@ -97,6 +101,12 @@ a {
 
 .description {
   font-size: 20px;
+  padding: 0px;
+  word-wrap: break-word;
+}
+
+.item-summaries {
+  width: 100%;
 }
 
 .select-ad {
@@ -117,8 +127,8 @@ a {
     align-items: center;
   }
 
-  .page-wrapper > div,
-  .page-wrapper > section,
+  /* .page-wrapper > div,
+  .page-wrapper > section, */
   .page-wrapper > form {
     width: 650px;
   }

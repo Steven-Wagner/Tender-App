@@ -44,3 +44,23 @@ section {
     margin: 5px;
 }
 
+@media only screen and (min-width: 650px) {
+    .top-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+
+    .top-selling-item {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-content: space-between;
+    }
+
+    .product-img {
+        align-self: center;
+    }
+}

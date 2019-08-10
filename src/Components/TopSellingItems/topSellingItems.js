@@ -54,7 +54,7 @@ class TopSellingItems extends Component {
                 <h2>
                     {headerTitle}
                 </h2>
-                <div>
+                <div className="top-items">
                     {topItems}
                 </div>
             </section>

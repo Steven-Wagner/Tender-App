@@ -183,6 +183,7 @@ class NewProduct extends Component {
 
                         <label htmlFor="description">Product Description</label>
                         <textarea 
+                            className="new-description"
                             value={this.state.item.description}
                             id="description" 
                             placeholder='Machine washable with like colors'

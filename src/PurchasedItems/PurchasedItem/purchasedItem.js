@@ -19,9 +19,9 @@ function PurchasedItem(props) {
                 <p>Price: {props.item.price}</p>
                 <p>Bonus: {props.item.bonus}</p>
             </div>
-            <div className="choose-buttons">
-                {/* <button>Reviews</button> */}
-            </div>
+            {/* <div className="choose-buttons">
+                <button>Reviews</button>
+            </div> */}
         </section>
     )
 }

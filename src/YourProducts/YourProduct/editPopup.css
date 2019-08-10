@@ -9,9 +9,16 @@
     background-color: gray;
 }
 
-.change-popup-items input, .change-popup-items textarea {
+#submit-changes, #cancel-edit {
     width: 90%;
-    font-size: 1.25em;
-    padding: 5px;
-    margin-left: 10px;
+    max-width: 650px;
+    align-self: center;
+    font-size: 1.5em;
+    margin: 10px 0px;
+}
+
+.edit-description {
+    font-size: 1em;
+    width: 90%;
+    margin: 5px;
 }

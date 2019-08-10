@@ -87,7 +87,6 @@ class YourProduct extends Component {
                 handleChangeInput={this.props.handleChangeInput}
                 handleSubmit={this.handleSubmit}
                 index={this.props.index}
-                errorPopup
                 /> 
             : '';
 
@@ -133,9 +132,9 @@ class YourProduct extends Component {
                     </select>
                     <button id="submit-changes" type="submit">Submit Changes</button>           
                 </form>
-                <div className="choose-buttons">
-                    {/* <button> See Reviews</button> */}
-                </div>
+                {/* <div className="choose-buttons">
+                    <button> See Reviews</button>
+                </div> */}
             </section>
         )
     }

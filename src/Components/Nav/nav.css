@@ -5,7 +5,7 @@ footer {
   padding: 5px 0;
   background-color: rgb(17, 30, 71);
   flex-wrap: wrap;
-  width: 100vw;
+  width: 100%;
 }
 
 nav {

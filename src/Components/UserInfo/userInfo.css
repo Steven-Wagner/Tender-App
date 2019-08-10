@@ -29,6 +29,16 @@
     padding: 0 5px;
 }
 
-.description {
+.user-description {
     margin: 5px 20px;
+}
+
+.name {
+    word-wrap: break-word;
+}
+
+@media only screen and (min-width: 650px) {
+    .info {
+        width: 100%;
+    } 
 }

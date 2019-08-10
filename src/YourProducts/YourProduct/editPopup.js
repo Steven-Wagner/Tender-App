@@ -80,6 +80,7 @@ class EditPopup extends Component {
             <form className="change-popup-items" onSubmit={(e) => this.handleEditPopupSubmit(e)}>
                 <label htmlFor="description">Description</label>
                     <textarea 
+                        className="edit-description"
                         value={this.props.item.description}
                         id="description"
                         onChange={(e) => this.props.handleChangeInput(e, this.props.index)}
