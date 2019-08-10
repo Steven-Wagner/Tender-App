@@ -1,3 +1,17 @@
+.your-product:nth-child(even) {
+    background-color: rgb(105, 188, 236);
+}
+.your-product:nth-child(odd) {
+    background-color: rgb(108, 174, 212);
+}
+
+.your-product {
+    border: 3px solid black;
+    margin-top: 15px;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 10px;
+}
+
 .change-items {
     display: flex;
     flex-direction: column;
@@ -21,9 +35,11 @@
 }
 
 #submit-changes {
-    width: 90%;
+    width: 100%;
     max-width: 650px;
     align-self: center;
+    font-size: 1.5em;
+    margin: 10px 0px;
 }
 
 #advertising {
@@ -46,6 +62,7 @@
     text-decoration: underline;
     color: blue;
     align-self: center;
+    margin-left: 3px;
 }
 
 .edit-button:hover {
@@ -54,6 +71,9 @@
 
 .your-product-title h2, .your-product-title p {
     display: inline;
+}
+.profit {
+    font-weight: bold;
 }
 
 .change-items input, .change-items select {

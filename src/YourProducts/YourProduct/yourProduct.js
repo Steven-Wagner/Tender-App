@@ -92,7 +92,7 @@ class YourProduct extends Component {
             : '';
 
         return(
-            <section className="current-product">
+            <section className="your-product">
                 {editPopup}
                 <div className='your-product-title'>
                     <h2>{this.props.item.title}</h2>{this.editButton('title')}
@@ -107,6 +107,7 @@ class YourProduct extends Component {
                     {this.editButton('description')}
                     <p>Sold: {this.props.item.sold}</p>
                     <p 
+                        className="profit"
                         style={yourProductService.getProfitColor(this.props.item.profit)}>
                         Profit: {this.props.item.profit}
                     </p>

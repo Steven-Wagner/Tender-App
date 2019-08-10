@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Nav from '../Components/Nav/nav';
 import PurchasedItem from './PurchasedItem/purchasedItem';
 import TenderContext from '../context';
+import './purchasedItems.css';
 
 class PurchasedItems extends Component {
 

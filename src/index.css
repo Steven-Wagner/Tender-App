@@ -43,19 +43,11 @@ footer {
   color: white;
 }
 
-section:nth-child(even) {
-  background-color: #ddd;
-}
-
 p {
-  margin: 0 auto;
+  margin: 0px;
   max-width: 650px;
   font-size: 1.25em;
   padding: 5px;
-}
-
-p + p {
-  margin-top: 15px;
 }
 
 label {

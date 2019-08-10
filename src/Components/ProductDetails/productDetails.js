@@ -9,13 +9,14 @@ function ProductDetails (props) {
                 {props.item.title}
             </h3>
             <img className="product-img" src={props.item.img} alt={props.item.title}/>
-            <p className="description">{props.item.description}</p>
-            <p>Units Sold: {props.item.sold}</p>
-            <p 
-                className='profit'
-                style={yourProductsService.getProfitColor(props.item.profit)}>
-                {props.includeProfit ? `Profit: ${props.item.profit}` : ''}
-            </p>
+            <div className="popular-info">
+                <p>Sold: {props.item.sold}</p>
+                <p 
+                    className='profit'
+                    style={yourProductsService.getProfitColor(props.item.profit)}>
+                    {props.includeProfit ? `Profit: ${props.item.profit}` : ''}
+                </p>
+            </div>
         </div>
     )
 }

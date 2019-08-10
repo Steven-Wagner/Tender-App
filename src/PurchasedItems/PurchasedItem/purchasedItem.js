@@ -10,13 +10,15 @@ function PurchasedItem(props) {
     }
 
     return(
-        <section className="current-product">
-            <h2>{props.item.title}</h2>
+        <section className="purchased-product">
+            <h2 className="product-title">{props.item.title}</h2>
             {displayImg}
             {/* <Stars rating={props.item.rating}/> */}
             <p className="description">{props.item.description}</p>
-            <p>Price: {props.item.price}</p>
-            <p>Bonuses: {props.item.bonus}</p>
+            <div className="purchased-info">
+                <p>Price: {props.item.price}</p>
+                <p>Bonus: {props.item.bonus}</p>
+            </div>
             <div className="choose-buttons">
                 {/* <button>Reviews</button> */}
             </div>
