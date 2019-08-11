@@ -6,6 +6,7 @@ import './signup.css';
 import {API_BASE_URL} from '../config';
 import TokenService from '../services/Token-services';
 import TenderContext from '../context';
+import Loading from '../Components/Loading/loading';
 
 class SignUp extends Component {
 
@@ -20,7 +21,8 @@ class SignUp extends Component {
                 username: '',
                 password: '',
                 description: ''
-            }
+            },
+            loading: false
         }
 
         this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -31,6 +33,7 @@ class SignUp extends Component {
         this.validateUsername = this.validateUsername.bind(this);
         this.setErrorMessages = this.setErrorMessages.bind(this);
         this.fetchPostNewUser = this.fetchPostNewUser.bind(this);
+        this.changeLoadingStatus = this.changeLoadingStatus.bind(this);
     }
 
     componentDidMount() {
@@ -48,6 +51,7 @@ class SignUp extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        this.changeLoadingStatus(true);
         const errorMessages = this.valdiateSubmit();
 
         if (errorMessages.length === 0) {
@@ -57,6 +61,7 @@ class SignUp extends Component {
                 TokenService.saveAuthToken(res.authToken, res.user_id)
                 this.context.changeUser({id: res.user_id})
                 .then(res => {
+                    this.changeLoadingStatus(false);
                     if(res) {
                         this.setErrorMessages([res.message])
                     }
@@ -72,6 +77,12 @@ class SignUp extends Component {
         else {
             this.setErrorMessages(errorMessages);
         }
+    }
+
+    changeLoadingStatus(status=false) {
+        this.setState({
+            loading: status
+        })
     }
 
     fetchPostNewUser = newUser => {
@@ -142,6 +153,18 @@ class SignUp extends Component {
 
 
     render() {
+        let buttonsOrLoading = !this.state.loading 
+            ?
+            <div className="choose-buttons">
+                <button 
+                    onClick={(e) => this.handleCancel(e)}>
+                    Cancel
+                </button>
+                <button type="submit">Submit</button>
+            </div>
+            :
+            <Loading/>
+
         return(
             <div className="nav-space">
                 <Nav currentComponent='SignUp'/>
@@ -154,12 +177,12 @@ class SignUp extends Component {
 
                     <form className="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
                         <label htmlFor="username">Username/Company Name</label>
-                        <input id="username" type="text" 
+                        <input id="username" type="text" autoComplete="username"
                             value={this.state.user.username}
                             onChange={(e) => this.handleChangeInput(e)}/>
 
                         <label htmlFor="password">Password</label>
-                        <input id="password" type="password" 
+                        <input id="password" type="password" autoComplete="new-password"
                             value={this.state.user.password}
                             onChange={(e) => this.handleChangeInput(e)}/>
 
@@ -168,14 +191,7 @@ class SignUp extends Component {
                             onChange={(e) => this.handleChangeInput(e)}
                             value={this.state.user.description}>
                         </textarea>
-
-                        <div className="choose-buttons">
-                            <button 
-                                onClick={(e) => this.handleCancel(e)}>
-                                Cancel
-                            </button>
-                            <button type="submit">Submit</button>
-                        </div>
+                        {buttonsOrLoading}
                     </form>
                 </div>
             </div>

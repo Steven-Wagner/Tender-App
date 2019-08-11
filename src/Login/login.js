@@ -6,6 +6,7 @@ import './login.css';
 import {API_BASE_URL} from '../config';
 import TokenService from '../services/Token-services';
 import TenderContext from '../context';
+import Loading from '../Components/Loading/loading';
 
 class Login extends Component {
 
@@ -17,13 +18,15 @@ class Login extends Component {
         this.state = {
             errorMessages: [],
             username: '',
-            password: ''
+            password: '',
+            loading: false
         }
 
         this.handleChangeInput = this.handleChangeInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
         this.submitLoginInfo = this.submitLoginInfo.bind(this);
+        this.changeLoadingStatus = this.changeLoadingStatus.bind(this);
     }
 
     componentDidMount() {
@@ -77,7 +80,14 @@ class Login extends Component {
         return errorMessages;
     }
 
+    changeLoadingStatus(status=true) {
+        this.setState({
+            loading: status
+        })
+    }
+
     submitLoginInfo() {
+        this.changeLoadingStatus(true);
         const loginBody = {
             username: this.state.username.trim(),
             password: this.state.password.trim()
@@ -91,6 +101,7 @@ class Login extends Component {
 
                 this.context.changeUser({id: user_id})
                 .then(res => {
+                    this.changeLoadingStatus(false);
                     if (res) {
                         this.setErrorMessages([res.message])
                     }
@@ -133,6 +144,18 @@ class Login extends Component {
     }
 
     render() {
+        const buttonsOrLoading = !this.state.loading
+            ?
+            <div className="choose-buttons">
+                <button
+                    onClick={(e) => this.handleCancel(e)}>
+                    Cancel
+                </button>
+                <button type="submit">Submit</button>
+            </div>
+            :
+            <Loading/>;
+
         return(
             <div className="nav-space">
                 <Nav currentComponent='Login'/>
@@ -145,20 +168,14 @@ class Login extends Component {
 
                     <form className="login-form" onSubmit={(e) => this.handleSubmit(e)}>
                         <label htmlFor="username">Username/Company Name</label>
-                        <input id="username" type="text"
+                        <input id="username" type="text" autoComplete="username"
                             onChange={(e) => this.handleChangeInput(e)}/>
 
                         <label htmlFor="password">Password</label>
-                        <input id="password" type="password" 
+                        <input id="password" type="password" autoComplete="current-password"
                             onChange={(e) => this.handleChangeInput(e)}/>
 
-                        <div className="choose-buttons">
-                            <button
-                                onClick={(e) => this.handleCancel(e)}>
-                                Cancel
-                            </button>
-                            <button type="submit">Submit</button>
-                        </div>
+                        {buttonsOrLoading}
                     </form>
                 </div>
             </div>
