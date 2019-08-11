@@ -19,7 +19,7 @@ section {
 
 .top-selling-item:hover {
     cursor: pointer;
-    background-color: rgb(178, 216, 238)
+    background-color: rgb(178, 216, 238);
 }
 
 .product-title {

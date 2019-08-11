@@ -99,7 +99,7 @@ class PopupAd extends Component {
         }
 
         let adContent =
-            <Link to="/shop/" onClick={() => this.handleAdClicked()}>
+            <Link className="popup-link" to="/shop/" onClick={() => this.handleAdClicked()}>
                 <h3>{this.state.currentAd.title}</h3>
                 {displayImg}
                 <p className="description">{shortDescription}...</p>

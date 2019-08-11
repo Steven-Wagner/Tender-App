@@ -11,6 +11,7 @@ function CurrentProduct(props) {
             </section>
         )
     }
+    const img = props.item.img ? <img className='product-pic' src={props.item.img} alt={props.item.title}/> : '';
     return(
         <section className='current-product'>
             <div className='choose-buttons'>
@@ -19,7 +20,7 @@ function CurrentProduct(props) {
             </div>
             {/* <button onClick={() => props.handleLike()}>Like</button> */}            
             <h2>{props.item.title}</h2>
-            <img className='product-pic' src={props.item.img} alt={props.item.title}/>
+            {img}
             {/* <Stars rating={props.item.rating}/> */}
             <p className="price">Price: {props.item.price}</p>
             <p className="description">{props.item.description}</p>

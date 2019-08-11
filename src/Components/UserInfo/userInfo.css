@@ -7,6 +7,8 @@
 .name-money {
     display: flex;
     justify-content: space-between;
+    background-color: rgb(171, 209, 243);
+    box-shadow: 2px 2px 2px black;
 }
 
 .name-and-money {
@@ -31,10 +33,15 @@
 
 .user-description {
     margin: 5px 20px;
+    align-self: center;
 }
 
 .name {
     word-wrap: break-word;
+}
+
+.total-money {
+    margin: 7px 0px;
 }
 
 @media only screen and (min-width: 650px) {

@@ -36,8 +36,8 @@ div .shop-wrapper {
 }
 
 .product-pic {
-    height: 25vh;
-    max-width: 75%;
+    max-height: 25vh;
+    max-width: 80%;
     border: 1px solid black;
     border-radius: 5px;
     box-shadow: 3px 3px 5px;
@@ -48,4 +48,18 @@ div .shop-wrapper {
     margin: 10px;
     width: 40%;
     font-size: 1.2em;
+}
+
+@media only screen and (min-width: 650px) {
+    .shopping-page-info {
+        width: 650px;
+    }
+
+    .current-product {
+        width: 650px;
+    }
+
+    .product-pic {
+        max-height: 40vh;
+    }
 }
