@@ -87,4 +87,8 @@
         overflow-y: unset;
         overflow-x: unset;
     }
+
+    .annoying-ad .ad-img {
+        max-height: 175px;
+    }
 }
