@@ -3,6 +3,7 @@ import LandingPageContent from './landingPageContent/landingPageContent';
 import Nav from '../Components/Nav/nav';
 import MainTitle from '../Components/MainTitle/mainTitle';
 import Footer from '../Components/Footer/footer';
+import './landingPage.css';
 
 function LandingPage() {
     return(

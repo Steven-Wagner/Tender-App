@@ -1,0 +1,25 @@
+.screenshot {
+    max-width: 90%;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px black;
+}
+
+.landing-page p {
+    margin: 0 auto;
+}
+
+.landing-page button {
+    font-size: 1.5em;
+    padding: 10px;
+}
+
+.landing-page a {
+    color: white;
+}
+
+@media only screen and (min-width: 650px) {
+    .screenshot {
+        max-width: 650px;
+    }
+}
