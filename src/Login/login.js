@@ -151,7 +151,7 @@ class Login extends Component {
                     onClick={(e) => this.handleCancel(e)}>
                     Cancel
                 </button>
-                <button type="submit">Submit</button>
+                <button className="submit-button" type="submit">Submit</button>
             </div>
             :
             <Loading/>;
