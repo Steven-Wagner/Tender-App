@@ -16,7 +16,7 @@ function CurrentProduct(props) {
         <section className='current-product'>
             <div className='choose-buttons'>
                 <button onClick={() => props.handleSkip()}>Skip</button>
-                <button onClick={() => props.handleBuy()}>Buy</button>
+                <button className="buy-button" onClick={() => props.handleBuy()}>Buy</button>
             </div>
             {/* <button onClick={() => props.handleLike()}>Like</button> */}            
             <h2>{props.item.title}</h2>

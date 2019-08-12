@@ -1,20 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import SignUp from './signUp';
+import SignUpWrapped, {SignUp} from './signUp';
 import Enzyme, { shallow, mount, render, setState, update } from 'enzyme';
 import Adapter from "enzyme-adapter-react-16";
 import {ProductsProvider} from '../context';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faShoppingCart, faSpinner, faCoins } from '@fortawesome/free-solid-svg-icons';
+import ReactDOM from 'react-dom';
 
 library.add(faCoins, faShoppingCart, faSpinner);
 
 Enzyme.configure({ adapter: new Adapter() });
 
+SignUp.prototype.componentDidMount = () => {};
+
 describe('SignUp UI renders correctly', () => {
 
     function makeLoginWrapper() {
-        SignUp.prototype.componentDidMount = () => {};
         return mount(
                     <Router>
                         <ProductsProvider value={{}}>
@@ -22,6 +24,16 @@ describe('SignUp UI renders correctly', () => {
                         </ProductsProvider>
                     </Router>)
     }
+
+    it('renders content without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(
+            <Router>
+                <ProductsProvider value={{}}>
+                    <SignUp/>
+                </ProductsProvider>
+            </Router> , div);
+      });
 
     it('SignUp renders with all correct fields', () => {
         expect(makeLoginWrapper().find('#username').length).toBe(1);

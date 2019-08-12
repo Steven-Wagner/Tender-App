@@ -200,3 +200,7 @@ class SignUp extends Component {
 }
 
 export default withRouter(SignUp);
+
+export {
+    SignUp
+}

@@ -6,11 +6,15 @@ import Adapter from "enzyme-adapter-react-16";
 import {ProductsProvider} from '../context';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faShoppingCart, faSpinner, faCoins } from '@fortawesome/free-solid-svg-icons';
+import ReactDOM from 'react-dom';
+
+Homepage.prototype.componentDidMount = () => {};
 
 library.add(faCoins, faShoppingCart, faSpinner);
 
 Enzyme.configure({ adapter: new Adapter() });
 describe('Homepage UI renders correctly', () => {
+
     const items = {
         popularProducts: [{title: 'Overall Test Title', img: 'An img', desription: 'SHould not display', sold: '2', profit: '4', price: '2'}],
         usersPopularProducts: [{title: 'User Test Title', img: 'An img', desription: 'SHould not display', sold: '2', profit: '4', price: '2'}],
@@ -21,7 +25,6 @@ describe('Homepage UI renders correctly', () => {
     };
 
     function makeHomepageWrapper() {
-        Homepage.prototype.componentDidMount = () => {};
         return mount(
                 <Router>
                     <ProductsProvider value={items}>
@@ -29,6 +32,16 @@ describe('Homepage UI renders correctly', () => {
                     </ProductsProvider>
                 </Router>)
     }
+    
+    it('renders content without crashing', () => {
+      const div = document.createElement('div');
+      ReactDOM.render(
+        <Router>
+            <ProductsProvider value={items}>
+                <Homepage/>
+            </ProductsProvider>
+        </Router> , div);
+    });
 
     it('Homepage renders users top sellers correctly', () => {
         const userPopularProduct = makeHomepageWrapper().find('.top-selling-item').at(0);
