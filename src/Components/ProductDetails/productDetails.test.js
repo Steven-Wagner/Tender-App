@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ProductDetails from './productDetails';
-import Enzyme, { shallow, mount, render, setState, update } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
 import Adapter from "enzyme-adapter-react-16";
 
 Enzyme.configure({ adapter: new Adapter() });

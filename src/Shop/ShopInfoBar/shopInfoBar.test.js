@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ShopInfoBar from './shopInfoBar';
-import Enzyme, { shallow, mount, render, setState, update } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
 import Adapter from "enzyme-adapter-react-16";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';

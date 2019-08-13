@@ -1,13 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import CurrentProduct from './currentProduct';
-import Enzyme, { shallow, mount, render, setState, update } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
 import Adapter from "enzyme-adapter-react-16";
-import { library } from '@fortawesome/fontawesome-svg-core';
-// import { faCoins } from '@fortawesome/free-solid-svg-icons';
 import ReactDOM from 'react-dom';
 
-// library.add(faCoins);
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -63,7 +60,7 @@ describe('Current Product UI renders correctly', () => {
             const emptyItem = {index: -1};
 
             const wrapper = makeCurrentProductWrapper(emptyItem);
-            
+
             expect(wrapper.exists('.no-products')).toBe(true);
             wrapper.unmount();
         })
