@@ -24,6 +24,7 @@ class Ad extends Component {
     }
 
     componentDidMount() {
+        //Get a new random homepage ad to display every 5 seconds
         this.setAdInterval = setInterval(() => this.setRandomAd(), 5000);
         this.setRandomAd();
     }
@@ -65,12 +66,14 @@ class Ad extends Component {
     }
 
     handleAdClicked() {
+        //When user clicks an add they are pushed to te shop page to purchase item
         this.context.updateCurrentShoppingItem(this.state.currentAd)
     }
 
     render() {
         let content;
 
+        //If there is an ad render ad content
         if (this.state.currentAd.title) {
             content =<div className='ad'>
                     <div className="home-info-ad">Advertisment</div>

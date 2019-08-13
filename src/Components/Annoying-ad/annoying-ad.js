@@ -28,6 +28,7 @@ class AnnoyingAd extends Component {
     }
 
     componentDidMount() {
+        //Set interval for new annoying ad popup every 1 minute
         this.setAdInterval = setInterval(() => this.setRandomAd(), 60000);
         this.setRandomAd();
     }
@@ -75,6 +76,7 @@ class AnnoyingAd extends Component {
     }
 
     handleAdClicked() {
+        //When ad is clicked user is pushed to shopping pageto purchase product
         this.context.updateCurrentShoppingItem(this.state.currentAd)
         this.removePopup();
     }
@@ -91,7 +93,7 @@ class AnnoyingAd extends Component {
             displayImg = <img className="ad-img" src={this.state.currentAd.img} alt={this.state.currentAd.title}/>
         }
 
-        //ad will only show first 150 characters of description
+        //ad will only show first 75 characters of description
         let shortDescription = 'No Description';
         if (this.state.currentAd.description) {
         shortDescription = this.state.currentAd.description.substring(0,75);
@@ -119,6 +121,7 @@ class AnnoyingAd extends Component {
             </Link>
         </div>
 
+        //If user is already navigated to shop page remove the Link from the ad
         if (this.props.pathname === '/shop/') {
             adContent =
             <div className="ad-click" to="/shop/" onClick={() => this.handleAdClicked()}>

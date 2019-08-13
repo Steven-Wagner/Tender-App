@@ -28,6 +28,7 @@ class PopupAd extends Component {
     }
 
     componentDidMount() {
+        //Get new popup ad every two minutes
         this.setAdInterval = setInterval(() => this.setRandomAd(), 120000);
         this.setRandomAd();
     }
@@ -77,16 +78,18 @@ class PopupAd extends Component {
     }
 
     handleAdClicked() {
+        //When user clicks ad they are pushed to shop page and can purchase item
         this.context.updateCurrentShoppingItem(this.state.currentAd)
         this.removePopup();
     }
 
     render() {
+        //If there is no ad or ads state is set to visible: flase do not render content
         if (!this.state.currentAd.title || !this.state.visable) {
             return '';
         }
 
-        //ad will only show first 150 characters of description
+        //ad will only show first 75 characters of description
         let shortDescription = 'No Description';
         if (this.state.currentAd.description) {
         shortDescription = this.state.currentAd.description.substring(0,75);
@@ -114,6 +117,7 @@ class PopupAd extends Component {
             </Link>
         </div>
 
+        //If user is already navigated to shop page remove Links from component
         if (this.props.pathname === '/shop/') {
             adContent =
             <div onClick={() => this.handleAdClicked()}>
