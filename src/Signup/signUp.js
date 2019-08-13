@@ -72,6 +72,7 @@ class SignUp extends Component {
             })
             .catch(error => {
                 this.setErrorMessages([error.message])
+                this.changeLoadingStatus(false);
             })
         }
         else {

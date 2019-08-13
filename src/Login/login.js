@@ -113,6 +113,7 @@ class Login extends Component {
             })
             .catch(error => {
                 this.setErrorMessages([error.message])
+                this.changeLoadingStatus(false);
             })
     }
 
