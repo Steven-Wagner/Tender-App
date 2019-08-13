@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Purchased Items UI renders correctly PurchasedItems renders correctly 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <PurchasedItems>
+      <div
+        className="nav-space"
+      >
+        <Nav
+          currentComponent="PurchasedItems"
+        />
+        <div
+          className="page-wrapper"
+        >
+          <header>
+            <h2
+              className="page-header"
+            >
+              Purchased Products
+            </h2>
+          </header>
+          <div
+            className="list-of-items"
+          >
+            <PurchasedItem
+              index={0}
+              item={
+                Object {
+                  "ad": "Homepage ads",
+                  "bonus": "1.00",
+                  "desription": "A Description",
+                  "id": 1,
+                  "img": "An img",
+                  "price": "2",
+                  "profit": "4",
+                  "sold": "2",
+                  "title": "Your Product Test Title",
+                }
+              }
+              key="Your Product Test Title"
+            >
+              <section
+                className="purchased-product"
+              >
+                <h2
+                  className="product-title"
+                >
+                  Your Product Test Title
+                </h2>
+                <img
+                  alt="Your Product Test Title"
+                  className="product-pic"
+                  src="An img"
+                />
+                <p
+                  className="description"
+                />
+                <div
+                  className="purchased-info"
+                >
+                  <p>
+                    Price: 
+                    2
+                  </p>
+                  <p>
+                    Bonus: 
+                    1.00
+                  </p>
+                </div>
+              </section>
+            </PurchasedItem>
+            <PurchasedItem
+              index={1}
+              item={
+                Object {
+                  "ad": "Homepage ads 2",
+                  "bonus": "1.00",
+                  "desription": "A Description 2",
+                  "id": 2,
+                  "img": "An img 2",
+                  "price": "3",
+                  "profit": "12",
+                  "sold": "4",
+                  "title": "Your Product Test Title 2",
+                }
+              }
+              key="Your Product Test Title 2"
+            >
+              <section
+                className="purchased-product"
+              >
+                <h2
+                  className="product-title"
+                >
+                  Your Product Test Title 2
+                </h2>
+                <img
+                  alt="Your Product Test Title 2"
+                  className="product-pic"
+                  src="An img 2"
+                />
+                <p
+                  className="description"
+                />
+                <div
+                  className="purchased-info"
+                >
+                  <p>
+                    Price: 
+                    3
+                  </p>
+                  <p>
+                    Bonus: 
+                    1.00
+                  </p>
+                </div>
+              </section>
+            </PurchasedItem>
+          </div>
+        </div>
+      </div>
+    </PurchasedItems>
+  </Router>
+</BrowserRouter>
+`;

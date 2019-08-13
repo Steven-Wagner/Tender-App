@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewProduct UI renders correctly NewProduct renders correctly 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <NewProduct>
+      <div
+        className="nav-space"
+      >
+        <Nav
+          currentComponent="NewProduct"
+        />
+        <div
+          className="page-wrapper"
+        >
+          <header>
+            <h2
+              className="page-header"
+            >
+              New Product
+            </h2>
+          </header>
+          <form
+            className="new-product-form"
+            id="productForm"
+            onSubmit={[Function]}
+          >
+            <label
+              htmlFor="title"
+            >
+              Title
+            </label>
+            <input
+              id="title"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+            <label
+              htmlFor="img"
+            >
+              Image URL (optinal)
+            </label>
+            <input
+              id="img"
+              onChange={[Function]}
+              type="url"
+              value=""
+            />
+            <label
+              htmlFor="description"
+            >
+              Product Description
+            </label>
+            <textarea
+              className="new-description"
+              id="description"
+              onChange={[Function]}
+              placeholder="Machine washable with like colors"
+              value=""
+            />
+            <div
+              className="price-ad-wrapper"
+            >
+              <div
+                className="price-wrapper"
+              >
+                <label
+                  className="price"
+                  htmlFor="price"
+                >
+                  Price:
+                </label>
+                <input
+                  id="price"
+                  onChange={[Function]}
+                  step="1"
+                  type="number"
+                  value=""
+                />
+              </div>
+              <label
+                className="current-advertising-label"
+                htmlFor="advertise"
+              >
+                Ad Spending
+              </label>
+              <select
+                className="select-ad"
+                id="ad"
+                onChange={[Function]}
+              >
+                <option
+                  value="None"
+                >
+                  None
+                </option>
+                <option
+                  value="Homepage ads"
+                >
+                  Homepage ads - 
+                  0
+                   Play Money per day
+                </option>
+                <option
+                  value="Popup ads"
+                >
+                  Popup ads - 
+                  0
+                   Play Money per day
+                </option>
+                <option
+                  value="Annoying ads"
+                >
+                  Annoying Ads - 
+                  0
+                   Play Money per day
+                </option>
+              </select>
+            </div>
+            <button
+              className="submit-new-product-btn"
+              type="submit"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </NewProduct>
+  </Router>
+</BrowserRouter>
+`;
