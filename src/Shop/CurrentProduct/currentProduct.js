@@ -5,7 +5,7 @@ function CurrentProduct(props) {
     if (props.item.index === -1 && !props.item.ad) {
         return(
             <section className='current-product'>
-                <p>
+                <p className="no-products">
                     There are no more products to view
                 </p>
             </section>

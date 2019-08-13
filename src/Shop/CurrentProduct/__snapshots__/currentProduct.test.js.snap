@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Current Product UI renders correctly Shop renders correctly 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <CurrentProduct
+      item={
+        Object {
+          "desription": "Current Product description",
+          "img": "Current img",
+          "index": 0,
+          "price": "2",
+          "profit": "4",
+          "sold": "2",
+          "title": "Current Product",
+        }
+      }
+    >
+      <section
+        className="current-product"
+      >
+        <div
+          className="choose-buttons"
+        >
+          <button
+            onClick={[Function]}
+          >
+            Skip
+          </button>
+          <button
+            className="buy-button"
+            onClick={[Function]}
+          >
+            Buy
+          </button>
+        </div>
+        <h2>
+          Current Product
+        </h2>
+        <img
+          alt="Current Product"
+          className="product-pic"
+          src="Current img"
+        />
+        <p
+          className="price"
+        >
+          Price: 
+          2
+        </p>
+        <p
+          className="description"
+        />
+      </section>
+    </CurrentProduct>
+  </Router>
+</BrowserRouter>
+`;
