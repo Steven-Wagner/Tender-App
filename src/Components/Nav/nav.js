@@ -19,6 +19,7 @@ class Nav extends Component {
     }
     render() {
 
+        //All possible links that may be present in Nav
         const shop = 
             <Link to={'/shop/'} key='shop'><FontAwesomeIcon className="shopping-cart-icon" icon="shopping-cart" />Shop</Link>
         const homescreen = 
@@ -38,6 +39,7 @@ class Nav extends Component {
         const landingpage = 
             <Link to={''} key='logout'>Landing Page</Link>
 
+        //Which links appear in the Nav depending on the current page
         const linksToInclude = {
             'LandingPage': [signup, login],
             'Homepage': [shop, newProduct, yourProducts, purchasedItems, logout],
@@ -48,6 +50,7 @@ class Nav extends Component {
             'Login': [signup, landingpage] 
         }
 
+        //Nav toggles visability based on scrolling behavior. When user scrolls up nav appears, scrolls down to remove it. See App.js handleScroll() for more
         let navOptions;
         if (this.context.navVisable) {
             navOptions = linksToInclude[this.props.currentComponent];
