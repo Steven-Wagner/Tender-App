@@ -1,4 +1,4 @@
-## Movie Suggester
+## Tender
 
 ### The Non-Commital Shopping And Selling App
 Create. Sell. Buy.
