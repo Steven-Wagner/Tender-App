@@ -94,16 +94,4 @@ describe('Homepage UI renders correctly', () => {
             })
         })
     })
-
-    // it('Homepage renders users top sellers correctly', () => {
-    //     const userPopularProduct = makeHomepageWrapper().find('.top-selling-item').at(0);
-    //     expect(userPopularProduct.find('.product-title').text()).toBe(items.usersPopularProducts[0].title);
-    //     expect(userPopularProduct.find('.profit').text()).toBe(`Profit: ${items.usersPopularProducts[0].profit}`);
-    // })
-
-    // it('Homepage renders top sellers correctly', () => {
-    //     const popularProduct = makeHomepageWrapper().find('.top-selling-item').at(1);
-    //     expect(popularProduct.find('.product-title').text()).toBe(items.popularProducts[0].title);
-    //     expect(popularProduct.find('.popular-info').text()).toBe(`Sold: ${items.popularProducts[0].sold}`);
-    // })
 })
