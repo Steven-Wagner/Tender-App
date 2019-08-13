@@ -7,16 +7,7 @@ import {ProductsProvider} from '../context';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faShoppingCart, faSpinner, faCoins } from '@fortawesome/free-solid-svg-icons';
 import ReactDOM from 'react-dom';
-
-it('renders content without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Router>
-    <ProductsProvider value={context}>
-        <Shop
-            history={{location: ''}}/>
-    </ProductsProvider>
-    </Router> , div);
-});
+import renderer from 'react-test-renderer';
 
 library.add(faCoins, faShoppingCart, faSpinner);
 
@@ -52,6 +43,31 @@ const context = {
     getNewProductToSell,
     newPurchasedItem
 };
+describe('UI renders correctly', () => {
+    it('renders content without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<Router>
+            <ProductsProvider value={context}>
+                <Shop
+                    history={{location: ''}}/>
+            </ProductsProvider>
+            </Router> , div);
+        ReactDOM.unmountComponentAtNode(div);
+    });
+      
+    it('Shop renders correctly', () => {
+        const tree = renderer.create(
+            <Router>
+                <ProductsProvider value={context}>
+                    <Shop
+                        history={{location: ''}}/>
+                </ProductsProvider>
+            </Router>
+        )
+        .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+})
 
 function makeShopWrapper() {
     Shop.prototype.componentDidMount = () => {};

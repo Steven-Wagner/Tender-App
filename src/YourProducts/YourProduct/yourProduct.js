@@ -94,7 +94,7 @@ class YourProduct extends Component {
             <section className="your-product">
                 {editPopup}
                 <div className='your-product-title'>
-                    <h2>{this.props.item.title}</h2>{this.editButton('title')}
+                    <h2 className="title-content">{this.props.item.title}</h2>{this.editButton('title')}
                 </div>
                 <form className="change-items" onSubmit={(e) => this.handleSubmit(e)}>
                     {displayImg}
