@@ -99,6 +99,7 @@ class Login extends Component {
 
                 TokenService.saveAuthToken(authInfo.authToken, user_id);
 
+                //chnageUser() fetches most of the user's data
                 this.context.changeUser({id: user_id})
                 .then(res => {
                     this.changeLoadingStatus(false);
@@ -145,6 +146,7 @@ class Login extends Component {
     }
 
     render() {
+        //Renders submit and cancel buttons or loading icon
         const buttonsOrLoading = !this.state.loading
             ?
             <div className="choose-buttons">
@@ -186,6 +188,7 @@ class Login extends Component {
 
 export default withRouter(Login);
 
+//Used only for testing
 export {
     Login
 }

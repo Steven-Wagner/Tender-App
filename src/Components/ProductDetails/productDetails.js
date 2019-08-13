@@ -3,7 +3,7 @@ import yourProductsService from '../../YourProducts/YourProduct/yourProduct-serv
 
 function ProductDetails (props) {
 
-    return( 
+    return(
         <div className="top-selling-item" onClick={() => props.handleClick(props.item)}>
             <h3 className="product-title">
                 {props.item.title}
@@ -13,6 +13,7 @@ function ProductDetails (props) {
                 <p>Sold: {props.item.sold}</p>
                 <p 
                     className='profit'
+                    //Profit is green when positive and red when negative
                     style={yourProductsService.getProfitColor(props.item.profit)}>
                     {props.includeProfit ? `Profit: ${props.item.profit}` : ''}
                 </p>

@@ -18,6 +18,7 @@ import Footer from './Components/Footer/footer';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faShoppingCart, faSpinner, faCoins } from '@fortawesome/free-solid-svg-icons';
 
+//Adds icons to be imported to other modules
 library.add(faCoins, faShoppingCart, faSpinner);
 
 class App extends Component {
@@ -40,6 +41,7 @@ class App extends Component {
       currentShoppingItem: {
         index: -1
       },
+      //delegate functions are added here to be passed into context
       ...delegate.functions,
       canAfford: this.canAfford.bind(this),
       goBack: this.goBack.bind(this),
@@ -52,11 +54,14 @@ class App extends Component {
     this.refreshUserData = this.refreshUserData.bind(this)
     this.handleScroll = this.handleScroll.bind(this);
 
+    //delegate class can effect App.js's state
     delegate.register(this, this.updateProductsState)
   }
 
   componentDidMount() {
+    //Fetches GET requests for UserInfo, YourProducts, PopularProducts, Shopping products, purchasedProducts
     this.refreshUserData();
+
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -65,6 +70,7 @@ class App extends Component {
   }
 
   handleScroll(e) {
+    //When user scrolls down Nav visability is set to false, when user scrolls up the Nav returns
     const currentYOffset = window.pageYOffset;
     const oldY = this.state.currentYOffset;
     if (currentYOffset > oldY) {
@@ -83,6 +89,7 @@ class App extends Component {
 
   refreshUserData() {
     const userSignedIn = TokenService.getUserId();
+    //If no user is signed in data is not fetched
     if(userSignedIn) {
       delegate.changeUser({id: userSignedIn})
     }
@@ -107,6 +114,7 @@ class App extends Component {
   }
 
   updateProductsState(newProductsState) {
+    //This function is passed to delegate and used to change App.js's state
     return this.setState({
       ...this.state,
       ...newProductsState

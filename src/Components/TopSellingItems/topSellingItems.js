@@ -10,6 +10,7 @@ class TopSellingItems extends Component {
 
     constructor(props) {
         super(props);
+        //Profit is only included for the users top sellers, not for the overall sellers
         if (this.props.status === 'user') {
             this.state = {
                 includeProfit: true
@@ -26,6 +27,7 @@ class TopSellingItems extends Component {
 
 
     handleClick(item) {
+        //If user clicks on item it redirect the user either to shop to purchase the item or to YourProducts if the user created the product
         if (this.props.status === 'overall') {
             this.context.updateCurrentShoppingItem(item);
             this.props.history.push('/shop/');
@@ -45,6 +47,7 @@ class TopSellingItems extends Component {
                 handleClick={this.handleClick}/>
         });
 
+        //Header changes based on status of component. Options are 'overall' for overall top sellers or 'user' for the user's top sellers
         const headerTitle = this.props.status === 'overall'
             ? 'Top Selling Items'
             : 'Your Top Selling Items';

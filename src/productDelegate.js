@@ -3,6 +3,7 @@ import AppService from './app-service';
 const ProductDelegate = function() {
 
     this.changeUser = user_id => {
+        //When new user logs in or when page is refreshed changeUser() is called
         return AppService.fetchGetUserInfo(user_id)
         .then(userInfo => {
           this.setState({
@@ -48,7 +49,7 @@ const ProductDelegate = function() {
     this.updateProductState = function (index, adCosts) {
         const updatedProduct = Object.assign({}, this.app.state.currentlyEditing);
 
-
+        //If new ad is more expesive than previously paid for ad, user is charged for new ad
         if (adCosts[this.app.state.currentlyEditing.ad] > adCosts[this.app.state.yourItems[index].ad]) {
             this.subtractTotalByPrice(adCosts[this.app.state.currentlyEditing.ad]);
             updatedProduct.profit = parseFloat(updatedProduct.profit) - parseFloat(adCosts[this.app.state.currentlyEditing.ad]);
@@ -58,6 +59,7 @@ const ProductDelegate = function() {
         updatedItemsArray[index] = updatedProduct;
 
         return this.setState({
+            //Updates yourItems with updated item and resets curretlyEditing
             yourItems: updatedItemsArray,
             currentlyEditing: ''
         })
@@ -92,20 +94,21 @@ const ProductDelegate = function() {
     this.getNewProductToSell = function(indexToIncrease = 1) {
         let newIndex = this.app.state.currentShoppingItem.index + indexToIncrease;
 
+        //If there are no items in shopping list the currnt shopping item index is set to -1. -1 always signifies that there are no more items to shop for
         if (this.app.state.shoppingItems.length === 0) {
             return this.setState({
                 currentShoppingItem: {index: -1}
             })
         }
         
+        //If there is only one item in shopping list after user clicks skip it will signify there are no more products
         if (this.app.state.shoppingItems.length === 1 && this.app.state.currentShoppingItem.title === this.app.state.shoppingItems[0].title) {
-            console.log('currentshoppingItem', this.app.state.currentShoppingItem.title)
-            console.log('shoppingItem', this.app.state.shoppingItems.title)
             return this.setState({
                 currentShoppingItem: {index: -1}
             })
         }
 
+        //Gets the next shoppable item from the list
         if (newIndex < this.app.state.shoppingItems.length) {
             return this.setState({
                 currentShoppingItem: {
@@ -118,6 +121,7 @@ const ProductDelegate = function() {
                 }
             })
         }
+        //if current index is at the length of shoppingItems currentShoppingItem is set to first item in shoppingItem array
         else {
             const firstProduct = Object.assign({}, this.app.state.shoppingItems[0]);
             firstProduct.index = 0
@@ -143,10 +147,12 @@ const ProductDelegate = function() {
     this.validateUpdate = function(index, adCosts) {
         let errorMessages = [];
 
+        //If user clicks submit on a different product than the one last edited
         if (this.app.state.currentlyEditing.index !== index) {
             errorMessages.push(`You haven't changed this item. Perhaps you meant to update ${this.app.state.currentlyEditing.title}`);
         }
 
+        //If user submits an update on a product with no edits
         if (!this.app.state.currentlyEditing) {
             return false;
         }
@@ -158,8 +164,6 @@ const ProductDelegate = function() {
         if (parseFloat(adCosts[this.app.state.currentlyEditing.ad]) > parseFloat(adCosts[this.app.state.yourItems[index].ad]) && parseFloat(adCosts[this.app.state.currentlyEditing.ad]) > parseFloat(this.app.state.userInfo.money)) {
             errorMessages.push(`You can't afford ${this.app.state.currentlyEditing.ad}`)
         }
-
-        //validate title img and description
 
         if (errorMessages.length > 0) {
             this.app.setPopupMessages('errorPopup', errorMessages);
@@ -190,12 +194,14 @@ const ProductDelegate = function() {
 
     this.addNewProduct = function(newItem, adPrice) {
 
+        //If user chose an ad user pays for adCost and subtracts it from products profits
         if (parseFloat(adPrice) > 0) {
             this.subtractTotalByPrice(adPrice);
             newItem.profit = parseFloat(newItem.profit) - parseFloat(adPrice);
         }
         const newYourItems = JSON.parse(JSON.stringify(this.app.state.yourItems));
 
+        //New products are added to the front if the array so they appear near the top of the page
         newYourItems.unshift(newItem);
 
         this.setState({
@@ -218,6 +224,7 @@ const ProductDelegate = function() {
     }
    
     this.handleChangeInput = function(e, index) {
+        //Handles all changes to currentlyEditing
         let newInput = Object.assign({}, this.app.state.currentlyEditing);
 
         if (this.app.state.currentlyEditing.index === index) {
@@ -227,6 +234,7 @@ const ProductDelegate = function() {
             })
         }
 
+        //CurrentlyEditing's values are reset to the last product edited
         else {
 
             newInput = Object.assign({}, this.app.state.yourItems[index])

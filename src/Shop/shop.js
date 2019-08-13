@@ -31,6 +31,7 @@ class Shop extends Component {
                 let productIndex;
 
                 if (this.context.currentShoppingItem.ad) {
+                    //If user is purchasing ad it does not have an index in state and the product's index must be found so that it can be deleted from the list of shoppable items
                     productIndex = this.getProductIndexById(this.context.currentShoppingItem.id)
                 }
                 else {
@@ -39,6 +40,7 @@ class Shop extends Component {
                 this.context.removeItemFromState(productIndex);
                 this.context.subtractTotalByPrice(this.context.currentShoppingItem.price);
                 this.context.newPurchasedItem(this.context.currentShoppingItem, purchaseId.id);
+                //Since item will be delivered currentShopping index should be incremented; meaning that getNewProductToSell recieves an argument of 0
                 this.context.getNewProductToSell(0);
             })
             .catch(error => {

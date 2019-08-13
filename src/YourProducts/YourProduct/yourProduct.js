@@ -60,6 +60,8 @@ class YourProduct extends Component {
     }
 
     editButton(type) {
+        //Edit button only renders if item is less that 24 hours old
+        //Edit button can accept 'img', 'title', and 'description' as arguments
         const oneDay = 61 * 60 * 24 * 1000;
         const now = new Date();
         const oneDayAgo = new Date(now-oneDay);
@@ -74,6 +76,7 @@ class YourProduct extends Component {
     render() {
         let displayImg = '';
 
+        //Img only displays if it is not undefined
         if (this.props.item.img) {
             displayImg = <img className="product-pic" src={this.props.item.img} alt={this.props.item.title}/>
         }

@@ -23,9 +23,11 @@ class Homepage extends Component {
                     <UserInfo/>
 
                     <TopSellingItems 
+                        //Renders the user top items
                         status='user'
                         popularProducts={this.context.usersPopularProducts}/>
                     <TopSellingItems 
+                        //Render overall top items
                         status='overall'
                         popularProducts={this.context.popularProducts}/>
 

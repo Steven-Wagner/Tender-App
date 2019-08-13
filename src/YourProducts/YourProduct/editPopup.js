@@ -16,6 +16,7 @@ class EditPopup extends Component {
     }
 
     componentDidMount() {
+        //When editing a products img the text area is blank. The old value still persists until submit is clicked
         if(this.props.type === 'img') {
             const setImgToUndefined = {target: {id: 'img', value: ''}};
             this.props.handleChangeInput(setImgToUndefined, this.props.index)
@@ -45,8 +46,10 @@ class EditPopup extends Component {
     }
 
     render() {
-        let content;
+        //Renders slightly differnt forms depeding on props.type
+        //props.type can be 'title', 'img', 'description'
 
+        let content;
         if (this.props.type === 'title') {
             content = 
             <form className="change-popup-items" onSubmit={(e) => this.handleEditPopupSubmit(e)}>

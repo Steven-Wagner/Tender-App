@@ -50,6 +50,7 @@ class YourProducts extends Component {
     }
 
     getAdCosts() {
+    //Sets the current per day cost of all ads
         this.fetchGetSimpleAdCosts()
         .then(adCosts => {
             this.setState({
@@ -61,6 +62,7 @@ class YourProducts extends Component {
     render() {
 
         const items = this.context.yourItems.map((item, index) => {
+            //If item being rendered is currently being edited item should render with edited content
             if (this.context.currentlyEditing.index === index) {
                 item = this.context.currentlyEditing;
             }

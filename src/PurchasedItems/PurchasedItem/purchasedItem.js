@@ -5,6 +5,7 @@ function PurchasedItem(props) {
 
     let displayImg = '';
 
+    //If img exists display it, if not, img does not display
     if (props.item.img) {
         displayImg = <img className="product-pic" src={props.item.img} alt={props.item.title}/>
     }

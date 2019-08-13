@@ -4,5 +4,3 @@ module.exports = {
     TOKEN_KEY: 'authToken',
     user_id: 'user_id'
 };
-
-// "http://localhost:8000/api"

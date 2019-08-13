@@ -39,6 +39,7 @@ class NewProduct extends Component {
     }
 
     getAdCosts() {
+        //Sets the per day cost of all ads
         this.fetchGetSimpleAdCosts()
         .then(adCosts => {
             this.setState({
@@ -147,6 +148,7 @@ class NewProduct extends Component {
             errorMessages.push(`You can't afford a ${this.state.item.ad}`)
         }
 
+        //price must be 1 or greater
         if (isNaN(parseFloat(item.price)) || parseFloat(item.price) < 1) {
             errorMessages.push('Item price must be at least 1 Play Money')
         }
