@@ -11,7 +11,18 @@
     background-color: gray;
 }
 
-#submit-changes, #cancel-edit {
+.change-popup-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.change-popup-items #title, .change-popup-items #img, .change-popup-items #description {
+    margin: 5px;
+    width: 90%;
+}
+
+.submit-changes, #cancel-edit {
     width: 90%;
     max-width: 650px;
     align-self: center;

@@ -60,7 +60,7 @@ class EditPopup extends Component {
                         id="title"
                         onChange={(e) => this.props.handleChangeInput(e, this.props.index)}
                     />
-                <button id="submit-changes" type="submit">Submit Changes</button>  
+                <button className="submit-changes" id={`submit-changes-${this.props.title}`} type="submit">Submit Changes</button>  
                 <button id="cancel-edit" onClick={(e) => this.handleCancel(this.props.type)}>Cancel</button>  
             </form>
         }
@@ -74,7 +74,7 @@ class EditPopup extends Component {
                         id="img"
                         onChange={(e) => this.handleChangeImg(e, this.props.index)}
                     />
-                <button id="submit-changes" type="submit">Submit Changes</button>  
+                <button className="submit-changes" id={`submit-changes-${this.props.img}`} type="submit">Submit Changes</button>  
                 <button id="cancel-edit" onClick={(e) => this.handleCancel(this.props.type)}>Cancel</button>  
             </form>
         }
@@ -88,7 +88,7 @@ class EditPopup extends Component {
                         id="description"
                         onChange={(e) => this.props.handleChangeInput(e, this.props.index)}
                     />
-                <button id="submit-changes" type="submit">Submit Changes</button>  
+                <button className="submit-changes" id={`submit-changes-description`} type="submit">Submit Changes</button>  
                 <button id="cancel-edit" onClick={(e) => this.handleCancel(this.props.type)}>Cancel</button> 
             </form>
         }

@@ -42,9 +42,10 @@ class YourProduct extends Component {
     }
 
     showEditPopup(e) {
+        const editType = e.target.dataset.editType;
         this.setState({
             editPopup: {
-                type: e.target.id,
+                type: editType,
                 status: true
             }
         })
@@ -66,7 +67,7 @@ class YourProduct extends Component {
         const now = new Date();
         const oneDayAgo = new Date(now-oneDay);
         if (new Date(this.props.item.date_created) > oneDayAgo || !this.props.item.date_created) {
-            return <p className='edit-button' id={type} onClick={(e) => this.showEditPopup(e)}>Edit {type}</p>
+            return <p className='edit-button' data-edit-type={type} onClick={(e) => this.showEditPopup(e)}>Edit {type}</p>
         }
         else {
             return;
@@ -114,18 +115,18 @@ class YourProduct extends Component {
                         Profit: {this.props.item.profit}
                     </p>
                     <div className="price-chooser">
-                        <label className="price-label" htmlFor="currentPrice">Price:</label>
+                        <label className="price-label" htmlFor={`price${this.props.item.title}`}>Price:</label>
                         <input 
                             value={this.props.item.price}
-                            id="price"
+                            id={`price${this.props.item.title}`}
                             type="number" 
                             step="1"
                             onChange={(e) => this.props.handleChangeInput(e, this.props.index)}/>
                     </div>
-                    <label className="current-advertising-label" htmlFor="currentAdvertising">Current Advertising:</label>
+                    <label className="current-advertising-label" htmlFor={`ad${this.props.item.title}`}>Current Advertising:</label>
                     <select 
                         className="select-ad"
-                        id="ad" 
+                        id={`ad${this.props.item.title}`}
                         onChange={(e) => this.props.handleChangeInput(e, this.props.index)}
                         value={this.props.item.ad}>
                         <option value='None'>None</option>
@@ -133,7 +134,7 @@ class YourProduct extends Component {
                         <option value='Popup ads'>Popup ads - {this.props.adCosts['Popup ads']} Play Money per day</option>
                         <option value='Annoying ads'>Annoying Ads - {this.props.adCosts['Annoying ads']} Play Money per day</option>
                     </select>
-                    <button id="submit-changes" type="submit">Submit Changes</button>           
+                    <button className="submit-changes" id={`submit-changes${this.props.item.title}`} type="submit">Submit Changes</button>           
                 </form>
                 {/* <div className="choose-buttons">
                     <button> See Reviews</button>
