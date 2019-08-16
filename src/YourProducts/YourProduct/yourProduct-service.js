@@ -4,9 +4,9 @@ import TokenService from '../../services/Token-services';
 const yourProductsService = {
     getProfitColor(profit) {
         //Style profit red or green depending on positive or negative
-        let profitColor = {color: 'green'}
+        let profitColor = {color: 'rgb(0, 73, 0)'}
         if (parseFloat(profit) < 0) {
-            profitColor = {color: 'red'};
+            profitColor = {color: 'rgb(105, 1, 1)'};
         }
         return profitColor;
     },
