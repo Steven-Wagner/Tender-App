@@ -97,7 +97,7 @@ class Shop extends Component {
 
     render() {
         return(
-            <div className="page-wrapper shop-wrapper">
+            <main className="page-wrapper shop-wrapper">
                 <AnnoyingAd
                     pathname={this.props.history.location.pathname}/>
                 <ShopInfoBar 
@@ -109,7 +109,7 @@ class Shop extends Component {
                     handleBuy={this.handleBuy}
                     handleSkip={this.handleSkip}
                     handleLike={this.handleLike}/>
-            </div>
+            </main>
         )
     }
 }

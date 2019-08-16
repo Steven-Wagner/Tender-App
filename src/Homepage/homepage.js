@@ -18,7 +18,7 @@ class Homepage extends Component {
         return(
             <div className="nav-space">
                 <Nav currentComponent='Homepage'/>
-                <div className="page-wrapper">
+                <main className="page-wrapper">
                     <HomepageAd/>
                     <UserInfo/>
 
@@ -32,7 +32,7 @@ class Homepage extends Component {
                         popularProducts={this.context.popularProducts}/>
 
                     <Footer/>
-                </div>
+                </main>
             </div>
         )
     }

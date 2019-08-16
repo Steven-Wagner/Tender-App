@@ -149,7 +149,7 @@ class App extends Component {
       : '';
 
     return (
-      <main className='App'>
+      <div className='App'>
         {displayErrorPopup}
         {displayPopup}
         <ProductsProvider value={this.state}>
@@ -189,7 +189,7 @@ class App extends Component {
           />
         </ProductsProvider>
         <Footer/>
-      </main>
+      </div>
     );
   }
 }

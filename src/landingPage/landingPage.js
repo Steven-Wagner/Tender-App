@@ -9,11 +9,11 @@ function LandingPage() {
     return(
         <div className="nav-space">
                 <Nav currentComponent='LandingPage'/>
-            <div className="page-wrapper">
+            <main className="page-wrapper">
                 <MainTitle/>
                 <LandingPageContent/>
                 <Footer/>
-            </div>
+            </main>
         </div>
     );
 }

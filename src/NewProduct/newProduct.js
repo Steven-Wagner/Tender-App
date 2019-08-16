@@ -164,9 +164,9 @@ class NewProduct extends Component {
         return(
             <div className="nav-space">
                 <Nav currentComponent={'NewProduct'}/>
-                <div className="page-wrapper">
+                <main className="page-wrapper">
                     <header>
-                        <h2 className="page-header">New Product</h2>
+                        <h1 className="page-header">New Product</h1>
                     </header>
                     <form id='productForm' className="new-product-form" onSubmit={(e) => this.handleSubmit(e)}>
                         <label htmlFor="title">Title</label>
@@ -203,7 +203,7 @@ class NewProduct extends Component {
                                     onChange={(e) => this.handleChangeInput(e)}/>
                             </div>
                             
-                            <label className="current-advertising-label" htmlFor="advertise">Ad Spending</label>
+                            <label className="current-advertising-label" htmlFor="ad">Ad Spending</label>
                             <select 
                                 id="ad"
                                 className="select-ad"
@@ -219,7 +219,7 @@ class NewProduct extends Component {
                         <button className="submit-new-product-btn" type='submit'>Submit</button>
 
                     </form>
-                </div>
+                </main>
             </div>
         )
     }

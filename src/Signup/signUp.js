@@ -170,9 +170,9 @@ class SignUp extends Component {
         return(
             <div className="nav-space">
                 <Nav currentComponent='SignUp'/>
-                <div className="page-wrapper">
+                <main className="page-wrapper">
                     <header>
-                        <h2 className="page-header">Sign Up</h2>
+                        <h1 className="page-header">Sign Up</h1>
                     </header>
 
                     <ErrorMessages errorMessages={this.state.errorMessages}/>
@@ -195,7 +195,7 @@ class SignUp extends Component {
                         </textarea>
                         {buttonsOrLoading}
                     </form>
-                </div>
+                </main>
             </div>
         )
     }

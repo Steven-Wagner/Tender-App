@@ -82,14 +82,14 @@ class YourProducts extends Component {
         return(
             <div className="nav-space">
                 <Nav currentComponent='YourProducts'/>
-                <div className="page-wrapper">
+                <main className="page-wrapper">
                     <header>
-                        <h2 className="page-header">Your Products</h2>
+                        <h1 className="page-header">Your Products</h1>
                     </header>
                     <div className="list-of-items">
                         {items}
                     </div>
-                </div>
+                </main>
             </div>
         )
     }

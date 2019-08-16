@@ -92,9 +92,10 @@ class Login extends Component {
             username: this.state.username.trim(),
             password: this.state.password.trim()
         }
-
+            console.log('getting to fetch')
             this.fetchPostLoginInfo(loginBody)
             .then(authInfo => {
+                console.log('auth', authInfo)
                 const user_id = authInfo.user_id;
 
                 TokenService.saveAuthToken(authInfo.authToken, user_id);
@@ -113,6 +114,7 @@ class Login extends Component {
                 })
             })
             .catch(error => {
+                console.log('error in catch');
                 this.setErrorMessages([error.message])
                 this.changeLoadingStatus(false);
             })
@@ -132,6 +134,9 @@ class Login extends Component {
                     return (!res.ok)
                         ? res.json().then(e => reject(e))
                         : resolve(res.json())
+                })
+                .catch(error => {
+                    reject(error)
                 })
             }
             catch(error) {
@@ -162,9 +167,9 @@ class Login extends Component {
         return(
             <div className="nav-space">
                 <Nav currentComponent='Login'/>
-                <div className="page-wrapper">
+                <main className="page-wrapper">
                     <header>
-                        <h2 className="page-header">Login</h2>
+                        <h1 className="page-header">Login</h1>
                     </header>
 
                     <ErrorMessages errorMessages={this.state.errorMessages}/>
@@ -180,7 +185,7 @@ class Login extends Component {
 
                         {buttonsOrLoading}
                     </form>
-                </div>
+                </main>
             </div>
         )
     }
