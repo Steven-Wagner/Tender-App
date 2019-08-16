@@ -5,9 +5,9 @@ function ProductDetails (props) {
 
     return(
         <div className="top-selling-item" onClick={() => props.handleClick(props.item)}>
-            <h3 className="product-title">
+            <h2 className="product-title">
                 {props.item.title}
-            </h3>
+            </h2>
             <img className="product-img" src={props.item.img} alt={props.item.title}/>
             <div className="popular-info">
                 <p>Sold: {props.item.sold}</p>

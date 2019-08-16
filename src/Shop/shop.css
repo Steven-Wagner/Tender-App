@@ -43,6 +43,10 @@ div .shop-wrapper {
     box-shadow: 3px 3px 5px;
 }
 
+.shopping-title {
+    font-size: 1.17em;
+}
+
 .current-product button {
     padding: 10px;
     margin: 10px;

@@ -54,9 +54,9 @@ class TopSellingItems extends Component {
 
         return(
             <section className="item-summaries">
-                <h2>
+                <h1>
                     {headerTitle}
-                </h2>
+                </h1>
                 <div className="top-items">
                     {topItems}
                 </div>

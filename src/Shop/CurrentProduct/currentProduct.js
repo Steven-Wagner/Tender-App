@@ -19,7 +19,7 @@ function CurrentProduct(props) {
                 <button className="buy-button" onClick={() => props.handleBuy()}>Buy</button>
             </div>
             {/* <button onClick={() => props.handleLike()}>Like</button> */}            
-            <h2>{props.item.title}</h2>
+            <h1 className="shopping-title">{props.item.title}</h1>
             {img}
             {/* <Stars rating={props.item.rating}/> */}
             <p className="price">Price: {props.item.price}</p>
