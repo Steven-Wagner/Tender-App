@@ -30,8 +30,6 @@ class Homepage extends Component {
                         //Render overall top items
                         status='overall'
                         popularProducts={this.context.popularProducts}/>
-
-                    <Footer/>
                 </main>
             </div>
         )
