@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Nav from '../Components/Nav/nav';
-import Footer from '../Components/Footer/footer';
 import HomepageAd from '../Components/Hompage Ad/homepage-ad';
 import UserInfo from '../Components/UserInfo/userInfo';
 import TopSellingItems from '../Components/TopSellingItems/topSellingItems'
