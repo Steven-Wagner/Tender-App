@@ -120,7 +120,7 @@ class salesGraph extends Component {
       <svg className="sales-svg" width={this.state.width} height={this.state.height}>
          <line className="axis" x1={this.state.margin+this.state.leftMargin} x2={w+this.state.margin} y1={h+this.state.margin} y2={h+this.state.margin}/>
          <line className="axis" x1={this.state.margin+this.state.leftMargin} x2={this.state.margin+this.state.leftMargin} y1={this.state.margin} y2={h+this.state.margin}/>
-         <path d={line(data)}/>
+         <path className="sales-path" d={line(data)}/>
          <g className="axis-labels">
            {xTicks}
          </g>

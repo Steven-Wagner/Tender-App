@@ -67,7 +67,7 @@
     transition-delay: .5s;
   }
   
-  path {
+  .sales-path {
     stroke: rgb(0, 73, 0);
     stroke-width: 5px;
     fill: none;
