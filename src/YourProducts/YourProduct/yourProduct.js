@@ -90,10 +90,6 @@ class YourProduct extends Component {
         }
     }
 
-    // getWidth() {
-    //     return document.getElementById(`product-${this.props.item}`).clientWidth;
-    // }
-
     render() {
         let displayImg = '';
 
@@ -124,7 +120,6 @@ class YourProduct extends Component {
                     {displayImg}
                     {this.editButton('img')}
                     {/* <Stars rating={this.props.item.rating}/> */}
-                    {/* {Add line graph here} */}
                     <SalesGraph data={this.state.graphData} parentId={`product-${this.props.item.id}`}/>
 
                     <p className="description">{this.props.item.description}</p>
