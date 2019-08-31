@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 // import Stars from '../../Components/Stars/stars';
 import EditPopup from './editPopup';
 import yourProductService from './yourProduct-service';
+import SalesGraph from './salesGraph';
 
 class YourProduct extends Component {
 
@@ -11,13 +12,28 @@ class YourProduct extends Component {
             editPopup: {
                 type: '',
                 status: ''
-            }
+            },
+            graphData: []
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showEditPopup = this.showEditPopup.bind(this);
         this.removeEditPopup = this.removeEditPopup.bind(this);
         this.editButton = this.editButton.bind(this);
+        this.setGraphData = this.setGraphData.bind(this);
+    }
+
+    componentDidMount() {
+        yourProductService.getSalesInfo(this.props.item.creator_id, this.props.item.id)
+        .then(data => {
+            this.setGraphData(data);
+        })
+    }
+
+    setGraphData(data) {
+        this.setState({
+            graphData: data
+        });
     }
 
     handleSubmit(e) {
@@ -74,6 +90,10 @@ class YourProduct extends Component {
         }
     }
 
+    // getWidth() {
+    //     return document.getElementById(`product-${this.props.item}`).clientWidth;
+    // }
+
     render() {
         let displayImg = '';
 
@@ -95,7 +115,7 @@ class YourProduct extends Component {
             : '';
 
         return(
-            <section className="your-product">
+            <section id={`product-${this.props.item.id}`} className="your-product">
                 {editPopup}
                 <div className='your-product-title'>
                     <h2 className="title-content">{this.props.item.title}</h2>{this.editButton('title')}
@@ -104,6 +124,8 @@ class YourProduct extends Component {
                     {displayImg}
                     {this.editButton('img')}
                     {/* <Stars rating={this.props.item.rating}/> */}
+                    {/* {Add line graph here} */}
+                    <SalesGraph data={this.state.graphData} parentId={`product-${this.props.item.id}`}/>
 
                     <p className="description">{this.props.item.description}</p>
 

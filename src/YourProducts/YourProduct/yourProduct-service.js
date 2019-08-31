@@ -32,6 +32,27 @@ const yourProductsService = {
                 reject(error);
             }
         })
+    },
+
+    getSalesInfo(userId, productId) {
+        return new Promise((resolve, reject) => {
+            try {
+                fetch(`${API_BASE_URL}/yourProducts/${userId}/${productId}`, {
+                    method: "GET",
+                    headers: {
+                        "authorization": `bearer ${TokenService.getAuthToken()}`
+                    },
+                })
+                .then(data => {
+                    return (!data.ok)
+                        ? data.json().then(e => {reject (e)})
+                        : resolve(data.json());
+                })
+            }
+            catch(error) {
+                reject(error);
+            }
+        })
     }
 }
 

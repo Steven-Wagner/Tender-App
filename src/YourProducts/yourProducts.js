@@ -86,7 +86,7 @@ class YourProducts extends Component {
                     <header>
                         <h1 className="page-header">Your Products</h1>
                     </header>
-                    <div className="list-of-items">
+                    <div id="list-of-items-id" className="list-of-items">
                         {items}
                     </div>
                 </main>

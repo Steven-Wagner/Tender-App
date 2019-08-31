@@ -50,6 +50,53 @@
     font-weight: bold;
 }
 
+.graph-wrapper {
+    align-self: center;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px black;
+    background-image: linear-gradient(to right, rgb(190, 245, 255) , rgb(141, 246, 255));
+    margin: 20px;
+    width: 100%;
+    
+}
+
+svg {
+    fill: #000;
+    fill-opacity: 0.3;
+    transition: width 2s;
+    transition-delay: .5s;
+  }
+  
+  path {
+    stroke: rgb(0, 73, 0);
+    stroke-width: 5px;
+    fill: none;
+  }
+  
+  .axis {
+    stroke: #000;
+  }
+  
+  .axis-labels text {
+    fill: #000;
+    fill-opacity: 1;
+    font-size: 16px;
+    text-anchor: middle;
+  }
+  
+  .axis-labels line {
+    stroke: #000;
+  }
+  
+  .gridline {
+    opacity: 0.2;
+  }
+  .y-label {
+      color: black;
+      font-weight: bold;
+      fill-opacity: 1;
+  }
+
 .edit-button {
     font-size: 12px !important;
     text-decoration: underline;
