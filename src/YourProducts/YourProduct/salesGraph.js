@@ -20,9 +20,7 @@ class salesGraph extends Component {
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.reportWindowSize);
-    }
-
-    
+    } 
 
     reportWindowSize() {
         const newWidth = document.getElementById(`${this.props.parentId}`).clientWidth
