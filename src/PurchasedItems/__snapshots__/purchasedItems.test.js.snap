@@ -31,15 +31,15 @@ exports[`Purchased Items UI renders correctly PurchasedItems renders correctly 1
         <Nav
           currentComponent="PurchasedItems"
         />
-        <div
+        <main
           className="page-wrapper"
         >
           <header>
-            <h2
+            <h1
               className="page-header"
             >
               Purchased Products
-            </h2>
+            </h1>
           </header>
           <div
             className="list-of-items"
@@ -139,7 +139,7 @@ exports[`Purchased Items UI renders correctly PurchasedItems renders correctly 1
               </section>
             </PurchasedItem>
           </div>
-        </div>
+        </main>
       </div>
     </PurchasedItems>
   </Router>

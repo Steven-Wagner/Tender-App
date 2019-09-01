@@ -23,10 +23,12 @@ class salesGraph extends Component {
     } 
 
     reportWindowSize() {
-        const newWidth = document.getElementById(`${this.props.parentId}`).clientWidth
-        this.setState({
-            width: newWidth-40
-        })
+        if (document.getElementById(`${this.props.parentId}`)) {
+            const newWidth = document.getElementById(`${this.props.parentId}`).clientWidth
+            this.setState({
+                width: newWidth-40
+            })
+        }
     }
 
     parseData() {

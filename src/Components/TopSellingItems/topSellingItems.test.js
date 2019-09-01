@@ -28,7 +28,7 @@ describe('Top Selling UI renders correctly', () => {
                 expect(topSellingItemsWrapper.find('TopSellingItems').state().includeProfit).toBe(option.profit);
             })
             it(`Top Selling returns with heading: ${option.heading}`, () => {
-                expect(topSellingItemsWrapper.find('TopSellingItems').find('h2').text()).toBe(option.heading);
+                expect(topSellingItemsWrapper.find('TopSellingItems').find('h1').text()).toBe(option.heading);
             })
         })
     })
