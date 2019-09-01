@@ -138,7 +138,7 @@ class YourProduct extends Component {
                             id={`price${this.props.item.title}`}
                             type="number" 
                             step="1"
-                            onChange={(e) => this.props.handleChangeInput(e, this.props.index)}/>
+                            onChange={(e) => this.props.handleChangeInput(e, this.props.index, 'price')}/>
                     </div>
                     <label className="current-advertising-label" htmlFor={`ad${this.props.item.title}`}>Current Advertising:</label>
                     <select 
