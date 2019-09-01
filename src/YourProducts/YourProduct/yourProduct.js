@@ -144,7 +144,7 @@ class YourProduct extends Component {
                     <select 
                         className="select-ad"
                         id={`ad${this.props.item.title}`}
-                        onChange={(e) => this.props.handleChangeInput(e, this.props.index)}
+                        onChange={(e) => this.props.handleChangeInput(e, this.props.index, 'ad')}
                         value={this.props.item.ad}>
                         <option value='None'>None</option>
                         <option value='Homepage ads'>Homepage ads - {this.props.adCosts['Homepage ads']} Play Money per day</option>

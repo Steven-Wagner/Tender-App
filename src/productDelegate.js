@@ -223,12 +223,12 @@ const ProductDelegate = function() {
         })
     }
    
-    this.handleChangeInput = function(e, index) {
+    this.handleChangeInput = function(e, index, type) {
         //Handles all changes to currentlyEditing
         let newInput = Object.assign({}, this.app.state.currentlyEditing);
 
         if (this.app.state.currentlyEditing.index === index) {
-            newInput[e.target.id] = e.target.value;
+            newInput[type ? type : e.target.id] = e.target.value;
             return this.setState({
             currentlyEditing: newInput
             })
@@ -239,7 +239,7 @@ const ProductDelegate = function() {
 
             newInput = Object.assign({}, this.app.state.yourItems[index])
             newInput.index = index;
-            newInput[e.target.id] = e.target.value;
+            newInput[type ? type : e.target.id] = e.target.value;
 
             return this.setState({
             currentlyEditing: newInput,
