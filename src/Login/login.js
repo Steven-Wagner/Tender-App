@@ -17,8 +17,8 @@ class Login extends Component {
 
         this.state = {
             errorMessages: [],
-            username: '',
-            password: '',
+            username: 'Tester',
+            password: 'password',
             loading: false
         }
 
@@ -92,15 +92,13 @@ class Login extends Component {
             username: this.state.username.trim(),
             password: this.state.password.trim()
         }
-            console.log('getting to fetch')
             this.fetchPostLoginInfo(loginBody)
             .then(authInfo => {
-                console.log('auth', authInfo)
                 const user_id = authInfo.user_id;
 
                 TokenService.saveAuthToken(authInfo.authToken, user_id);
 
-                //chnageUser() fetches most of the user's data
+                //changeUser() fetches most of the user's data
                 this.context.changeUser({id: user_id})
                 .then(res => {
                     this.changeLoadingStatus(false);
@@ -114,7 +112,6 @@ class Login extends Component {
                 })
             })
             .catch(error => {
-                console.log('error in catch');
                 this.setErrorMessages([error.message])
                 this.changeLoadingStatus(false);
             })
@@ -174,13 +171,15 @@ class Login extends Component {
 
                     <ErrorMessages errorMessages={this.state.errorMessages}/>
 
+                    <p className="demo-info">Click submit with the default username and password to view a demo account</p>
+
                     <form className="login-form" onSubmit={(e) => this.handleSubmit(e)}>
                         <label htmlFor="username">Username/Company Name</label>
-                        <input id="username" type="text" autoComplete="username"
+                        <input id="username" type="text" autoComplete="username" value={this.state.username}
                             onChange={(e) => this.handleChangeInput(e)}/>
 
                         <label htmlFor="password">Password</label>
-                        <input id="password" type="password" autoComplete="current-password"
+                        <input id="password" type="password" autoComplete="current-password" value={this.state.password}
                             onChange={(e) => this.handleChangeInput(e)}/>
 
                         {buttonsOrLoading}
